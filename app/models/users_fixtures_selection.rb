@@ -1,4 +1,4 @@
 class UsersFixturesSelection < ApplicationRecord
-  belongs_to :user_id
-  belongs_to :fixtures_id
+  belongs_to :user
+  belongs_to :fixtures_group
 end
