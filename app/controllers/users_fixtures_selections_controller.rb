@@ -1,0 +1,2 @@
+class UsersFixturesSelectionsController < ApplicationController
+end
