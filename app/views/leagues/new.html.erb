@@ -1,0 +1,49 @@
+<h1>Create either a private or a public league</h1>
+
+<h2>Create a Public League</h2>
+<%= form_tag "/leagues", method: :post do %>
+  <div>
+    <%= label_tag :name%>
+    <%= text_field_tag :name, @league.name%>
+  </div>
+  <div>
+    <%= label_tag :description %>
+    <%= text_field_tag :description, @league.description %>
+  </div>
+  <div>
+    <%= label_tag :image %>
+    <%= text_field_tag :image, @league.image %>
+  </div>
+  <div>
+    <%= submit_tag "Create Public League" %>
+  </div>
+<% end %>
+
+
+
+<h2>Create a Private League</h2>
+<%= form_tag "/leagues", method: :post do %>
+  <div>
+    <%= label_tag :name%>
+    <%= text_field_tag :name, @league.name%>
+  </div>
+  <div>
+    <%= label_tag :description %>
+    <%= text_field_tag :description, @league.description %>
+  </div>
+  <div>
+    <%= label_tag :image %>
+    <%= text_field_tag :image, @league.image %>
+  </div>
+  <div>
+    <%= label_tag :password %>
+    <%= password_field_tag :password%>
+  </div>
+  <div>
+    <%= label_tag :password_confirmation %>
+    <%= password_field_tag :password_confirmation %>
+  </div>
+  <div>
+    <%= submit_tag "Create Private League" %>
+  </div>
+<% end %>

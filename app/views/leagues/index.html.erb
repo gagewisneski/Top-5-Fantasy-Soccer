@@ -1,0 +1,12 @@
+<h1>All public leagues:</h1>
+<% @leagues.each do |league| %>
+<div>
+  <h2><%= league.name %>: <%= league.users.count.to_s %> Players</h2>
+  <% a = league.users %>
+  <% a.each do |user| %>
+    <div>
+    <h4><%= user.name %></h4>
+    </div>
+  <% end %>
+  <h5>===================</h5>
+<% end %>

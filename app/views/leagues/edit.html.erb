@@ -1,0 +1,19 @@
+<h1>Edit You Stoopid League</h1>
+
+<%= form_tag "/leagues/#{@league.id}", method: :patch do %>
+  <div>
+    <%= label_tag :name%>
+    <%= text_field_tag :name, @league.name%>
+  </div>
+  <div>
+    <%= label_tag :description %>
+    <%= text_field_tag :description, @league.description %>
+  </div>
+  <div>
+    <%= label_tag :image %>
+    <%= text_field_tag :image, @league.image %>
+  </div>
+  <div>
+    <%= submit_tag "Update League" %>
+  </div>
+<% end %>
