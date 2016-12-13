@@ -1,3 +1,3 @@
 class FixturesGroup < ApplicationRecord
-  has_many :user_fixtures_selections
+  has_many :users_fixtures_selections
 end

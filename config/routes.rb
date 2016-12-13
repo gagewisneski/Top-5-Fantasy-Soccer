@@ -12,5 +12,5 @@ Rails.application.routes.draw do
 
   resources :leagues
 
-  # resources :users_fixtures_selections
+  resources :users_fixtures_selections
 end

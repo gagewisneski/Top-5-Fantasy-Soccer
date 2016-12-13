@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   def current_user_admin
     if current_user.id != league.admin_id
-      flash[:warning] = "You ain't no admin!"
+      flash[:warning] = "You aren't the admin for this league!"
       redirect_to "/"
     end
   end

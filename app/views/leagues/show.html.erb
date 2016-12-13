@@ -1,0 +1,15 @@
+<h1><%= @league.name %></h1>
+<h2>Player count: <%= @league.users.count.to_s %></h2>
+<% users = @league.users %>
+<% users.each do |user| %>
+  <div>
+  <h4><%= user.name %></h4>
+  </div>
+<% end %>
+<h5>===================</h5>
+<% if session[:user_id] %>
+  <% if current_user.id == @league.id %>
+    <%= link_to "Edit League", "/leagues/#{@league.id}/edit" %>
+    <%= link_to "Delete League", "/leagues/#{@league.id}", method: :delete %>
+  <% end %>
+<% end %>
