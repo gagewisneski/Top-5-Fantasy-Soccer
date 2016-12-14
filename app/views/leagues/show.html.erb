@@ -7,9 +7,12 @@
   </div>
 <% end %>
 <h5>===================</h5>
+<% @users_leagues = @league.users_leagues.find_by(user_id: current_user.id) %>
 <% if session[:user_id] %>
   <% if current_user.id == @league.id %>
     <%= link_to "Edit League", "/leagues/#{@league.id}/edit" %>
     <%= link_to "Delete League", "/leagues/#{@league.id}", method: :delete %>
+  <% elsif @users_leagues %>
+    <%= link_to "Leave this league", "/users_leagues/#{@users_leagues.id}", method: :delete %>
   <% end %>
 <% end %>
