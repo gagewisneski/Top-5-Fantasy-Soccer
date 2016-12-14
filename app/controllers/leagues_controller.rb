@@ -51,6 +51,8 @@ class LeaguesController < ApplicationController
   def destroy
     # Destroys league
     league = League.find(params[:id])
+    users_leagues = UsersLeague.where(league_id: :league.id)
+    users_leagues.destroy_all
     league.destroy
     redirect_to "/leagues"
   end
