@@ -1,17 +1,17 @@
-<h1>Join a league</h1>
+<h1 class="page-header">Join a league</h1>
 
 <%= form_tag "/users_leagues", method: :post do %>
-  <div>
+  <div class="form-group">
     <%= label_tag :league_name %>
-    <%= text_field_tag :league_name, @league.name %>
+    <%= text_field_tag :league_name, @league.name, class: "form-control" %>
   </div>
 
-  <div>
+  <div class="form-group">
     <%= label_tag :password %>
-    <%= text_field_tag :password %>
+    <%= text_field_tag :password, nil, class: "form-control" %>
   </div>
 
   <div>
-    <%= submit_tag "Join League!" %>
+    <%= submit_tag "Join League!", class: "btn btn-danger btn-lg" %>
   </div>
 <% end %>

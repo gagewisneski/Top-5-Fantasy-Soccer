@@ -1,3 +1,47 @@
 // Place all the styles related to the UsersFixturesSelections controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+  background-image: url(footer_lodyas.png)
+}
+
+.nav-link {
+  border-left-style: solid;
+  border-color: steelblue;
+}
+
+.header-link {
+  text-align: right;
+  float: right;
+}
+
+.sort {
+  text-align: right;
+  float: right;
+}
+
+.page-header {
+  color: white;
+}
+
+.jumbotron {
+  padding-top: 30px;
+  border-radius: 10px;
+  box-shadow: 1px 3px 3px #888888;
+  background-image: url(sos.png);
+  text-align: center;
+}
+
+.btn {
+  box-shadow: 1px 2px 2px #888888;
+}
+
+.form-control {
+  width: 400px;
+}
+
+.description {
+  width: 400px;
+  height: 400px;
+}
