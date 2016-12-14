@@ -9,36 +9,36 @@
 
 
 users = [
-          ["first", "first", 0],
-          ["second", "second", 0],
-          ["third", "third", 0],
-          ["fourth", "fourth", 0],
-          ["fifth", "fifth", 0],
-          ["six", "six", 0],
-          ["seven", "seven", 0],
-          ["eight", "eight", 0],
-          ["nine", "nine", 0],
-          ["tem", "tem", 0],
-          ["eleven", "eleven", 0],
-          ["twelve", "twelve", 0],
-          ["thirteen", "thirteen", 0]
+          ["first", "first", 100, "first", "first"],
+          ["second", "second", 80, "second", "second"],
+          ["third", "third", 90, "third", "third"],
+          ["fourth", "fourth", 70, "fourth", "fourth"],
+          ["fifth", "fifth", 40, "fifth", "fifth"],
+          ["six", "six", 20, "six", "six"],
+          ["seven", "seven", 10, "seven", "seven"],
+          ["eight", "eight", 60, "eight", "eight"],
+          ["nine", "nine", 50, "nine", "nine"],
+          ["ten", "ten", 9, "ten", "ten"],
+          ["eleven", "eleven", 8, "eleven", "eleven"],
+          ["twelve", "twelve", 7, "twelve", "twelve"],
+          ["thirteen", "thirteen", 6, "thriteen", "thirteen"]
         ]
-users.each do |name, email, score|
-  User.create(name: name, email: email, score: score)
+users.each do |name, email, score, password, password_confirmation|
+  User.create(name: name, email: email, score: score, password: password, password_confirmation: password_confirmation)
 end
 
 leagues = [
-            ["league 1", true, "description", "image", 1],
-            ["league 2", false, nil, nil, 1],
-            ["league 3", false, nil, nil, 2],
-            ["league 4", true, nil, nil, 2],
-            ["league 5", false, nil, nil, 3],
-            ["league 6", false, nil, nil, 3],
-            ["league 7", false, nil, nil, 4],
-            ["league 8", false, nil, nil, 5]
+            ["league 1", true, "description", "image", 1, "league 1"],
+            ["league 2", false, nil, nil, 1, nil],
+            ["league 3", false, nil, nil, 2, nil],
+            ["league 4", true, nil, nil, 2, nil],
+            ["league 5", false, nil, nil, 3, nil],
+            ["league 6", false, nil, nil, 3, nil],
+            ["league 7", false, nil, nil, 4, nil],
+            ["league 8", false, nil, nil, 5, nil]
           ]
-leagues.each do |name, status, description, image, admin_id|
-  League.create(name: name, private: status, description: description, image: image, admin_id: admin_id)
+leagues.each do |name, status, description, image, admin_id, password_digest|
+  League.create(name: name, private: status, description: description, image: image, admin_id: admin_id, password_digest: password_digest)
 end
 
 usersleagues = [

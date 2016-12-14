@@ -3,14 +3,13 @@ class UsersFixturesSelectionsController < ApplicationController
 
   def index
     # Acts as a league for everyone and shows the top 25 overall scorers
-    @leaders = Users.all.order(score: :desc)
+    @leaders = User.all.order(score: :desc)
   end
 
   def new
     # User inputs scores for each fixture
     @fixtures_group = FixturesGroup.find_by(active: true)
     @myselection = UsersFixturesSelection.new
-
   end
 
   def create
