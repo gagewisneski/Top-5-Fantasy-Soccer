@@ -2,19 +2,15 @@
 <p>Here you can create multiple private and/or public leagues, join multiple leagues, try and predict our selected soccer fixtures, and more.</p>
 
 <%= link_to "Join a league", "/leagues" %>
-<%= link_to "Create a league", "/leagues/new"
+<%= link_to "Create a league", "/leagues/new" %>
 
 
-<% @fixtures_groups.each do |group| %>
-  <% if group.active == true %>
-    <% game = Unirest.get("http://api.football-data.org/v1/fixtures/#{group.fixture1_id}").body %>
-    <h2><%= "#{game["fixture"]["homeTeamName"]} hosts #{game["fixture"]["awayTeamName"]}" %></h2>
-    <h3>===========================</h3>
-    <% game = Unirest.get("http://api.football-data.org/v1/fixtures/#{group.fixture2_id}").body %>
-    <h2><%= "#{game["fixture"]["homeTeamName"]} hosts #{game["fixture"]["awayTeamName"]}" %></h2>
-    <h3>===========================</h3>
-    <% game = Unirest.get("http://api.football-data.org/v1/fixtures/#{group.fixture3_id}").body %>
-    <h2><%= "#{game["fixture"]["homeTeamName"]} hosts #{game["fixture"]["awayTeamName"]}" %></h2>
-    <h3>===========================</h3>
-  <% end %>
-<% end %>
+<% game = Unirest.get("http://api.football-data.org/v1/fixtures/#{@fixtures_group.fixture1_id}").body %>
+<h2><%= "#{game["fixture"]["homeTeamName"]} hosts #{game["fixture"]["awayTeamName"]}" %></h2>
+<h3>===========================</h3>
+<% game = Unirest.get("http://api.football-data.org/v1/fixtures/#{@fixtures_group.fixture2_id}").body %>
+<h2><%= "#{game["fixture"]["homeTeamName"]} hosts #{game["fixture"]["awayTeamName"]}" %></h2>
+<h3>===========================</h3>
+<% game = Unirest.get("http://api.football-data.org/v1/fixtures/#{@fixtures_group.fixture3_id}").body %>
+<h2><%= "#{game["fixture"]["homeTeamName"]} hosts #{game["fixture"]["awayTeamName"]}" %></h2>
+<h3>===========================</h3>

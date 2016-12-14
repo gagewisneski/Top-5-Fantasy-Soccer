@@ -1,2 +1,7 @@
 <h1>This will display the overall users scores.</h1>
-<p></p>
+<% @leaders.each do |leader| %>
+  <% count = 1 %>
+  <%= "#{leader.name}: #{leader.score}" %><br>
+  <% count += 1 %>
+  <% break if count == 5 %>
+<% end %>
