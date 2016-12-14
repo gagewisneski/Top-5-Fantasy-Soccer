@@ -25,11 +25,12 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li><a class="nav-link" href="/leagues">Leagues</a></li>
+            <li><a class="nav-link" href="/leagues">Join a League</a></li>
             <% unless current_user %>
               <li><a class="nav-link" href="/signup">Signup</a></li>
               <li><a class="nav-link" href="/login">Log in</a></li>
             <% else %>
+              <li><a class="nav-link" href="/leagues/new">Create a League</a></li>
               <li><a class="nav-link" href="/logout">Log Out</a></li>
             <% end %>
           </ul>

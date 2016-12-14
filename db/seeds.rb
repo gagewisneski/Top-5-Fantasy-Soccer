@@ -31,7 +31,7 @@ leagues = [
             ["league 1", true, "description", "image", 1, "league 1"],
             ["league 2", false, nil, nil, 1, nil],
             ["league 3", false, nil, nil, 2, nil],
-            ["league 4", true, nil, nil, 2, nil],
+            ["league 4", true, nil, nil, 2, "league 4"],
             ["league 5", false, nil, nil, 3, nil],
             ["league 6", false, nil, nil, 3, nil],
             ["league 7", false, nil, nil, 4, nil],

@@ -1,0 +1,17 @@
+<h1>Join a league</h1>
+
+<%= form_tag "/users_leagues", method: :post do %>
+  <div>
+    <%= label_tag :league_name %>
+    <%= text_field_tag :league_name, @league.name %>
+  </div>
+
+  <div>
+    <%= label_tag :password %>
+    <%= text_field_tag :password %>
+  </div>
+
+  <div>
+    <%= submit_tag "Join League!" %>
+  </div>
+<% end %>
