@@ -6,17 +6,49 @@
   <% count += 1 %>
   <% break if count == 10 %>
 <% end %>
-<% @leagues.each do |league| %>
-<div>
-  <h2><%= link_to league.name, "/leagues/#{league.id}" %>: <%= league.users.count.to_s %> Players</h2>
-  <% users = league.users.order(score: :desc) %>
-  <% users.each do |user| %>
-    <div>
-    <% count = 1 %>
-    <h4><%= "#{user.name} Score: #{user.score}" %></h4><br>
-    <% count += 1 %>
-    <% break if count == 3 %>
-    </div>
+
+<% if session[:user_id] %>
+  <% @leagues.each do |league| %>
+  <div>
+    <h2><%= link_to league.name, "/leagues/#{league.id}" %>: <%= league.users.count.to_s %> Players</h2>
+    <% users = league.users.order(score: :desc) %>
+    <% users.each do |user| %>
+      <div>
+      <% count = 1 %>
+      <h4><%= "#{user.name} Score: #{user.score}" %></h4><br>
+      <% count += 1 %>
+      <% break if count == 3 %>
+      </div>
+    <% end %>
+    <h5>===================</h5>
   <% end %>
-  <h5>===================</h5>
+  <% @extraleagues.each do |league| %>
+  <div>
+    <h2><%= link_to league.name, "/leagues/#{league.id}" %>: <%= league.users.count.to_s %> Players</h2>
+    <% users = league.users.order(score: :desc) %>
+    <% users.each do |user| %>
+      <div>
+      <% count = 1 %>
+      <h4><%= "#{user.name} Score: #{user.score}" %></h4><br>
+      <% count += 1 %>
+      <% break if count == 3 %>
+      </div>
+    <% end %>
+    <h5>===================</h5>
+  <% end %>
+<% else %>
+  <% @publicleagues.each do |league| %>
+  <div>
+    <h2><%= link_to league.name, "/leagues/#{league.id}" %>: <%= league.users.count.to_s %> Players</h2>
+    <% users = league.users.order(score: :desc) %>
+    <% users.each do |user| %>
+      <div>
+      <% count = 1 %>
+      <h4><%= "#{user.name} Score: #{user.score}" %></h4><br>
+      <% count += 1 %>
+      <% break if count == 3 %>
+      </div>
+    <% end %>
+    <h5>===================</h5>
+  <% end %>
 <% end %>

@@ -19,4 +19,11 @@ class ApplicationController < ActionController::Base
       redirect_to "/"
     end
   end
+
+  def new_selections?
+    active_fixtures = FixturesGroup.find_by(active: true).users_fixtures_selections.find_by(id: current_user.id)
+    if active_fixtures
+      redirect_to "/users_fixtures_selections/#{active_fixtures}"
+    end
+  end
 end

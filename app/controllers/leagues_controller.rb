@@ -5,7 +5,9 @@ class LeaguesController < ApplicationController
   def index
     # Display all the public leagues
     @users = User.all.order(score: :desc)
-    @leagues = League.where(private: false)
+    @leagues = User.find(current_user.id).leagues
+    @publicleagues = League.where(private: false)
+    @extraleagues = @publicleagues - @leagues
   end
 
   def new

@@ -1,5 +1,6 @@
 class UsersFixturesSelectionsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :ceate, :edit, :update, :destroy]
+  before_action :new_selections?, only: [:new]
 
   def index
     # Acts as a league for everyone and shows the top 25 overall scorers

@@ -33,7 +33,7 @@
               <li><%= link_to "My Selections", "/users_fixtures_selections/new", class:"nav-link" %></li>
               <li><a class="nav-link" href="/leagues">Join a League</a></li>
               <li><a class="nav-link" href="/leagues/new">Create a League</a></li>
-              <li><a class="nav-link" href="/logout">Log Out</a></li>
+              <li><%= link_to "Log out", "/logout", class:"nav-link", method: :delete %></li>
             <% end %>
           </ul>
         </div><!-- /.navbar-collapse -->
