@@ -26,11 +26,11 @@ class UsersFixturesSelectionsController < ApplicationController
   
   def edit
     # User can change their inputs for the current fixtures
-    @selection = FixturesGroup.find_by(active: true).users_fixtures_selections.where(user_id: current_user.id)
+    @selection = FixturesGroup.find_by(active: true).users_fixtures_selections.find_by(user_id: current_user.id)
+    @fixtures_group = FixturesGroup.find_by(active: true)
 
 
     @myselection = UsersFixturesSelection.find(params[:id])
-    render :new
   end
   
   def update

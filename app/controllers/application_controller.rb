@@ -21,9 +21,9 @@ class ApplicationController < ActionController::Base
   end
 
   def new_selections?
-    active_fixtures = FixturesGroup.find_by(active: true).users_fixtures_selections.find_by(id: current_user.id)
+    active_fixtures = FixturesGroup.find_by(active: true).users_fixtures_selections.find_by(user_id: current_user.id)
     if active_fixtures
-      redirect_to "/users_fixtures_selections/#{active_fixtures}"
+      redirect_to "/users_fixtures_selections/#{active_fixtures.id}/edit"
     end
   end
 end
