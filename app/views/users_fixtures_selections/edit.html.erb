@@ -1,78 +1,96 @@
 <h1>My Selection</h1>
 
-Display each teams name with an input to record the score
-<%= form_tag "/users_fixtures_selections", method: :post do %>
+<div class="row">
+  <div class="col-sm-6 col-lg-6">
+    <div class="jumbotron">
+      <div class="container">
+        <% count = 1 %>
+        <% @fixtures_group.fixtures.each do |fixture| %>
+          <h4>Game: <%= count %></h4>
+          <h4><%= "#{fixture.home_team} hosts #{fixture.away_team}" %></h4>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
-  <% game = Unirest.get("http://api.football-data.org/v1/fixtures/#{@fixtures_group.fixture1_id}").body %>
-  <h2><%= "#{game["fixture"]["homeTeamName"]} hosts #{game["fixture"]["awayTeamName"]}" %></h2>
-  <%= label_tag :home_team_score %>
-  <%= text_field_tag :game_1_home_score, @selection.game_1_home_score %>
-  <%= label_tag :away_team_score %>
-  <%= text_field_tag :game_1_away_score, @selection.game_1_away_score %>
+  <div class="col-sm-6 col-lg-6">
+    <div class="jumbotron">
+      <div class="container">
+        <%= form_tag "/users_fixtures_selections", method: :patch do %>
 
-  <% game = Unirest.get("http://api.football-data.org/v1/fixtures/#{@fixtures_group.fixture2_id}").body %>
-  <h2><%= "#{game["fixture"]["homeTeamName"]} hosts #{game["fixture"]["awayTeamName"]}" %></h2>
-  <%= label_tag :home_team_score %>
-  <%= text_field_tag :game_2_home_score, @selection.game_2_home_score %>
-  <%= label_tag :away_team_score %>
-  <%= text_field_tag :game_2_away_score, @selection.game_2_away_score %>
+        <div>
+          <%= label_tag :home_team_score %>
+          <%= text_field_tag :game_1_home_score, @selection.game_1_home_score %>
+          <%= label_tag :away_team_score %>
+          <%= text_field_tag :game_1_away_score, @selection.game_1_away_score %>
+        </div>
 
-  <% game = Unirest.get("http://api.football-data.org/v1/fixtures/#{@fixtures_group.fixture3_id}").body %>
-  <h2><%= "#{game["fixture"]["homeTeamName"]} hosts #{game["fixture"]["awayTeamName"]}" %></h2>
-  <%= label_tag :home_team_score %>
-  <%= text_field_tag :game_3_home_score, @selection.game_3_home_score %>
-  <%= label_tag :away_team_score %>
-  <%= text_field_tag :game_3_away_score, @selection.game_3_away_score %>
+        <div>
+          <%= label_tag :home_team_score %>
+          <%= text_field_tag :game_2_home_score, @selection.game_2_home_score %>
+          <%= label_tag :away_team_score %>
+          <%= text_field_tag :game_2_away_score, @selection.game_2_away_score %>
+        </div>
 
-  <% game = Unirest.get("http://api.football-data.org/v1/fixtures/#{@fixtures_group.fixture4_id}").body %>
-  <h2><%= "#{game["fixture"]["homeTeamName"]} hosts #{game["fixture"]["awayTeamName"]}" %></h2>
-  <%= label_tag :home_team_score %>
-  <%= text_field_tag :game_4_home_score, @selection.game_4_home_score %>
-  <%= label_tag :away_team_score %>
-  <%= text_field_tag :game_4_away_score, @selection.game_4_home_score %>
+        <div>
+          <%= label_tag :home_team_score %>
+          <%= text_field_tag :game_3_home_score, @selection.game_3_home_score %>
+          <%= label_tag :away_team_score %>
+          <%= text_field_tag :game_3_away_score, @selection.game_3_away_score %>
+        </div>
 
-  <% game = Unirest.get("http://api.football-data.org/v1/fixtures/#{@fixtures_group.fixture5_id}").body %>
-  <h2><%= "#{game["fixture"]["homeTeamName"]} hosts #{game["fixture"]["awayTeamName"]}" %></h2>
-  <%= label_tag :home_team_score %>
-  <%= text_field_tag :game_5_home_score, @selection.game_5_home_score %>
-  <%= label_tag :away_team_score %>
-  <%= text_field_tag :game_5_away_score, @selection.game_5_home_score %>
+        <div>
+          <%= label_tag :home_team_score %>
+          <%= text_field_tag :game_4_home_score, @selection.game_4_home_score %>
+          <%= label_tag :away_team_score %>
+          <%= text_field_tag :game_4_away_score, @selection.game_4_home_score %>
+        </div>
 
-  <% game = Unirest.get("http://api.football-data.org/v1/fixtures/#{@fixtures_group.fixture6_id}").body %>
-  <h2><%= "#{game["fixture"]["homeTeamName"]} hosts #{game["fixture"]["awayTeamName"]}" %></h2>
-  <%= label_tag :home_team_score %>
-  <%= text_field_tag :game_6_home_score, @selection.game_6_home_score %>
-  <%= label_tag :away_team_score %>
-  <%= text_field_tag :game_6_away_score, @selection.game_6_home_score %>
+        <div>
+          <%= label_tag :home_team_score %>
+          <%= text_field_tag :game_5_home_score, @selection.game_5_home_score %>
+          <%= label_tag :away_team_score %>
+          <%= text_field_tag :game_5_away_score, @selection.game_5_home_score %>
+        </div>
 
-  <% game = Unirest.get("http://api.football-data.org/v1/fixtures/#{@fixtures_group.fixture7_id}").body %>
-  <h2><%= "#{game["fixture"]["homeTeamName"]} hosts #{game["fixture"]["awayTeamName"]}" %></h2>
-  <%= label_tag :home_team_score %>
-  <%= text_field_tag :game_7_home_score, @selection.game_7_home_score %>
-  <%= label_tag :away_team_score %>
-  <%= text_field_tag :game_7_away_score, @selection.game_7_home_score %>
+        <div>
+          <%= label_tag :home_team_score %>
+          <%= text_field_tag :game_6_home_score, @selection.game_6_home_score %>
+          <%= label_tag :away_team_score %>
+          <%= text_field_tag :game_6_away_score, @selection.game_6_home_score %>
+        </div>
 
-  <% game = Unirest.get("http://api.football-data.org/v1/fixtures/#{@fixtures_group.fixture8_id}").body %>
-  <h2><%= "#{game["fixture"]["homeTeamName"]} hosts #{game["fixture"]["awayTeamName"]}" %></h2>
-  <%= label_tag :home_team_score %>
-  <%= text_field_tag :game_8_home_score, @selection.game_8_home_score %>
-  <%= label_tag :away_team_score %>
-  <%= text_field_tag :game_8_away_score, @selection.game_8_home_score %>
+        <div>
+          <%= label_tag :home_team_score %>
+          <%= text_field_tag :game_7_home_score, @selection.game_7_home_score %>
+          <%= label_tag :away_team_score %>
+          <%= text_field_tag :game_7_away_score, @selection.game_7_home_score %>
+        </div>
 
-  <% game = Unirest.get("http://api.football-data.org/v1/fixtures/#{@fixtures_group.fixture9_id}").body %>
-  <h2><%= "#{game["fixture"]["homeTeamName"]} hosts #{game["fixture"]["awayTeamName"]}" %></h2>
-  <%= label_tag :home_team_score %>
-  <%= text_field_tag :game_9_home_score, @selection.game_9_home_score %>
-  <%= label_tag :away_team_score %>
-  <%= text_field_tag :game_9_away_score, @selection.game_9_home_score %>
+        <div>
+          <%= label_tag :home_team_score %>
+          <%= text_field_tag :game_8_home_score, @selection.game_8_home_score %>
+          <%= label_tag :away_team_score %>
+          <%= text_field_tag :game_8_away_score, @selection.game_8_home_score %>
+        </div>
 
-  <% game = Unirest.get("http://api.football-data.org/v1/fixtures/#{@fixtures_group.fixture10_id}").body %>
-  <h2><%= "#{game["fixture"]["homeTeamName"]} hosts #{game["fixture"]["awayTeamName"]}" %></h2>
-  <%= label_tag :home_team_score %>
-  <%= text_field_tag :game_10_home_score, @selection.game_10_home_score %>
-  <%= label_tag :away_team_score %>
-  <%= text_field_tag :game_10_away_score, @selection.game_10_home_score %>
-  
-  <br>
-  <%= submit_tag "Play" %>
-<% end %>
+        <div>
+          <%= label_tag :home_team_score %>
+          <%= text_field_tag :game_9_home_score, @selection.game_9_home_score %>
+          <%= label_tag :away_team_score %>
+          <%= text_field_tag :game_9_away_score, @selection.game_9_home_score %>
+        </div>
+
+        <div>
+          <%= label_tag :home_team_score %>
+          <%= text_field_tag :game_10_home_score, @selection.game_10_home_score %>
+          <%= label_tag :away_team_score %>
+          <%= text_field_tag :game_10_away_score, @selection.game_10_home_score %>
+        </div>
+
+          <%= submit_tag "Change" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
