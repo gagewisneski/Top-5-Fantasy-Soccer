@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161214022427) do
+ActiveRecord::Schema.define(version: 20161217011126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "fixtures", force: :cascade do |t|
+    t.integer  "fixtures_group_id"
+    t.string   "fixture_id"
+    t.string   "home_team"
+    t.string   "away_team"
+    t.integer  "home_score"
+    t.integer  "away_score"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
 
   create_table "fixtures_groups", force: :cascade do |t|
     t.datetime "week_start_date"
