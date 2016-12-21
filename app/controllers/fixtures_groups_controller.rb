@@ -14,7 +14,6 @@ class FixturesGroupsController < ApplicationController
   
   def show
     # Probably don't need this since users will view past ones with user input in users_fixtures_selection
-    @fixtures_group = FixturesGroup.find(params[:id])
   end
   
   def edit

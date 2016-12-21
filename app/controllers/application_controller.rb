@@ -14,8 +14,16 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user_admin
-    if current_user.id != league.admin_id
+    @league = League.find(params[:id])
+    if current_user.id != @league.admin_id
       flash[:warning] = "You aren't the admin for this league!"
+      redirect_to "/"
+    end
+  end
+
+  def top_5?
+    if current_user.name != "Top_5"
+      flash[:danger] = "Stop trying to hack!"
       redirect_to "/"
     end
   end

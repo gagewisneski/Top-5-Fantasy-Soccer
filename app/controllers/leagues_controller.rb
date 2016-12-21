@@ -19,7 +19,7 @@ class LeaguesController < ApplicationController
 
   def create
     # Creates a league
-    @league = League.new(name: params[:name], private: params[:private], password: params[:password], password_confirmation: parmas[:password_confirmation], description: params[:description], image: params[:image], admin_id: current_user.id)
+    @league = League.new(name: params[:name], private: params[:private], password: params[:password], description: params[:description], image: params[:image], admin_id: current_user.id)
     if @league.save
       flash[:success] = "You have created a league"
       redirect_to "/leagues"

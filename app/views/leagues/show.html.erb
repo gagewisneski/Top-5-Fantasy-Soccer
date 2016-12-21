@@ -1,19 +1,23 @@
 <h1><%= @league.name %></h1>
 <h2>Player count: <%= @league.users.count.to_s %></h2>
 <% users = @league.users %>
+<ol>
 <% users.each do |user| %>
-  <div>
-  <h4><%= user.name %></h4>
-  </div>
+  <h4><li><%= user.name %> Score: <%= user.score %></li></h4>
 <% end %>
 <h5>===================</h5>
 
 <% if session[:user_id] %>
   <% @users_leagues = @league.users_leagues.find_by(user_id: current_user.id) %>
-  <% if current_user.id == @league.id %>
+  <% if current_user.id == @league.admin_id %>
     <%= link_to "Edit League", "/leagues/#{@league.id}/edit" %>
     <%= link_to "Delete League", "/leagues/#{@league.id}", method: :delete %>
   <% elsif @users_leagues %>
     <%= link_to "Leave this league", "/users_leagues/#{@users_leagues.id}", method: :delete %>
+  <% else %>
+    <%= form_tag "/users_leagues", method: :post do %>
+      <%= hidden_field_tag :league_name, @league.name %>
+      <%= submit_tag "Join League!" %>
+    <% end %>
   <% end %>
 <% end %>

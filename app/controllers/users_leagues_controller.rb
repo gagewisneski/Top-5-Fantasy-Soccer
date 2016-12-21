@@ -17,8 +17,9 @@ class UsersLeaguesController < ApplicationController
 
   def destroy
     # link to leave league or link to delete person from your league?
-    @league = League.find(params[:id])
-    @users_league = League.find(:id)
+    @ul = 
+    @users_league = UsersLeague.find(params[:id])
     @users_league.destroy
+    redirect_to "/leagues"
   end
 end

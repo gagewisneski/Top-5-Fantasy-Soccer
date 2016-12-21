@@ -2,95 +2,91 @@
 
 <div class="row">
   <div class="col-sm-6 col-lg-6">
-    <div class="jumbotron">
-      <div class="container">
-        <% count = 1 %>
-        <% @fixtures_group.fixtures.each do |fixture| %>
-          <h4>Game: <%= count %></h4>
-          <h4><%= "#{fixture.home_team} hosts #{fixture.away_team}" %></h4>
-        <% end %>
-      </div>
+    <div class="container">
+      <% count = 1 %>
+      <% @fixtures_group.fixtures.each do |fixture| %>
+        <h4>Game: <%= count %></h4>
+        <h4><%= "#{fixture.home_team} hosts #{fixture.away_team}" %></h4>
+      <% end %>
     </div>
   </div>
 
   <div class="col-sm-6 col-lg-6">
-    <div class="jumbotron">
-      <div class="container">
-        <%= form_tag "/users_fixtures_selections", method: :post do %>
+    <div class="container">
+      <%= form_tag "/users_fixtures_selections", method: :post do %>
 
-        <div>
-          <%= label_tag :home_team_score %>
-          <%= text_field_tag :game_1_home_score, @selection.game_1_home_score %>
-          <%= label_tag :away_team_score %>
-          <%= text_field_tag :game_1_away_score, @selection.game_1_away_score %>
-        </div>
-
-        <div>
-          <%= label_tag :home_team_score %>
-          <%= text_field_tag :game_2_home_score, @selection.game_2_home_score %>
-          <%= label_tag :away_team_score %>
-          <%= text_field_tag :game_2_away_score, @selection.game_2_away_score %>
-        </div>
-
-        <div>
-          <%= label_tag :home_team_score %>
-          <%= text_field_tag :game_3_home_score, @selection.game_3_home_score %>
-          <%= label_tag :away_team_score %>
-          <%= text_field_tag :game_3_away_score, @selection.game_3_away_score %>
-        </div>
-
-        <div>
-          <%= label_tag :home_team_score %>
-          <%= text_field_tag :game_4_home_score, @selection.game_4_home_score %>
-          <%= label_tag :away_team_score %>
-          <%= text_field_tag :game_4_away_score, @selection.game_4_home_score %>
-        </div>
-
-        <div>
-          <%= label_tag :home_team_score %>
-          <%= text_field_tag :game_5_home_score, @selection.game_5_home_score %>
-          <%= label_tag :away_team_score %>
-          <%= text_field_tag :game_5_away_score, @selection.game_5_home_score %>
-        </div>
-
-        <div>
-          <%= label_tag :home_team_score %>
-          <%= text_field_tag :game_6_home_score, @selection.game_6_home_score %>
-          <%= label_tag :away_team_score %>
-          <%= text_field_tag :game_6_away_score, @selection.game_6_home_score %>
-        </div>
-
-        <div>
-          <%= label_tag :home_team_score %>
-          <%= text_field_tag :game_7_home_score, @selection.game_7_home_score %>
-          <%= label_tag :away_team_score %>
-          <%= text_field_tag :game_7_away_score, @selection.game_7_home_score %>
-        </div>
-
-        <div>
-          <%= label_tag :home_team_score %>
-          <%= text_field_tag :game_8_home_score, @selection.game_8_home_score %>
-          <%= label_tag :away_team_score %>
-          <%= text_field_tag :game_8_away_score, @selection.game_8_home_score %>
-        </div>
-
-        <div>
-          <%= label_tag :home_team_score %>
-          <%= text_field_tag :game_9_home_score, @selection.game_9_home_score %>
-          <%= label_tag :away_team_score %>
-          <%= text_field_tag :game_9_away_score, @selection.game_9_home_score %>
-        </div>
-
-        <div>
-          <%= label_tag :home_team_score %>
-          <%= text_field_tag :game_10_home_score, @selection.game_10_home_score %>
-          <%= label_tag :away_team_score %>
-          <%= text_field_tag :game_10_away_score, @selection.game_10_home_score %>
-        </div>
-
-          <%= submit_tag "Play" %>
-        <% end %>
+      <div>
+        <%= label_tag :home_team_score %>
+        <%= text_field_tag :game_1_home_score, @selection.game_1_home_score %>
+        <%= label_tag :away_team_score %>
+        <%= text_field_tag :game_1_away_score, @selection.game_1_away_score %>
       </div>
+
+      <div>
+        <%= label_tag :home_team_score %>
+        <%= text_field_tag :game_2_home_score, @selection.game_2_home_score %>
+        <%= label_tag :away_team_score %>
+        <%= text_field_tag :game_2_away_score, @selection.game_2_away_score %>
+      </div>
+
+      <div>
+        <%= label_tag :home_team_score %>
+        <%= text_field_tag :game_3_home_score, @selection.game_3_home_score %>
+        <%= label_tag :away_team_score %>
+        <%= text_field_tag :game_3_away_score, @selection.game_3_away_score %>
+      </div>
+
+      <div>
+        <%= label_tag :home_team_score %>
+        <%= text_field_tag :game_4_home_score, @selection.game_4_home_score %>
+        <%= label_tag :away_team_score %>
+        <%= text_field_tag :game_4_away_score, @selection.game_4_home_score %>
+      </div>
+
+      <div>
+        <%= label_tag :home_team_score %>
+        <%= text_field_tag :game_5_home_score, @selection.game_5_home_score %>
+        <%= label_tag :away_team_score %>
+        <%= text_field_tag :game_5_away_score, @selection.game_5_home_score %>
+      </div>
+
+      <div>
+        <%= label_tag :home_team_score %>
+        <%= text_field_tag :game_6_home_score, @selection.game_6_home_score %>
+        <%= label_tag :away_team_score %>
+        <%= text_field_tag :game_6_away_score, @selection.game_6_home_score %>
+      </div>
+
+      <div>
+        <%= label_tag :home_team_score %>
+        <%= text_field_tag :game_7_home_score, @selection.game_7_home_score %>
+        <%= label_tag :away_team_score %>
+        <%= text_field_tag :game_7_away_score, @selection.game_7_home_score %>
+      </div>
+
+      <div>
+        <%= label_tag :home_team_score %>
+        <%= text_field_tag :game_8_home_score, @selection.game_8_home_score %>
+        <%= label_tag :away_team_score %>
+        <%= text_field_tag :game_8_away_score, @selection.game_8_home_score %>
+      </div>
+
+      <div>
+        <%= label_tag :home_team_score %>
+        <%= text_field_tag :game_9_home_score, @selection.game_9_home_score %>
+        <%= label_tag :away_team_score %>
+        <%= text_field_tag :game_9_away_score, @selection.game_9_home_score %>
+      </div>
+
+      <div>
+        <%= label_tag :home_team_score %>
+        <%= text_field_tag :game_10_home_score, @selection.game_10_home_score %>
+        <%= label_tag :away_team_score %>
+        <%= text_field_tag :game_10_away_score, @selection.game_10_home_score %>
+      </div>
+
+        <%= submit_tag "Play" %>
+      <% end %>
     </div>
   </div>
 </div>

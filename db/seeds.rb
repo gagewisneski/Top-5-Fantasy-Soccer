@@ -93,44 +93,42 @@
 #   UsersFixturesSelection.create(user_id: user_id, fixtures_group_id: fixtures_group_id, game_1_home_score: game_1_home_score, game_1_away_score: game_1_away_score, game_2_home_score: game_2_home_score, game_2_away_score: game_2_away_score, game_3_home_score: game_3_home_score, game_3_away_score: game_3_away_score, game_4_home_score: game_4_home_score, game_4_away_score: game_4_away_score, game_5_home_score: game_5_home_score, game_5_away_score: game_5_away_score, game_6_home_score: game_6_home_score, game_6_away_score: game_6_away_score, game_7_home_score: game_7_home_score, game_7_away_score: game_7_away_score, game_8_home_score: game_8_home_score, game_8_away_score: game_8_away_score, game_9_home_score: game_9_home_score, game_9_away_score: game_9_away_score, game_10_home_score: game_10_home_score, game_10_away_score: game_10_away_score, score: score)
 # end
 
-fixtures = [
-            [1, 147010],
-            [1, 147011],
-            [1, 147012],
-            [1, 147013],
-            [1, 147014],
-            [1, 147015],
-            [1, 147016],
-            [1, 147017],
-            [1, 147018],
-            [1, 147019],
-            [2, 150675],
-            [2, 150676],
-            [2, 150677],
-            [2, 150678],
-            [2, 150679],
-            [2, 150680],
-            [2, 150681],
-            [2, 150682],
-            [2, 150683],
-            [2, 150684],
-            [3, 150645],
-            [3, 150646],
-            [3, 150647],
-            [3, 150648],
-            [3, 150649],
-            [3, 150650],
-            [3, 150651],
-            [3, 150652],
-            [3, 150653],
-            [3, 150654]
-          ]
-# "http://api.football-data.org/v1/fixtures/#{@fixtures_group.fixture1_id}").body %>
-        # <h2><%= "#{game["fixture"]["homeTeamName"]} hosts" %><br><%= "#{game["fixture"]["awayTeamName"]}" %>
-fixtures.each do |fixtures_group_id, selection_id|
-  a = Unirest.get("http://api.football-data.org/v1/fixtures/#{selection_id}").body
-  Fixture.create(fixtures_group_id: fixtures_group_id, selection_id: selection_id, home_team: a["fixture"]["homeTeamName"], away_team: a["fixture"]["awayTeamName"], home_score: a["fixture"]["goalsHomeTeam"], away_score: a["fixture"]["goalsHomeTeam"])
-end
+# fixtures = [
+#             [1, 147010],
+#             [1, 147011],
+#             [1, 147012],
+#             [1, 147013],
+#             [1, 147014],
+#             [1, 147015],
+#             [1, 147016],
+#             [1, 147017],
+#             [1, 147018],
+#             [1, 147019],
+#             [2, 150675],
+#             [2, 150676],
+#             [2, 150677],
+#             [2, 150678],
+#             [2, 150679],
+#             [2, 150680],
+#             [2, 150681],
+#             [2, 150682],
+#             [2, 150683],
+#             [2, 150684],
+#             [3, 150645],
+#             [3, 150646],
+#             [3, 150647],
+#             [3, 150648],
+#             [3, 150649],
+#             [3, 150650],
+#             [3, 150651],
+#             [3, 150652],
+#             [3, 150653],
+#             [3, 150654]
+#           ]
+# fixtures.each do |fixtures_group_id, selection_id|
+#   a = Unirest.get("http://api.football-data.org/v1/fixtures/#{selection_id}", headers:{"X-Auth-Token" => "4f853811a401439a826aab12321bf6c7"}).body
+#   Fixture.create(fixtures_group_id: fixtures_group_id, selection_id: selection_id, home_team: a["fixture"]["homeTeamName"], away_team: a["fixture"]["awayTeamName"], home_score: a["fixture"]["result"]["goalsHomeTeam"], away_score: a["fixture"]["result"]["goalsAwayTeam"])
+# end
 
 
 
