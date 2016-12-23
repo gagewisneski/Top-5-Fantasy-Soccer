@@ -2,19 +2,13 @@
   <div class="container">
 
     <div class="row">
-      <div class="col-sm-12 text-center">
-          <h1>Leagues</h1>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-6 col-md-offset-3">
+      <div class="col-sm-4 col-md-offset-4">
         <div class="features-box">
           <h2>Overall Leaders:</h2>
           <h2> <%= @users.count.to_s %> Players</h2>
           <ol>
+          <% count = 0 %>
           <% @users.each do |user| %>
-            <% count = 1 %>
             <h4><li><%= "#{user.name} Score: #{user.score}" %></li></h4>
             <% count += 1 %>
             <% break if count == 10 %>
@@ -25,98 +19,71 @@
     </div>
 
     <div class="row">
-      <div class="col-sm-4">
-        <div class="features-box">
-          <i class="pe-7s-rocket"></i>
-          <h4>Strategy Solutions</h4>
-          <p class="text-muted">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-        </div>
-      </div>
-
-      <div class="col-sm-4">
-        <div class="features-box">
-          <i class="pe-7s-science"></i>
-          <h4>Digital Design</h4>
-          <p class="text-muted">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin litera..</p>
-        </div>
-      </div>
-
-      <div class="col-sm-4">
-        <div class="features-box">
-          <i class="pe-7s-display1"></i>
-          <h4>Analytics Solutions</h4>
-          <p class="text-muted">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
-        </div>
+      <div class="col-sm-12 text-center">
+          <h1>Leagues</h1>
       </div>
     </div>
-  </div> <!-- end container -->
+
+    <div class="row">
+    <% if session[:user_id] %>
+      <% @leagues.each do |league| %>
+        <div class="col-sm-4">
+          <div class="features-box leaguers">
+            <img class="feature-image" src=<%= league.image %>>
+            <h4><%= link_to league.name, "/leagues/#{league.id}" %>:</h4>
+            <p class="text-muted"><%= league.users.count.to_s %> Players</p>
+            <% users = league.users.order(score: :desc) %>
+            <p class="text-muted"><ol>
+            <% count = 0 %>
+            <% users.each do |user| %>
+              <li><%= "#{user.name} Score: #{user.score}" %></li>
+              <% count += 1 %>
+              <% break if count == 5 %>
+            <% end %>
+            </ol></p>
+          </div>
+        </div>
+      <% end %>
+
+      <% @extraleagues.each do |league| %>
+        <div class="col-sm-4">
+          <div class="features-box leaguers">
+            <img class="feature-image" src=<%= league.image %>>      
+            <h4><%= link_to league.name, "/leagues/#{league.id}" %>:</h4>
+            <p class="text-muted"><%= league.users.count.to_s %> Players</p>
+            <% users = league.users.order(score: :desc) %>
+            <p class="text-muted"><ol>
+            <% count = 0 %>
+            <% users.each do |user| %>
+              <li><%= "#{user.name} Score: #{user.score}" %></li>
+              <% count += 1 %>
+              <% break if count == 5 %>
+            <% end %>
+            </ol></p>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <% @publicleagues.each do |league| %>
+        <div class="col-sm-4">
+          <div class="features-box leaguers">
+            <img class="feature-image" src=<%= league.image %>>
+            <h4><%= link_to league.name, "/leagues/#{league.id}" %>:</h4>
+            <p class="text-muted"><%= league.users.count.to_s %> Players</p>
+            <% users = league.users.order(score: :desc) %>
+            <p class="text-muted"><ol>
+            <% count = 0 %>
+            <% users.each do |user| %>
+              <li><%= "#{user.name} Score: #{user.score}" %></li>
+              <% count += 1 %>
+              <% break if count == 5 %>
+            <% end %>
+            </ol></p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+    </div>
+  </div>
+  <%= link_to "Join a private league", "/users_leagues/new" %>
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-<h1>All public leagues:</h1>
-<h2>Overall Leaders: <%= @users.count.to_s %> Players</h2>
-<ol>
-<% @users.each do |user| %>
-  <% count = 1 %>
-  <h4><li><%= "#{user.name} Score: #{user.score}" %></li></h4>
-  <% count += 1 %>
-  <% break if count == 10 %>
-<% end %>
-</ol>
-
-<% if session[:user_id] %>
-  <% @leagues.each do |league| %>
-  <div>
-    <h2><%= link_to league.name, "/leagues/#{league.id}" %>: <%= league.users.count.to_s %> Players</h2>
-    <% users = league.users.order(score: :desc) %>
-    <ol>
-    <% users.each do |user| %>
-      <% count = 1 %>
-      <h4><li><%= "#{user.name} Score: #{user.score}" %></li></h4>
-      <% count += 1 %>
-      <% break if count == 3 %>
-    <% end %>
-    </ol>
-  </div>
-  <% end %>
-  <% @extraleagues.each do |league| %>
-  <div>
-    <h2><%= link_to league.name, "/leagues/#{league.id}" %>: <%= league.users.count.to_s %> Players</h2>
-    <% users = league.users.order(score: :desc) %>
-    <ol>
-    <% users.each do |user| %>
-      <% count = 1 %>
-      <h4><li><%= "#{user.name} Score: #{user.score}" %></li></h4>
-      <% count += 1 %>
-      <% break if count == 3 %>
-    <% end %>
-    </ol>
-  </div>
-  <% end %>
-<% else %>
-  <% @publicleagues.each do |league| %>
-  <div>
-    <h2><%= link_to league.name, "/leagues/#{league.id}" %>: <%= league.users.count.to_s %> Players</h2>
-    <% users = league.users.order(score: :desc) %>
-    <ol>
-    <% users.each do |user| %>
-      <% count = 1 %>
-      <h4><li><%= "#{user.name} Score: #{user.score}" %></li></h4>
-      <% count += 1 %>
-      <% break if count == 3 %>
-    <% end %>
-    </ol>
-  <% end %>
-  </div>
-<% end %>
-<%= link_to "Join a private league", "/users_leagues/new" %>
