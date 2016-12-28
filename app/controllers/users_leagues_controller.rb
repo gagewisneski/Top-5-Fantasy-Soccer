@@ -1,4 +1,6 @@
 class UsersLeaguesController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     # form to join a league
     @league = League.new
@@ -15,9 +17,12 @@ class UsersLeaguesController < ApplicationController
     end
   end
 
+  def show
+    @leagues = User.find(current_user.id).leagues
+  end
+
   def destroy
     # link to leave league or link to delete person from your league?
-    @ul = 
     @users_league = UsersLeague.find(params[:id])
     @users_league.destroy
     redirect_to "/leagues"
