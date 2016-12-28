@@ -1,23 +1,33 @@
-<h1><%= @league.name %></h1>
-<h2>Player count: <%= @league.users.count.to_s %></h2>
-<% users = @league.users %>
-<ol>
-<% users.each do |user| %>
-  <h4><li><%= user.name %> Score: <%= user.score %></li></h4>
-<% end %>
-<h5>===================</h5>
-
-<% if session[:user_id] %>
-  <% @users_leagues = @league.users_leagues.find_by(user_id: current_user.id) %>
-  <% if current_user.id == @league.admin_id %>
-    <%= link_to "Edit League", "/leagues/#{@league.id}/edit" %>
-    <%= link_to "Delete League", "/leagues/#{@league.id}", method: :delete %>
-  <% elsif @users_leagues %>
-    <%= link_to "Leave this league", "/users_leagues/#{@users_leagues.id}", method: :delete %>
-  <% else %>
-    <%= form_tag "/users_leagues", method: :post do %>
-      <%= hidden_field_tag :league_name, @league.name %>
-      <%= submit_tag "Join League!" %>
+<section class="section bg-light" id="features">
+  <div class="container page-center">
+    <h1 class="font-light"><%= @league.name %></h1>
+    <% if @league.image %>
+      <img class="league-image" src=<%= @league.image %>>
+    <% else %>
+      <img class="league-image" src="/assets/league_logo.jpg">
     <% end %>
-  <% end %>
-<% end %>
+    <h3 class="title">Players: <%= @league.users.count.to_s %></h3>
+    <% users = @league.users %>
+    <ol class="order-center">
+    <% users.each do |user| %>
+      <h4 class="text-muted"><li><%= user.name %> Score: <%= user.score %></li></h4>
+    <% end %>
+
+    <% if session[:user_id] %>
+      <% @users_leagues = @league.users_leagues.find_by(user_id: current_user.id) %>
+      <% if current_user.id == @league.admin_id %>
+        <%= link_to "Edit League", "/leagues/#{@league.id}/edit", class:"btn btn-sm btn-custom show-btn" %>
+        <%= link_to "Delete League", "/leagues/#{@league.id}", class:"btn btn-sm btn-custom show-btn", method: :delete %>
+      <% elsif @users_leagues %>
+        <%= link_to "Leave this league", "/users_leagues/#{@users_leagues.id}", class:"btn btn-sm btn-custom", method: :delete %>
+      <% else %>
+        <%= form_tag "/users_leagues", method: :post do %>
+          <%= hidden_field_tag :league_name, @league.name %>
+          <%= submit_tag "Join League!", class:"btn btn-sm btn-custom" %>
+        <% end %>
+      <% end %>
+    <% end %>
+    
+
+  </div>
+</section>
