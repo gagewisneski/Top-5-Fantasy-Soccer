@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   get "/signup", to: "users#new"
   post "/users", to: "users#create"
+  post "/users/:id", to: "users#show"
 
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"

@@ -14,4 +14,10 @@ class UsersController < ApplicationController
       render :new
     end
   end
+
+  def show
+    @user = User.find(params[:id])
+    @users_selections = @user.users_fixtures_selections.order_by(id: :desc)
+    @fixtures_group = FixturesGroup.find(params[:id])
+  end
 end

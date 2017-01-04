@@ -1,3 +1,6 @@
 class Season < ApplicationRecord
-  # don't use
+  has_many :users_seasons
+  has_many :users, through: :users_seasons
+  has_many :users_fixtures_selections
+  has_many :leagues
 end

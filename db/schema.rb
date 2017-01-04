@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161217011126) do
+ActiveRecord::Schema.define(version: 20170104025120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,14 @@ ActiveRecord::Schema.define(version: 20161217011126) do
     t.integer  "admin_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "season_id"
+  end
+
+  create_table "seasons", force: :cascade do |t|
+    t.boolean  "active"
+    t.string   "year"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -61,7 +69,6 @@ ActiveRecord::Schema.define(version: 20161217011126) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.integer  "score"
   end
 
   create_table "users_fixtures_selections", force: :cascade do |t|
@@ -90,11 +97,20 @@ ActiveRecord::Schema.define(version: 20161217011126) do
     t.integer  "score"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.integer  "season_id"
   end
 
   create_table "users_leagues", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "league_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users_seasons", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "season_id"
+    t.integer  "score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -6,7 +6,7 @@
           <div class="full-screen">
             <div class="home-wrapper home-wrapper-alt">
               <h1 class="font-light text-white">Overall Leaders:</h1>
-              <h2 class="text-light"> <%= @users.count.to_s %> Players</h2>
+              <h2 class="text-light"> <%= @players.count.to_s %> Players</h2>
               <div class="col-sm-4 col-md-offset-4">
                 <% count = 1 %>
                 <table class="text-light table-center">
@@ -15,11 +15,11 @@
                     <th>Username</th>
                     <th>Score</th>
                   </tr>
-                  <% @users.each do |user| %>
+                  <% @players.each do |player| %>
                     <tr>
                     <td class="table-item"><%= count %></td>
-                    <td class="table-item"><%= user.name %></td>
-                    <td class="table-item"><%= user.score %></td></tr>
+                    <td class="table-item"><%= player.user.name %></td>
+                    <td class="table-item"><%= player.score %></td></tr>
                     <% count += 1 %>
                     <% break if count == 11 %>
                   <% end %>
@@ -57,7 +57,7 @@
             <% end %>
             <h4><%= link_to league.name, "/leagues/#{league.id}" %>:</h4>
             <p class="text-muted"><%= league.users.count.to_s %> Players</p>
-            <% users = league.users.order(score: :desc) %>
+            <% players = league.sorted_users %>
             <% count = 1 %>
             <table class="text-muted table-center">
               <tr>
@@ -65,11 +65,11 @@
                 <th>Username</th>
                 <th>Score</th>
               </tr>
-            <% users.each do |user| %>
+            <% players.each do |player| %>
               <tr>
               <td class="table-item"><%= count %></td>
-              <td class="table-item"><%= user.name %></td>
-              <td class="table-item"><%= user.score %></td></tr>
+              <td class="table-item"><%= player.user.name %></td>
+              <td class="table-item"><%= player.score %></td></tr>
               <% count += 1 %>
               <% break if count == 6 %>
             <% end %>
@@ -88,7 +88,7 @@
             <% end %>
             <h4><%= link_to league.name, "/leagues/#{league.id}" %>:</h4>
             <p class="text-muted"><%= league.users.count.to_s %> Players</p>
-            <% users = league.users.order(score: :desc) %>
+            <% players = league.sorted_users %>
             <% count = 1 %>
             <table class="text-muted table-center">
               <tr>
@@ -96,11 +96,11 @@
                 <th>Username</th>
                 <th>Score</th>
               </tr>
-            <% users.each do |user| %>
+            <% players.each do |player| %>
               <tr>
               <td class="table-item"><%= count %></td>
-              <td class="table-item"><%= user.name %></td>
-              <td class="table-item"><%= user.score %></td></tr>
+              <td class="table-item"><%= player.user.name %></td>
+              <td class="table-item"><%= player.score %></td></tr>
               <% count += 1 %>
               <% break if count == 6 %>
             <% end %>
@@ -121,7 +121,7 @@
             <% end %>
             <h4><%= link_to league.name, "/leagues/#{league.id}" %>:</h4>
             <p class="text-muted"><%= league.users.count.to_s %> Players</p>
-            <% users = league.users.order(score: :desc) %>
+            <% players = league.sorted_users %>
             <% count = 1 %>
             <table class="text-muted table-center">
               <tr>
@@ -129,11 +129,11 @@
                 <th>Username</th>
                 <th>Score</th>
               </tr>
-            <% users.each do |user| %>
+            <% players.each do |player| %>
               <tr>
               <td class="table-item"><%= count %></td>
-              <td class="table-item"><%= user.name %></td>
-              <td class="table-item"><%= user.score %></td></tr>
+              <td class="table-item"><%= player.user.name %></td>
+              <td class="table-item"><%= player.score %></td></tr>
               <% count += 1 %>
               <% break if count == 6 %>
             <% end %>

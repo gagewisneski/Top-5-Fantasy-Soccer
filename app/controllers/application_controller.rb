@@ -6,6 +6,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def current_season
+    @current_season ||= Season.find_by(active: true)
+  end
+  helper_method :current_season
+
   def authenticate_user!
     unless current_user
       flash[:warning] = "Only people that are logged in can do that!"
@@ -22,7 +27,7 @@ class ApplicationController < ActionController::Base
   end
 
   def top_5?
-    if current_user.name != "Top_5"
+    if current_user.id != 1
       flash[:danger] = "Stop trying to hack!"
       redirect_to "/"
     end

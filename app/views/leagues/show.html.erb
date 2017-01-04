@@ -7,10 +7,10 @@
       <img class="league-image" src="/assets/league_logo.jpg">
     <% end %>
     <h3 class="title">Players: <%= @league.users.count.to_s %></h3>
-    <% users = @league.users %>
+    <% players = @league.sorted_users %>
     <ol class="order-center">
-    <% users.each do |user| %>
-      <h4 class="text-muted"><li><%= user.name %> Score: <%= user.score %></li></h4>
+    <% players.each do |player| %>
+      <h4 class="text-muted"><li><%= player.user.name %> Score: <%= player.score %></li></h4>
     <% end %>
 
     <% if session[:user_id] %>

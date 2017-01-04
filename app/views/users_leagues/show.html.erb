@@ -19,7 +19,7 @@
             <% end %>
             <h4><%= link_to league.name, "/leagues/#{league.id}" %>:</h4>
             <p class="text-muted"><%= league.users.count.to_s %> Players</p>
-            <% users = league.users.order(score: :desc) %>
+            <% players = league.sorted_users %>
             <% count = 1 %>
             <table class="text-muted table-center">
               <tr>
@@ -27,11 +27,11 @@
                 <th>Username</th>
                 <th>Score</th>
               </tr>
-            <% users.each do |user| %>
+            <% players.each do |player| %>
               <tr>
               <td class="table-item"><%= count %></td>
-              <td class="table-item"><%= user.name %></td>
-              <td class="table-item"><%= user.score %></td></tr>
+              <td class="table-item"><%= player.user.name %></td>
+              <td class="table-item"><%= player.score %></td></tr>
               <% count += 1 %>
               <% break if count == 6 %>
             <% end %>

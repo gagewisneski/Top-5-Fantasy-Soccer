@@ -54,7 +54,7 @@ class UsersFixturesSelectionsController < ApplicationController
     elsif ((@scores.game_1_home_score == group.game_1_home_score) && (@scores.game_1_home_score > @scores.game_1_away_score) && (@group.game_1_home_score > group.game_1_away_score)) || ((@scores.game_1_home_score == group.game_1_home_score) && (@scores.game_1_home_score < @scores.game_1_away_score) && (@group.game_1_home_score < group.game_1_away_score)) || ((@scores.game_1_away_score == group.game_1_away_score) && (@scores.game_1_home_score > @scores.game_1_away_score) && (@group.game_1_home_score > group.game_1_away_score)) || ((@scores.game_1_away_score == group.game_1_away_score) && (@scores.game_1_home_score < @scores.game_1_away_score) && (@group.game_1_home_score < group.game_1_away_score))
       score = score + 5
     elsif (@scores.game_1_home_score == @group.game_1_home_score) || (@scores.game_1_away_score == @group.game_1_away_score)
-      score = 2
+      score = score + 2
     end
 
     if (@scores.game_2_home_score == group.game_2_home_score) && (@scores.game_2_away_score == group.game_2_home_score)
@@ -129,10 +129,10 @@ class UsersFixturesSelectionsController < ApplicationController
       score = 2
     end
 
-    @scores.assign_attributes(score: score)
+    @scores.assign_attributes(week_score: score)
     @scores.save
 
-    total_score = @score.user
+    total_score = @scores.user
     score = score + total_score.score
     total_score.assign_attributes(score: score)
 
