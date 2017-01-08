@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170104025120) do
+ActiveRecord::Schema.define(version: 20170104042107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,16 +29,6 @@ ActiveRecord::Schema.define(version: 20170104025120) do
   create_table "fixtures_groups", force: :cascade do |t|
     t.datetime "week_start_date"
     t.datetime "week_end_date"
-    t.integer  "fixture1_id"
-    t.integer  "fixture2_id"
-    t.integer  "fixture3_id"
-    t.integer  "fixture4_id"
-    t.integer  "fixture5_id"
-    t.integer  "fixture6_id"
-    t.integer  "fixture7_id"
-    t.integer  "fixture8_id"
-    t.integer  "fixture9_id"
-    t.integer  "fixture10_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.boolean  "active"

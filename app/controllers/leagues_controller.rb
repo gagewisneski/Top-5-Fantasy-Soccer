@@ -13,7 +13,7 @@ class LeaguesController < ApplicationController
   end
 
   def new
-    # Form to create a new provate or public league
+    # Form to create a new private or public league
     @league = League.new
   end
 

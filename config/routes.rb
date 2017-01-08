@@ -16,4 +16,7 @@ Rails.application.routes.draw do
   resources :users_fixtures_selections
 
   resources :users_leagues
+
+  get "/top-5/update-scores", to: "users_fixtures_selections#edit_all_scores"
+  post "/top-5/update-scores", to: "users_fixtures_selections#update_all_scores"
 end
