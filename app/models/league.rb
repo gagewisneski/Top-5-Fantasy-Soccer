@@ -6,6 +6,9 @@ class League < ApplicationRecord
 
   belongs_to :season
 
+  validates :name, presence: true
+  validates :name, uniqueness: true
+
   def sorted_users
     return UsersSeason.where(user_id: users.pluck(:id), season_id: season.id).order(score: :desc)
   end
