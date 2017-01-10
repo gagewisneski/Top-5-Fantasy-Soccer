@@ -1,28 +1,26 @@
-<section class="section bg-light" id="features">
-  <div class="container">
-    <h1 class="font-light">Welcome to Top 5 Fantasy Soccer</h1>
+<div class="container">
+  <h1>Welcome to Top 5 Fantasy Soccer</h1>
 
 
-    <div class="row">
-      <div class="col-sm-6 col-lg-6">
-        <div class="container">
-          <% count = 1 %>
-          <% @fixtures_group.fixtures.each do |fixture| %>
-            <h4 class="text-muted">Game: <%= count %></h4>
-            <% count += 1 %>
-            <h4><%= "#{fixture.home_team} hosts #{fixture.away_team}" %></h4>
-          <% end %>
-        </div>
-      </div>
-    </div>
-
+  <div class="row">
     <div class="col-sm-6 col-lg-6">
       <div class="container">
-        <h3 class="font-light">Top 5 of the Top 5</h3>
-      <% #Unirest calls to get the top 5 of the top 5 %>
+        <% count = 1 %>
+        <% @fixtures_group.fixtures.each do |fixture| %>
+          <h4>Game: <%= count %></h4>
+          <% count += 1 %>
+          <h4><%= "#{fixture.home_team} hosts #{fixture.away_team}" %></h4>
+        <% end %>
       </div>
     </div>
-
-
   </div>
-</section>
+
+  <div class="col-sm-6 col-lg-6">
+    <div class="container">
+      <h3>Top 5 of the Top 5</h3>
+    <% #Unirest calls to get the top 5 of the top 5 %>
+    </div>
+  </div>
+
+
+</div>

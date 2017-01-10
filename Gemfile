@@ -29,8 +29,6 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'unirest'
 gem 'awesome_print'
 
-gem 'bootstrap-sass', '~> 3.3.6'
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

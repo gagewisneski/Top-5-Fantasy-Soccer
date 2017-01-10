@@ -1,31 +1,25 @@
-<section class="bg-custom home" id="home">
-  <div class="home-sm">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-sm-7">
-          <div class="home-wrapper home-wrapper-alt p-0">
-            <h1 class="h1 font-light text-white w-full">Edit your league:</h1>
-            <h2 class="text-light w-full">Make changes to your league to make it better.</h4>
-          </div>
-        </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-sm-7">
+      <h1>Edit your league:</h1>
+      <h2>Make changes to your league to make it better.</h4>
+    </div>
 
-        <div class="col-md-4 col-md-offset-2 col-sm-5">
-          <%= form_tag "/leagues/#{@league.id}", class:"intro-form", method: :patch do %>
-            <div class="form-group">
-              <%= text_field_tag :name, nil, placeholder:"#{@league.name}", class:"form-control" %>
-            </div>
-            <div class="form-group">
-              <%= text_field_tag :description, nil, placeholder:"#{@league.description}", class:"form-control" %>
-            </div>
-            <div class="form-group">
-              <%= text_field_tag :image, nil, placeholder:"#{@league.image}", class:"form-control" %>
-            </div>
-            <div class="form-group text-center">
-              <%= submit_tag "Update League", class:"btn btn-custom btn-sm btn-block" %>
-            </div>
-          <% end %>
+    <div class="col-md-4 col-md-offset-2 col-sm-5">
+      <%= form_tag "/leagues/#{@league.id}", class:"intro-form", method: :patch do %>
+        <div class="form-group">
+          <%= text_field_tag :name, nil, placeholder:"#{@league.name}", class:"form-control" %>
         </div>
-      </div>
+        <div class="form-group">
+          <%= text_field_tag :description, nil, placeholder:"#{@league.description}", class:"form-control" %>
+        </div>
+        <div class="form-group">
+          <%= text_field_tag :image, nil, placeholder:"#{@league.image}", class:"form-control" %>
+        </div>
+        <div class="form-group text-center">
+          <%= submit_tag "Update League", class:"btn btn-custom btn-sm btn-block" %>
+        </div>
+      <% end %>
     </div>
   </div>
-</section>
+</div>

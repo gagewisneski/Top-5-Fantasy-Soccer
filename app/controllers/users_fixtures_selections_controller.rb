@@ -21,8 +21,12 @@ class UsersFixturesSelectionsController < ApplicationController
   
   def show
     # Shows the last completed weeks fixtures selections with their total score and a list of all previously completed weeks with score
+    @user = User.find(current_user.id)
+    @users_selections = @user.users_fixtures_selections.order(id: :desc)
     @selection = UsersFixturesSelection.find(params[:id])
-    @selections = UsersFixturesSelection.where(user_id: current_user.id)
+    @fixtures_group = @selection.fixtures_group
+    @seasons = @user.seasons
+    @leagues = @user.leagues
   end
   
   def edit

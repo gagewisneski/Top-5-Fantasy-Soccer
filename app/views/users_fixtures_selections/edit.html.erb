@@ -1,116 +1,114 @@
-<section class="section bg-light" id="features">
-  <div class="container">
-    <h1 class="font-light">My Selections</h1>
+<div class="container">
+  <h1>My Selections</h1>
 
-    <%= form_tag "/users_fixtures_selections/#{@selection.id}", method: :patch do %>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="container">
+  <%= form_tag "/users_fixtures_selections/#{@selection.id}", method: :patch do %>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="container">
 
-            <div>
-              <% fixture = @fixtures_group.fixtures[0] %>
-              <h4 class="text-muted"><%= "Game 1: #{fixture.home_team} hosts #{fixture.away_team}" %></h4>
-              <h4><%= "#{fixture.home_team} score:" %>
-              <%= text_field_tag :game_1_home_score, @selection.game_1_home_score, class:"form-control user-fixture-input" %></h4>
-              <h4><%= "#{fixture.away_team} score:" %>
-              <%= text_field_tag :game_1_away_score, @selection.game_1_away_score, class:"form-control user-fixture-input" %></h4>
-            </div>
-
-            <div>
-              <% fixture = @fixtures_group.fixtures[1] %>
-              <h4 class="text-muted"><%= "Game 2: #{fixture.home_team} hosts #{fixture.away_team}" %></h4>
-              <h4><%= "#{fixture.home_team} score:" %>
-              <%= text_field_tag :game_2_home_score, @selection.game_2_home_score, class:"form-control user-fixture-input" %></h4>
-              <h4><%= "#{fixture.away_team} score:" %>
-              <%= text_field_tag :game_2_away_score, @selection.game_2_away_score, class:"form-control user-fixture-input" %></h4>
-            </div>
-
-            <div>
-              <% fixture = @fixtures_group.fixtures[2] %>
-              <h4 class="text-muted"><%= "Game 3: #{fixture.home_team} hosts #{fixture.away_team}" %></h4>
-              <h4><%= "#{fixture.home_team} score:" %>
-              <%= text_field_tag :game_3_home_score, @selection.game_3_home_score, class:"form-control user-fixture-input" %></h4>
-              <h4><%= "#{fixture.away_team} score:" %>
-              <%= text_field_tag :game_3_away_score, @selection.game_3_away_score, class:"form-control user-fixture-input" %></h4>
-            </div>
-
-            <div>
-              <% fixture = @fixtures_group.fixtures[3] %>
-              <h4 class="text-muted"><%= "Game 4: #{fixture.home_team} hosts #{fixture.away_team}" %></h4>
-              <h4><%= "#{fixture.home_team} score:" %>
-              <%= text_field_tag :game_4_home_score, @selection.game_4_home_score, class:"form-control user-fixture-input" %></h4>
-              <h4><%= "#{fixture.away_team} score:" %>
-              <%= text_field_tag :game_4_away_score, @selection.game_4_away_score, class:"form-control user-fixture-input" %></h4>
-            </div>
-
-            <div>
-              <% fixture = @fixtures_group.fixtures[4] %>
-              <h4 class="text-muted"><%= "Game 5: #{fixture.home_team} hosts #{fixture.away_team}" %></h4>
-              <h4><%= "#{fixture.home_team} score:" %>
-              <%= text_field_tag :game_5_home_score, @selection.game_5_home_score, class:"form-control user-fixture-input" %></h4>
-              <h4><%= "#{fixture.away_team} score:" %>
-              <%= text_field_tag :game_5_away_score, @selection.game_5_away_score, class:"form-control user-fixture-input" %></h4>
-            </div>
-
+          <div>
+            <% fixture = @fixtures_group.fixtures[0] %>
+            <h4><%= "Game 1: #{fixture.home_team} hosts #{fixture.away_team}" %></h4>
+            <h4><%= "#{fixture.home_team} score:" %>
+            <%= text_field_tag :game_1_home_score, @selection.game_1_home_score, class:"form-control user-fixture-input" %></h4>
+            <h4><%= "#{fixture.away_team} score:" %>
+            <%= text_field_tag :game_1_away_score, @selection.game_1_away_score, class:"form-control user-fixture-input" %></h4>
           </div>
-        </div>
 
-        <div class="col-md-6">
-          <div class="container">
-
-            <div>
-              <% fixture = @fixtures_group.fixtures[5] %>
-              <h4 class="text-muted"><%= "Game 6: #{fixture.home_team} hosts #{fixture.away_team}" %></h4>
-              <h4><%= "#{fixture.home_team} score:" %>
-              <%= text_field_tag :game_6_home_score, @selection.game_6_home_score, class:"form-control user-fixture-input" %></h4>
-              <h4><%= "#{fixture.away_team} score:" %>
-              <%= text_field_tag :game_6_away_score, @selection.game_6_away_score, class:"form-control user-fixture-input" %></h4>
-            </div>
-
-            <div>
-              <% fixture = @fixtures_group.fixtures[6] %>
-              <h4 class="text-muted"><%= "Game 7: #{fixture.home_team} hosts #{fixture.away_team}" %></h4>
-              <h4><%= "#{fixture.home_team} score:" %>
-              <%= text_field_tag :game_7_home_score, @selection.game_7_home_score, class:"form-control user-fixture-input" %></h4>
-              <h4><%= "#{fixture.away_team} score:" %>
-              <%= text_field_tag :game_7_away_score, @selection.game_7_away_score, class:"form-control user-fixture-input" %></h4>
-            </div>
-
-            <div>
-              <% fixture = @fixtures_group.fixtures[7] %>
-              <h4 class="text-muted"><%= "Game 8: #{fixture.home_team} hosts #{fixture.away_team}" %></h4>
-              <h4><%= "#{fixture.home_team} score:" %>
-              <%= text_field_tag :game_8_home_score, @selection.game_8_home_score, class:"form-control user-fixture-input" %></h4>
-              <h4><%= "#{fixture.away_team} score:" %>
-              <%= text_field_tag :game_8_away_score, @selection.game_8_away_score, class:"form-control user-fixture-input" %></h4>
-            </div>
-
-            <div>
-              <% fixture = @fixtures_group.fixtures[8] %>
-              <h4 class="text-muted"><%= "Game 9: #{fixture.home_team} hosts #{fixture.away_team}" %></h4>
-              <h4><%= "#{fixture.home_team} score:" %>
-              <%= text_field_tag :game_9_home_score, @selection.game_9_home_score, class:"form-control user-fixture-input" %></h4>
-              <h4><%= "#{fixture.away_team} score:" %>
-              <%= text_field_tag :game_9_away_score, @selection.game_9_away_score, class:"form-control user-fixture-input" %></h4>
-            </div>
-
-            <div>
-              <% fixture = @fixtures_group.fixtures[9] %>
-              <h4 class="text-muted"><%= "Game 10: #{fixture.home_team} hosts #{fixture.away_team}" %></h4>
-              <h4><%= "#{fixture.home_team} score:" %>
-              <%= text_field_tag :game_10_home_score, @selection.game_10_home_score, class:"form-control user-fixture-input" %></h4>
-              <h4><%= "#{fixture.away_team} score:" %>
-              <%= text_field_tag :game_10_away_score, @selection.game_10_away_score, class:"form-control user-fixture-input" %></h4>
-            </div>
-
+          <div>
+            <% fixture = @fixtures_group.fixtures[1] %>
+            <h4><%= "Game 2: #{fixture.home_team} hosts #{fixture.away_team}" %></h4>
+            <h4><%= "#{fixture.home_team} score:" %>
+            <%= text_field_tag :game_2_home_score, @selection.game_2_home_score, class:"form-control user-fixture-input" %></h4>
+            <h4><%= "#{fixture.away_team} score:" %>
+            <%= text_field_tag :game_2_away_score, @selection.game_2_away_score, class:"form-control user-fixture-input" %></h4>
           </div>
+
+          <div>
+            <% fixture = @fixtures_group.fixtures[2] %>
+            <h4><%= "Game 3: #{fixture.home_team} hosts #{fixture.away_team}" %></h4>
+            <h4><%= "#{fixture.home_team} score:" %>
+            <%= text_field_tag :game_3_home_score, @selection.game_3_home_score, class:"form-control user-fixture-input" %></h4>
+            <h4><%= "#{fixture.away_team} score:" %>
+            <%= text_field_tag :game_3_away_score, @selection.game_3_away_score, class:"form-control user-fixture-input" %></h4>
+          </div>
+
+          <div>
+            <% fixture = @fixtures_group.fixtures[3] %>
+            <h4><%= "Game 4: #{fixture.home_team} hosts #{fixture.away_team}" %></h4>
+            <h4><%= "#{fixture.home_team} score:" %>
+            <%= text_field_tag :game_4_home_score, @selection.game_4_home_score, class:"form-control user-fixture-input" %></h4>
+            <h4><%= "#{fixture.away_team} score:" %>
+            <%= text_field_tag :game_4_away_score, @selection.game_4_away_score, class:"form-control user-fixture-input" %></h4>
+          </div>
+
+          <div>
+            <% fixture = @fixtures_group.fixtures[4] %>
+            <h4><%= "Game 5: #{fixture.home_team} hosts #{fixture.away_team}" %></h4>
+            <h4><%= "#{fixture.home_team} score:" %>
+            <%= text_field_tag :game_5_home_score, @selection.game_5_home_score, class:"form-control user-fixture-input" %></h4>
+            <h4><%= "#{fixture.away_team} score:" %>
+            <%= text_field_tag :game_5_away_score, @selection.game_5_away_score, class:"form-control user-fixture-input" %></h4>
+          </div>
+
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm-12 btn-center">
-          <%= submit_tag "Change", class:"btn btn-sm btn-custom" %>
+
+      <div class="col-md-6">
+        <div class="container">
+
+          <div>
+            <% fixture = @fixtures_group.fixtures[5] %>
+            <h4><%= "Game 6: #{fixture.home_team} hosts #{fixture.away_team}" %></h4>
+            <h4><%= "#{fixture.home_team} score:" %>
+            <%= text_field_tag :game_6_home_score, @selection.game_6_home_score, class:"form-control user-fixture-input" %></h4>
+            <h4><%= "#{fixture.away_team} score:" %>
+            <%= text_field_tag :game_6_away_score, @selection.game_6_away_score, class:"form-control user-fixture-input" %></h4>
+          </div>
+
+          <div>
+            <% fixture = @fixtures_group.fixtures[6] %>
+            <h4><%= "Game 7: #{fixture.home_team} hosts #{fixture.away_team}" %></h4>
+            <h4><%= "#{fixture.home_team} score:" %>
+            <%= text_field_tag :game_7_home_score, @selection.game_7_home_score, class:"form-control user-fixture-input" %></h4>
+            <h4><%= "#{fixture.away_team} score:" %>
+            <%= text_field_tag :game_7_away_score, @selection.game_7_away_score, class:"form-control user-fixture-input" %></h4>
+          </div>
+
+          <div>
+            <% fixture = @fixtures_group.fixtures[7] %>
+            <h4><%= "Game 8: #{fixture.home_team} hosts #{fixture.away_team}" %></h4>
+            <h4><%= "#{fixture.home_team} score:" %>
+            <%= text_field_tag :game_8_home_score, @selection.game_8_home_score, class:"form-control user-fixture-input" %></h4>
+            <h4><%= "#{fixture.away_team} score:" %>
+            <%= text_field_tag :game_8_away_score, @selection.game_8_away_score, class:"form-control user-fixture-input" %></h4>
+          </div>
+
+          <div>
+            <% fixture = @fixtures_group.fixtures[8] %>
+            <h4><%= "Game 9: #{fixture.home_team} hosts #{fixture.away_team}" %></h4>
+            <h4><%= "#{fixture.home_team} score:" %>
+            <%= text_field_tag :game_9_home_score, @selection.game_9_home_score, class:"form-control user-fixture-input" %></h4>
+            <h4><%= "#{fixture.away_team} score:" %>
+            <%= text_field_tag :game_9_away_score, @selection.game_9_away_score, class:"form-control user-fixture-input" %></h4>
+          </div>
+
+          <div>
+            <% fixture = @fixtures_group.fixtures[9] %>
+            <h4><%= "Game 10: #{fixture.home_team} hosts #{fixture.away_team}" %></h4>
+            <h4><%= "#{fixture.home_team} score:" %>
+            <%= text_field_tag :game_10_home_score, @selection.game_10_home_score, class:"form-control user-fixture-input" %></h4>
+            <h4><%= "#{fixture.away_team} score:" %>
+            <%= text_field_tag :game_10_away_score, @selection.game_10_away_score, class:"form-control user-fixture-input" %></h4>
+          </div>
+
         </div>
       </div>
-    <% end %>
-  </div>
-</section>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 btn-center">
+        <%= submit_tag "Change", class:"" %>
+      </div>
+    </div>
+  <% end %>
+</div>

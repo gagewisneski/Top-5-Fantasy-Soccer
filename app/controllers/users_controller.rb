@@ -16,9 +16,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(current_user.id)
-    @users_selections = @user.users_fixtures_selections.order_by(id: :desc)
-    @fixtures_group = FixturesGroup.find(params[:id])
-    @seasons = @user.seasons
+    
   end
 end

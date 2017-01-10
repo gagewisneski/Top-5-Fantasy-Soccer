@@ -1,35 +1,29 @@
-<section class="bg-custom home" id="home">
-  <div class="home-sm">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-sm-7">
-          <div class="home-wrapper home-wrapper-alt p-0">
-            <h1 class="h1 font-light text-white w-full">Signup to:</h1>
-            <h2 class="text-light w-full">Make your selections and see how you compare to your friends!</h4>
-          </div>
-        </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-sm-7">
+        <h1>Signup to:</h1>
+        <h2>Make your selections and see how you compare to your friends!</h4>
+    </div>
 
-        <div class="col-md-4 col-md-offset-2 col-sm-5">
-          <%= form_tag "/users", class:"intro-form", method: :post do %>
-            <h3 class="text-center"> Signup </h3>
-            <div class="form-group">
-              <%= text_field_tag :name, nil, placeholder:"Name", class:"form-control" %>
-            </div>
-            <div class="form-group">
-              <%= text_field_tag :email, nil, placeholder:"Email Address", class:"form-control" %>
-            </div>
-            <div class="form-group">
-              <%= password_field_tag :password, nil, placeholder:"Password", class:"form-control" %>
-            </div>
-            <div class="form-group">
-              <%= password_field_tag :password_confirmation, nil, placeholder:"Password Confirmation", class:"form-control" %>
-            </div>
-            <div class="form-group text-center">
-              <%= submit_tag "Signup", class:"btn btn-custom btn-sm btn-block" %>
-            </div>
-          <% end %>
+    <div class="col-md-4 col-md-offset-2 col-sm-5">
+      <%= form_tag "/users", class:"intro-form", method: :post do %>
+        <h3 class="text-center"> Signup </h3>
+        <div class="form-group">
+          <%= text_field_tag :name, nil, placeholder:"Name", class:"form-control" %>
         </div>
-      </div>
+        <div class="form-group">
+          <%= text_field_tag :email, nil, placeholder:"Email Address", class:"form-control" %>
+        </div>
+        <div class="form-group">
+          <%= password_field_tag :password, nil, placeholder:"Password", class:"form-control" %>
+        </div>
+        <div class="form-group">
+          <%= password_field_tag :password_confirmation, nil, placeholder:"Password Confirmation", class:"form-control" %>
+        </div>
+        <div class="form-group text-center">
+          <%= submit_tag "Signup", class:"" %>
+        </div>
+      <% end %>
     </div>
   </div>
-</section>
+</div>
