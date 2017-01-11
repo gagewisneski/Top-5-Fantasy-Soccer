@@ -3,8 +3,9 @@
 
 
   <div class="row">
-    <div class="col-sm-6 col-lg-6">
+    <div class="col-sm-12 col-lg-6">
       <div class="container">
+      <h3>Selections</h3>
         <% count = 1 %>
         <% @fixtures_group.fixtures.each do |fixture| %>
           <h4>Game: <%= count %></h4>
@@ -13,14 +14,12 @@
         <% end %>
       </div>
     </div>
-  </div>
 
-  <div class="col-sm-6 col-lg-6">
-    <div class="container">
-      <h3>Top 5 of the Top 5</h3>
-    <% #Unirest calls to get the top 5 of the top 5 %>
+    <div class="col-sm-12 col-lg-4 col-lg-offset-2">
+      <div class="jumbotron">
+        <h3>Top 5 of the Top 5</h3>
+      <% #Unirest calls to get the top 5 of the top 5 %>
+      </div>
     </div>
   </div>
-
-
 </div>

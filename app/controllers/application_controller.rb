@@ -11,6 +11,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_season
 
+  def week_results
+    @week_results ||= FixturesGroup.find(FixturesGroup.find_by(active: true).id - 1).users_fixtures_selections.find_by(user_id: current_user.id).id if session[:user_id]
+  end
+  helper_method :week_results
+
   def authenticate_user!
     unless current_user
       flash[:warning] = "Only people that are logged in can do that!"
@@ -39,4 +44,5 @@ class ApplicationController < ActionController::Base
       redirect_to "/users_fixtures_selections/#{active_fixtures.id}/edit"
     end
   end
+
 end

@@ -1,138 +1,245 @@
-Game
-Result AND MySelection
-
-
-To the right is MyWeeksResults(weeks score) and OverallScore
-Under that is a list of MyLeagues with my place in the league
-
-At the bottom we have a list of all the past MyWeeksResults
-
-@user = User.find(current_user.id)
-@users_selections = @user.users_fixtures_selections.order_by(id: :desc)
-@selection = UsersFixturesSelection.find(params[:id])
-@fixtures_group = @selection.fixtures_group
-@seasons = @user.seasons
-@leagues = @user.leagues
-
-
-<div class="container">
-  <% if session[:user_id] %>
-    <% if current_user.id == @user.id && %>
-      <h1>My Weeks Results</h1>
-    <% else %>
-      <h1>Their Weeks Results</h1>
-    <% end %>
+<% if session[:user_id] %>
+  <% if current_user.id == @user.id && %>
+    <h1>My Weeks Results</h1>
+  <% else %>
+    <h1><%= @user.email %> Week's Results</h1>
   <% end %>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="container">
+<% end %>
+<div class="row">
+  <div class="col-md-9">
+    <div class="container">
 
-        <div>
-          <% fixture = @fixtures_group.fixtures[0] %>
-          <h2><%= "Game 1: #{fixture.home_team} hosts #{fixture.away_team}" %></h3>
-          <h3>Your selections:</h3>
-          <h3><%= "#{fixture.home_team} score: #{@selection.game_1_home_score} #{fixture.away_team} score: #{@selection.game_1_away_score}" %></h3>
-          <h3>Game's results:</h3>
-          <h3><%= "#{fixture.away_team} score: #{fixture.home_score} #{fixture.away_team} score: #{fixture.away_score}" %></h3>
-        </div>
-
-        <div>
-          <% fixture = @fixtures_group.fixtures[1] %>
-          <h2><%= "Game 2: #{fixture.home_team} hosts #{fixture.away_team}" %></h2>
-          <h3>Your selections:</h3>
-          <h3><%= "#{fixture.home_team} score: #{@selection.game_2_home_score} #{fixture.away_team} score: #{@selection.game_2_away_score}" %></h3>
-          <h3>Game's results:</h3>
-          <h3><%= "#{fixture.away_team} score: #{fixture.home_score} #{fixture.away_team} score: #{fixture.away_score}" %></h3>
-        </div>
-
-        <div>
-          <% fixture = @fixtures_group.fixtures[2] %>
-          <h2><%= "Game 3: #{fixture.home_team} hosts #{fixture.away_team}" %></h2>
-          <h3>Your selections:</h3>
-          <h3><%= "#{fixture.home_team} score: #{@selection.game_3_home_score} #{fixture.away_team} score: #{@selection.game_3_away_score}" %></h3>
-          <h3>Game's results:</h3>
-          <h3><%= "#{fixture.away_team} score: #{fixture.home_score} #{fixture.away_team} score: #{fixture.away_score}" %></h3>
-        </div>
-
-        <div>
-          <% fixture = @fixtures_group.fixtures[3] %>
-          <h2><%= "Game 4: #{fixture.home_team} hosts #{fixture.away_team}" %></h2>
-          <h3>Your selections:</h3>
-          <h3><%= "#{fixture.home_team} score: #{@selection.game_4_home_score} #{fixture.away_team} score: #{@selection.game_4_away_score}" %></h3>
-          <h3>Game's results:</h3>
-          <h3><%= "#{fixture.away_team} score: #{fixture.home_score} #{fixture.away_team} score: #{fixture.away_score}" %></h3>
-        </div>
-
-        <div>
-          <% fixture = @fixtures_group.fixtures[4] %>
-          <h2><%= "Game 5: #{fixture.home_team} hosts #{fixture.away_team}" %></h2>
-          <h3>Your selections:</h3>
-          <h3><%= "#{fixture.home_team} score: #{@selection.game_5_home_score} #{fixture.away_team} score: #{@selection.game_5_away_score}" %></h3>
-          <h3>Game's results:</h3>
-          <h3><%= "#{fixture.away_team} score: #{fixture.home_score} #{fixture.away_team} score: #{fixture.away_score}" %></h3>
-        </div>
-
+      <div>
+        <% fixture = @fixtures_group.fixtures[0] %>
+        <h3><%= "Game 1: #{fixture.home_team} hosts #{fixture.away_team}" %></h3>
+        <table>
+          <tr>
+            <td class="table-fixtures"><h4>Game's results:</h4></td>
+            <td class="table-fixtures"><h4>Your selections:</h4></td>
+          </tr>
+          <tr>
+            <td class="table-fixtures"><h4><%= "#{fixture.home_score} - #{fixture.away_score}" %></h4></td>
+            <td class="table-fixtures"><h4><%= "#{@selection.game_1_home_score} - #{@selection.game_1_away_score}" %></h4></td>
+          </tr>
+        </table>
       </div>
-    </div>
 
-    <div class="col-md-6">
-      <div class="container">
-
-        <div>
-          <% fixture = @fixtures_group.fixtures[5] %>
-          <h2><%= "Game 6: #{fixture.home_team} hosts #{fixture.away_team}" %></h2>
-          <h3>Your selections:</h3>
-          <h3><%= "#{fixture.home_team} score: #{@selection.game_6_home_score} #{fixture.away_team} score: #{@selection.game_6_away_score}" %></h3>
-          <h3>Game's results:</h3>
-          <h3><%= "#{fixture.away_team} score: #{fixture.home_score} #{fixture.away_team} score: #{fixture.away_score}" %></h3>
-        </div>
-
-        <div>
-          <% fixture = @fixtures_group.fixtures[6] %>
-          <h2><%= "Game 7: #{fixture.home_team} hosts #{fixture.away_team}" %></h2>
-          <h3>Your selections:</h3>
-          <h3><%= "#{fixture.home_team} score: #{@selection.game_7_home_score} #{fixture.away_team} score: #{@selection.game_7_away_score}" %></h3>
-          <h3>Game's results:</h3>
-          <h3><%= "#{fixture.away_team} score: #{fixture.home_score} #{fixture.away_team} score: #{fixture.away_score}" %></h3>
-        </div>
-
-        <div>
-          <% fixture = @fixtures_group.fixtures[7] %>
-          <h2><%= "Game 8: #{fixture.home_team} hosts #{fixture.away_team}" %></h2>
-          <h3>Your selections:</h3>
-          <h3><%= "#{fixture.home_team} score: #{@selection.game_8_home_score} #{fixture.away_team} score: #{@selection.game_8_away_score}" %></h3>
-          <h3>Game's results:</h3>
-          <h3><%= "#{fixture.away_team} score: #{fixture.home_score} #{fixture.away_team} score: #{fixture.away_score}" %></h3>
-        </div>
-
-        <div>
-          <% fixture = @fixtures_group.fixtures[8] %>
-          <h2><%= "Game 9: #{fixture.home_team} hosts #{fixture.away_team}" %></h2>
-          <h3>Your selections:</h3>
-          <h3><%= "#{fixture.home_team} score: #{@selection.game_9_home_score} #{fixture.away_team} score: #{@selection.game_9_away_score}" %></h3>
-          <h3>Game's results:</h3>
-          <h3><%= "#{fixture.away_team} score: #{fixture.home_score} #{fixture.away_team} score: #{fixture.away_score}" %></h3>
-        </div>
-
-        <div>
-          <% fixture = @fixtures_group.fixtures[9] %>
-          <h2><%= "Game 10: #{fixture.home_team} hosts #{fixture.away_team}" %></h2>
-          <h3>Your selections:</h3>
-          <h3><%= "#{fixture.home_team} score: #{@selection.game_10_home_score} #{fixture.away_team} score: #{@selection.game_10_away_score}" %></h3>
-          <h3>Game's results:</h3>
-          <h3><%= "#{fixture.away_team} score: #{fixture.home_score} #{fixture.away_team} score: #{fixture.away_score}" %></h3>
-        </div>
+      <div>
+        <% fixture = @fixtures_group.fixtures[1] %>
+        <h3><%= "Game 2: #{fixture.home_team} hosts #{fixture.away_team}" %></h3>
+        <table>
+          <tr>
+            <td class="table-fixtures"><h4>Game's results:</h4></td>
+            <td class="table-fixtures"><h4>Your selections:</h4></td>
+          </tr>
+          <tr>
+            <td class="table-fixtures"><h4><%= "#{fixture.home_score} - #{fixture.away_score}" %></h4></td>
+            <td class="table-fixtures"><h4><%= "#{@selection.game_2_home_score} - #{@selection.game_2_away_score}" %></h4></td>
+          </tr>
+        </table>
       </div>
-    </div>
 
-    <div class="col-md-4">
-      <div class="container">
-        Sidebar:
-        weeks score,
-        overall score,
-        past seasons scores,
-        leagues they are in
+      <div>
+        <% fixture = @fixtures_group.fixtures[2] %>
+        <h3><%= "Game 3: #{fixture.home_team} hosts #{fixture.away_team}" %></h3>
+        <table>
+          <tr>
+            <td class="table-fixtures"><h4>Game's results:</h4></td>
+            <td class="table-fixtures"><h4>Your selections:</h4></td>
+          </tr>
+          <tr>
+            <td class="table-fixtures"><h4><%= "#{fixture.home_score} - #{fixture.away_score}" %></h4></td>
+            <td class="table-fixtures"><h4><%= "#{@selection.game_3_home_score} - #{@selection.game_3_away_score}" %></h4></td>
+          </tr>
+        </table>
+      </div>
+
+      <div>
+        <% fixture = @fixtures_group.fixtures[3] %>
+        <h3><%= "Game 4: #{fixture.home_team} hosts #{fixture.away_team}" %></h3>
+        <table>
+          <tr>
+            <td class="table-fixtures"><h4>Game's results:</h4></td>
+            <td class="table-fixtures"><h4>Your selections:</h4></td>
+          </tr>
+          <tr>
+            <td class="table-fixtures"><h4><%= "#{fixture.home_score} - #{fixture.away_score}" %></h4></td>
+            <td class="table-fixtures"><h4><%= "#{@selection.game_4_home_score} - #{@selection.game_4_away_score}" %></h4></td>
+          </tr>
+        </table>
+      </div>
+
+      <div>
+        <% fixture = @fixtures_group.fixtures[4] %>
+        <h3><%= "Game 5: #{fixture.home_team} hosts #{fixture.away_team}" %></h3>
+        <table>
+          <tr>
+            <td class="table-fixtures"><h4>Game's results:</h4></td>
+            <td class="table-fixtures"><h4>Your selections:</h4></td>
+          </tr>
+          <tr>
+            <td class="table-fixtures"><h4><%= "#{fixture.home_score} - #{fixture.away_score}" %></h4></td>
+            <td class="table-fixtures"><h4><%= "#{@selection.game_5_home_score} - #{@selection.game_5_away_score}" %></h4></td>
+          </tr>
+        </table>
+      </div>
+
+      <div>
+        <% fixture = @fixtures_group.fixtures[5] %>
+        <h3><%= "Game 6: #{fixture.home_team} hosts #{fixture.away_team}" %></h3>
+        <table>
+          <tr>
+            <td class="table-fixtures"><h4>Game's results:</h4></td>
+            <td class="table-fixtures"><h4>Your selections:</h4></td>
+          </tr>
+          <tr>
+            <td class="table-fixtures"><h4><%= "#{fixture.home_score} - #{fixture.away_score}" %></h4></td>
+            <td class="table-fixtures"><h4><%= "#{@selection.game_6_home_score} - #{@selection.game_6_away_score}" %></h4></td>
+          </tr>
+        </table>
+      </div>
+
+      <div>
+        <% fixture = @fixtures_group.fixtures[6] %>
+        <h3><%= "Game 7: #{fixture.home_team} hosts #{fixture.away_team}" %></h3>
+        <table>
+          <tr>
+            <td class="table-fixtures"><h4>Game's results:</h4></td>
+            <td class="table-fixtures"><h4>Your selections:</h4></td>
+          </tr>
+          <tr>
+            <td class="table-fixtures"><h4><%= "#{fixture.home_score} - #{fixture.away_score}" %></h4></td>
+            <td class="table-fixtures"><h4><%= "#{@selection.game_7_home_score} - #{@selection.game_7_away_score}" %></h4></td>
+          </tr>
+        </table>
+      </div>
+
+      <div>
+        <% fixture = @fixtures_group.fixtures[7] %>
+        <h3><%= "Game 8: #{fixture.home_team} hosts #{fixture.away_team}" %></h3>
+        <table>
+          <tr>
+            <td class="table-fixtures"><h4>Game's results:</h4></td>
+            <td class="table-fixtures"><h4>Your selections:</h4></td>
+          </tr>
+          <tr>
+            <td class="table-fixtures"><h4><%= "#{fixture.home_score} - #{fixture.away_score}" %></h4></td>
+            <td class="table-fixtures"><h4><%= "#{@selection.game_8_home_score} - #{@selection.game_8_away_score}" %></h4></td>
+          </tr>
+        </table>
+      </div>
+
+      <div>
+        <% fixture = @fixtures_group.fixtures[8] %>
+        <h3><%= "Game 9: #{fixture.home_team} hosts #{fixture.away_team}" %></h3>
+        <table>
+          <tr>
+            <td class="table-fixtures"><h4>Game's results:</h4></td>
+            <td class="table-fixtures"><h4>Your selections:</h4></td>
+          </tr>
+          <tr>
+            <td class="table-fixtures"><h4><%= "#{fixture.home_score} - #{fixture.away_score}" %></h4></td>
+            <td class="table-fixtures"><h4><%= "#{@selection.game_9_home_score} - #{@selection.game_9_away_score}" %></h4></td>
+          </tr>
+        </table>
+      </div>
+
+      <div>
+        <% fixture = @fixtures_group.fixtures[9] %>
+        <h3><%= "Game 10: #{fixture.home_team} hosts #{fixture.away_team}" %></h3>
+        <table>
+          <tr>
+            <td class="table-fixtures"><h4>Game's results:</h4></td>
+            <td class="table-fixtures"><h4>Your selections:</h4></td>
+          </tr>
+          <tr>
+            <td class="table-fixtures"><h4><%= "#{fixture.home_score} - #{fixture.away_score}" %></h4></td>
+            <td class="table-fixtures"><h4><%= "#{@selection.game_10_home_score} - #{@selection.game_10_away_score}" %></h4></td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>
+
+  <div class="col-md-3">
+    <div class="jumbotron sidebar">
+
+      <div class="container scores">
+        <p>Week Score:</p>
+        <h2><%= @selection.score %></h2>
+        <p>Overall Score:</p>
+        <h2><%= @season.score %></h2>
+      </div>
+      <br>
+      <br>
+
+      <% if @users_selections %>
+        <table class="past-weeks-table">
+          <tr>
+            <th class="sidebar-head">Past Weeks</th>
+            <th class="sidebar-head">Score</th>
+          </tr>
+          <% count = current_season.fixtures_groups.find(FixturesGroup.find_by(active: true).id).id - current_season.fixtures_groups.first.id %>
+          <% @users_selections.each do |selection| %>
+            <tr>
+              <td class="table-item"><%= link_to count, "/users_fixtures_selections/#{selection.id}" %></td>
+              <td class="table-item"><%= selection.score %></td>
+            </tr>
+            <% count -= 1 %>
+          <% end %>
+        </table>
+        <br>
+        <br>
+      <% end %>
+
+      <table class="league-table">
+        <tr>
+          <th class="sidebar-head">League</th>
+          <th class="sidebar-head">Place</th>
+        </tr>
+        <tr>
+          <td class="table-item">Overall</td>
+          <% players = current_season.users_seasons.order(score: :desc) %>
+          <% count = 0 %>
+          <% players.each do |player| %>
+            <% count += 1 %>
+            <% if player.user_id == @user.id %>
+              <td class="table-item"><%= count %></td>
+            <% end %>
+          <% end %>
+        </tr>
+        <% @leagues.each do |league| %>
+          <tr>
+            <td class="table-item"><%= link_to league.name, "/leagues/#{league.id}" %></td>
+            <% count = 0 %>
+            <% league.sorted_users.each do |user| %>
+              <% count += 1 %>
+              <% if user.user_id == @user.id %>
+                <td class="table-item"><%= count %></td>
+              <% end %>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+      <br>
+      <br>
+
+      <table class="season-table">
+        <tr>
+          <th class="sidebar-head">Season</th>
+          <th class="sidebar-head">Score</th>
+        </tr>
+        <% @seasons.each do |season| %>
+          <tr>
+            <td class="table-item"><%= season.season.year %></td>
+            <td class="table-item"><%= season.score %></td>
+          </tr>
+        <% end %>
+      </table>
+
+    </div>
+  </div>
 </div>
+
+
+

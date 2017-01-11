@@ -14,7 +14,7 @@
 
     <body>
 
-        <nav class="navbar navbar-inverse">
+        <nav class="navbar navbar-inverse nav-bar">
           <div class="container-fluid">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
@@ -23,7 +23,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#">Top 5 Fantasy Soccer</a>
+              <a class="navbar-brand" href="/">Top 5 Fantasy Soccer</a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
@@ -32,6 +32,7 @@
                     <li><a class="nav-link" href="/leagues">Leagues</a></li>
                 <% else %>
                     <li><a class="nav-link" href="/users_fixtures_selections/new">My Selections</a></li>
+                    <li><%= link_to "My Results", "/users_fixtures_selections/#{week_results}", class:"nav-link" %>
                     <li><a class="nav-link" href="/leagues">Join a League</a></li>
                     <li><%= link_to "My Leagues", "/users_leagues/#{current_user.id}", class:"nav-link" %></li>
                 <% end %>
@@ -57,11 +58,11 @@
         </div>
 
         <!-- FOOTER -->
-        <footer>
+        <footer class="footer">
             <div class="container">
                 <div class="row">
                     <div class="col-md-3 col-sm-6">
-                        <h5>Zodkoo</h5>
+                        <h5>Top 5 Fantasy Soccer</h5>
                         <ul>
                             <li><a href="/">Home</a></li>
                             <li><a href="">Features</a></li>

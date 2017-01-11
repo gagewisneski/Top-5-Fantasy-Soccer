@@ -4,12 +4,10 @@ class UsersFixturesSelectionsController < ApplicationController
   before_action :top_5?, only: [:update_all_scores, :edit_all_scores]
 
   def index
-    # Acts as a league for everyone and shows the top 25 overall scorers
     @leaders = User.all.order(score: :desc)
   end
 
   def new
-    # User inputs scores for each fixture
     @fixtures_group = FixturesGroup.find_by(active: true)
     @selection = UsersFixturesSelection.new
   end
@@ -20,17 +18,17 @@ class UsersFixturesSelectionsController < ApplicationController
   end
   
   def show
-    # Shows the last completed weeks fixtures selections with their total score and a list of all previously completed weeks with score
-    @user = User.find(current_user.id)
-    @users_selections = @user.users_fixtures_selections.order(id: :desc)
     @selection = UsersFixturesSelection.find(params[:id])
+    @user = User.find(@selection.user_id)
+    @users_selections = current_season.users_fixtures_selections.where(user_id: @user.id).order(id: :desc)
+    @user.users_fixtures_selections.order(id: :desc)
     @fixtures_group = @selection.fixtures_group
-    @seasons = @user.seasons
+    @season = current_season.users_seasons.find_by(user_id: @user.id)
+    @seasons = @user.users_seasons.order(id: :desc)
     @leagues = @user.leagues
   end
   
   def edit
-    # User can change their inputs for the current fixtures
     @selection = FixturesGroup.find_by(active: true).users_fixtures_selections.find_by(user_id: current_user.id)
     @fixtures_group = FixturesGroup.find_by(active: true)
 

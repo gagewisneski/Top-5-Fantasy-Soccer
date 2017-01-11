@@ -70,14 +70,14 @@ end
 
 
 fixtures = [
-            ["2016-01-01 00:00:00", "2016-01-08 00:00:00", false],
-            ["2016-12-16 00:00:00", "2016-12-23 00:00:00", true],
-            ["2017-01-01 00:00:00", "2017-01-01 00:00:00", false],
-            ["2017-01-07 00:00:00", "2017-01-07 00:00:00", false],
+            ["2016-01-01 00:00:00", "2016-01-08 00:00:00", false, 2],
+            ["2016-12-16 00:00:00", "2016-12-23 00:00:00", true, 2],
+            ["2017-01-01 00:00:00", "2017-01-01 00:00:00", false, 2],
+            ["2017-01-07 00:00:00", "2017-01-07 00:00:00", false, 2],
           ]
 
-fixtures.each do |start, last, active|
-  FixturesGroup.create(week_start_date: start, week_end_date: last, active: active)
+fixtures.each do |start, last, active, season_id|
+  FixturesGroup.create(week_start_date: start, week_end_date: last, active: active, season_id: season_id)
 end
 
 seasons = [
@@ -157,16 +157,16 @@ fixtures.each do |fixtures_group_id, fixture_id|
 end
 
 users_fixtures_selections = [
-                              [1, 1, 1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, nil],
-                              [2, 1, 1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, nil],
-                              [3, 1, 1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, nil],
-                              [4, 1, 1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, nil],
-                              [5, 1, 1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, nil],
-                              [1, 2, 1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, nil],
-                              [2, 2, 1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, nil],
-                              [3, 2, 1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, nil],
-                              [4, 2, 1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, nil],
-                              [5, 2, 1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, nil]
+                              [1, 1, 2, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, nil],
+                              [2, 1, 2, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, nil],
+                              [3, 1, 2, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, nil],
+                              [4, 1, 2, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, nil],
+                              [5, 1, 2, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, nil],
+                              [1, 2, 2, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, nil],
+                              [2, 2, 2, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, nil],
+                              [3, 2, 2, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, nil],
+                              [4, 2, 2, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, nil],
+                              [5, 2, 2, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, nil]
                             ]
 
 users_fixtures_selections.each do |user_id, fixtures_group_id, season_id, game_1_home_score, game_1_away_score, game_2_home_score, game_2_away_score, game_3_home_score, game_3_away_score, game_4_home_score, game_4_away_score, game_5_home_score, game_5_away_score, game_6_home_score, game_6_away_score, game_7_home_score, game_7_away_score, game_8_home_score, game_8_away_score, game_9_home_score, game_9_away_score, game_10_home_score, game_10_away_score, score|
