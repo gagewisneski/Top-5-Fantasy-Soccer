@@ -32,7 +32,7 @@
                     <li><a class="nav-link" href="/leagues">Leagues</a></li>
                 <% else %>
                     <li><a class="nav-link" href="/users_fixtures_selections/new">My Selections</a></li>
-                    <li><%= link_to "My Results", "/users_fixtures_selections/#{week_results}", class:"nav-link" %>
+                    <li><%= link_to "My Results", "/users_fixtures_selections/#{week_results}", class:"nav-link" %></li>
                     <li><a class="nav-link" href="/leagues">Join a League</a></li>
                     <li><%= link_to "My Leagues", "/users_leagues/#{current_user.id}", class:"nav-link" %></li>
                 <% end %>
@@ -57,7 +57,6 @@
         <%= yield %>
         </div>
 
-        <!-- FOOTER -->
         <footer class="footer">
             <div class="container">
                 <div class="row">

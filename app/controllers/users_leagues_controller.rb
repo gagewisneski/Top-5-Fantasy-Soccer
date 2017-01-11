@@ -18,7 +18,8 @@ class UsersLeaguesController < ApplicationController
   end
 
   def show
-    @leagues = User.find(current_user.id).leagues
+    @leagues = current_user.leagues
+    @players = current_season.users_seasons.where("score > ?", 0).order(score: :desc)
   end
 
   def destroy
