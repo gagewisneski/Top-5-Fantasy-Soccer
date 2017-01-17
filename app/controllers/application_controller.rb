@@ -16,6 +16,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :week_results
 
+  def seasons_fixtures
+    @seasons_fixtures ||= current_season.fixtures_groups
+  end
+  helper_method :seasons_fixtures
+
   def authenticate_user!
     unless current_user
       flash[:warning] = "Only people that are logged in can do that!"

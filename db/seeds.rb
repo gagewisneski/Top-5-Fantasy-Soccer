@@ -24,8 +24,8 @@ users = [
           ["twelve", "twelve", "twelve", "twelve"],
           ["thirteen", "thirteen", "thriteen", "thirteen"]
         ]
-users.each do |name, email, password, password_confirmation|
-  User.create(name: name, email: email, password: password, password_confirmation: password_confirmation)
+users.each do |name, username, password, password_confirmation|
+  User.create(name: name, username: username, password: password, password_confirmation: password_confirmation)
 end
 
 leagues = [

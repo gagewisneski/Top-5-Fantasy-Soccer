@@ -14,12 +14,14 @@ class UsersFixturesSelectionsController < ApplicationController
 
   def create
     @selection = UsersFixturesSelection.create(user_id: current_user.id, fixtures_group_id: params[:fixtures_group_id], score: 0, game_1_home_score: params[:game_1_home_score], game_1_away_score: params[:game_1_away_score], game_2_home_score: params[:game_2_home_score], game_2_away_score: params[:game_2_away_score], game_3_home_score: params[:game_3_home_score], game_3_away_score: params[:game_3_away_score], game_4_home_score: params[:game_4_home_score], game_4_away_score: params[:game_4_away_score], game_5_home_score: params[:game_5_home_score], game_5_away_score: params[:game_5_away_score], game_6_home_score: params[:game_6_home_score], game_6_away_score: params[:game_6_away_score], game_7_home_score: params[:game_7_home_score], game_7_away_score: params[:game_7_away_score], game_8_home_score: params[:game_8_home_score], game_8_away_score: params[:game_8_away_score], game_9_home_score: params[:game_9_home_score], game_9_away_score: params[:game_9_away_score], game_10_home_score: params[:game_10_home_score], game_10_away_score: params[:game_10_away_score], season_id: current_season.id)
+    flash[:success] = "You have saved your selections!"
     redirect_to "/users_fixtures_selections/#{@selection.id}/edit"
   end
   
   def show
     @selection = UsersFixturesSelection.find(params[:id])
     @user = User.find(@selection.user_id)
+    @players = current_season.users_seasons.order(score: :desc)
     @users_selections = current_season.users_fixtures_selections.where(user_id: @user.id).order(id: :desc)
     @user.users_fixtures_selections.order(id: :desc)
     @fixtures_group = @selection.fixtures_group
@@ -39,6 +41,7 @@ class UsersFixturesSelectionsController < ApplicationController
     @myselection = UsersFixturesSelection.find(params[:id])
     @myselection.assign_attributes(game_1_home_score: params[:game_1_home_score], game_1_away_score: params[:game_1_away_score], game_2_home_score: params[:game_2_home_score], game_2_away_score: params[:game_2_away_score], game_3_home_score: params[:game_3_home_score], game_3_away_score: params[:game_3_away_score], game_4_home_score: params[:game_4_home_score], game_4_away_score: params[:game_4_away_score], game_5_home_score: params[:game_5_home_score], game_5_away_score: params[:game_5_away_score], game_6_home_score: params[:game_6_home_score], game_6_away_score: params[:game_6_away_score], game_7_home_score: params[:game_7_home_score], game_7_away_score: params[:game_7_away_score], game_8_home_score: params[:game_8_home_score], game_8_away_score: params[:game_8_away_score], game_9_home_score: params[:game_9_home_score], game_9_away_score: params[:game_9_away_score], game_10_home_score: params[:game_10_home_score], game_10_away_score: params[:game_10_away_score])
     @myselection.save
+    flash[:success] = "You have saved your selections!"
     redirect_to "/users_fixtures_selections/#{@myselection.id}/edit"
   end
 
@@ -156,7 +159,4 @@ class UsersFixturesSelectionsController < ApplicationController
     redirect_to "/"
   end
   
-  def destroy
-    # you can't delete your selections
-  end
 end

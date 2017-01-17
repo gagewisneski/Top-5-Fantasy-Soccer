@@ -1,10 +1,11 @@
-<% if session[:user_id] %>
-  <% if current_user.id == @user.id && %>
-    <h1>My Weeks Results</h1>
-  <% else %>
-    <h1><%= @user.email %> Week's Results</h1>
+<% count = current_season.total_fixtures %>
+<% seasons_fixtures.order(id: :desc).each do |fixture_group| %>
+  <% if fixture_group.id == @selection.fixtures_group_id %>
+    <h1><%= "#{@user.username} Week #{count} Results" %></h1>
   <% end %>
+  <% count -= 1 %>
 <% end %>
+
 <div class="row">
   <div class="col-md-9">
     <div class="container">
@@ -179,12 +180,18 @@
             <th class="sidebar-head">Past Weeks</th>
             <th class="sidebar-head">Score</th>
           </tr>
-          <% count = current_season.fixtures_groups.find(FixturesGroup.find_by(active: true).id).id - current_season.fixtures_groups.first.id %>
-          <% @users_selections.each do |selection| %>
-            <tr>
-              <td class="table-item"><%= link_to count, "/users_fixtures_selections/#{selection.id}" %></td>
-              <td class="table-item"><%= selection.score %></td>
-            </tr>
+          <% count = current_season.total_fixtures %>
+          <% seasons_fixtures.order(id: :desc).each do |fixture_group| %>
+            <% @users_selections.each do |selection| %>
+              <% unless selection.fixtures_group.active %>
+                <% if fixture_group.id == selection.fixtures_group_id %>
+                  <tr>
+                    <td class="table-item"><%= link_to count, "/users_fixtures_selections/#{selection.id}" %></td>
+                    <td class="table-item"><%= selection.score %></td>
+                  </tr>
+                <% end %>
+              <% end %>
+            <% end %>
             <% count -= 1 %>
           <% end %>
         </table>
@@ -199,9 +206,8 @@
         </tr>
         <tr>
           <td class="table-item">Overall</td>
-          <% players = current_season.users_seasons.order(score: :desc) %>
           <% count = 0 %>
-          <% players.each do |player| %>
+          <% @players.each do |player| %>
             <% count += 1 %>
             <% if player.user_id == @user.id %>
               <td class="table-item"><%= count %></td>

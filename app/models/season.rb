@@ -6,4 +6,8 @@ class Season < ApplicationRecord
   has_many :fixtures_groups
 
   validates :year, presence: true
+
+  def total_fixtures
+    fixtures_groups.length
+  end
 end

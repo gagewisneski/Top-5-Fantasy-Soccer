@@ -1,28 +1,44 @@
 <div class="container page-center">
-  <h1><%= @league.name %></h1>
   <% if @league.image %>
     <img class="league-image" src=<%= @league.image %>>
   <% else %>
     <img class="league-image" src="/assets/league_logo.jpg">
   <% end %>
+  <h1><%= @league.name %></h1>
   <h3>Players: <%= @league.users.count.to_s %></h3>
   <% players = @league.sorted_users %>
-  <ol class="order-center">
-  <% players.each do |player| %>
-    <h4><li><%= player.user.name %> Score: <%= player.score %></li></h4>
-  <% end %>
+  <table class="table-center">
+    <tr>
+      <th class="table-item">Place</th>
+      <th class="table-item">Username</th>
+      <th class="table-item">Score</th>
+    </tr>
+    <% count = 1 %>
+    <% players.each do |player| %>
+      <tr>
+        <td class="table-item"><h4><%= count %></h4></td>
+        <td class="table-item"><h4><%= link_to player.user.name, "/users_fixtures_selections/#{player.users_link}", class:"no-under" %></h4></td>
+        <td class="table-item"><h4><%= player.score %></h4></td>
+      </tr>
+      <% count += 1 %>
+    <% end %>
+  </table>
+
+  <br>
+  <br>
+  <br>
 
   <% if session[:user_id] %>
     <% @users_leagues = @league.users_leagues.find_by(user_id: current_user.id) %>
     <% if current_user.id == @league.admin_id %>
-      <%= link_to "Edit League", "/leagues/#{@league.id}/edit", class:"" %>
-      <%= link_to "Delete League", "/leagues/#{@league.id}", class:"", method: :delete %>
+      <%= link_to "Edit League", "/leagues/#{@league.id}/edit", class:"btn btn-success" %>
+      <%= link_to "Delete League", "/leagues/#{@league.id}", class:"btn btn-success", method: :delete %>
     <% elsif @users_leagues %>
-      <%= link_to "Leave this league", "/users_leagues/#{@users_leagues.id}", class:"", method: :delete %>
+      <%= link_to "Leave this league", "/users_leagues/#{@users_leagues.id}", class:"btn btn-success", method: :delete %>
     <% else %>
       <%= form_tag "/users_leagues", method: :post do %>
         <%= hidden_field_tag :league_name, @league.name %>
-        <%= submit_tag "Join League!", class:"" %>
+        <%= submit_tag "Join League!", class:"btn btn-success" %>
       <% end %>
     <% end %>
   <% end %>

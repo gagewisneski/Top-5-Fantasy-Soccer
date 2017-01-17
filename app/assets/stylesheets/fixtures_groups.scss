@@ -8,8 +8,9 @@ html {
 }
 
 body {
+  padding-top: 80px;
   height: 100%;
-  padding-bottom: 150px;
+  padding-bottom: 80px;
 }
 
 .nav-bar {
@@ -41,7 +42,11 @@ body {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 150px;
+  height: 50px;
+}
+
+.footer-content {
+  text-align: center;
 }
 
 .feature-image {
@@ -49,18 +54,36 @@ body {
 }
 
 .league-image {
-  height: 100px;
+  height: 150px;
 }
 
 .leaguers {
   height: 250px;
 }
+.no-under {
+  color: #ffffff;
+}
+.no-under:link {
+  text-decoration: none;
+}
 
-.table-center {
+.no-under:hover {
+  text-decoration: underline;
+  color: #00bc8c;
+}
+
+.table-left {
   text-align: left;
 }
 
+.table-center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
 .table-item {
+  text-align: center;
   width: 90px;
 }
 
