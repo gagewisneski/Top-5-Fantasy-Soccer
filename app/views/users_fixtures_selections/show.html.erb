@@ -172,6 +172,22 @@
         <h2><%= @season.score %></h2>
       </div>
       <br>
+
+      <h5>This weeks top scorer:</h5>
+      <h5><%= link_to @fixtures_group.top_week_scorers.first.user.username, "/users_fixtures_selections/#{@fixtures_group.top_week_scorers.first.id}"%><%=" - #{@fixtures_group.top_week_scorers.first.score}" %></h5>
+
+      <% if session[:user_id] %>
+        <% if current_user.id == @user.id %>
+          <% count = 1 %>
+          <% @fixtures_group.top_week_scorers.each do |player| %>
+            <% if player.user.username == @user.username %>
+              <h5>Your rank this week: <%= count %></h5>
+              <br>
+            <% end %>
+            <% count += 1 %>
+          <% end %>
+        <% end %>
+      <% end %>
       <br>
 
       <% if @users_selections %>
