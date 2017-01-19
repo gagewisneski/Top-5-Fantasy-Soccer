@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_season
 
   def week_results
-    @week_results ||= FixturesGroup.find(FixturesGroup.find_by(active: true).id - 1).users_fixtures_selections.find_by(user_id: current_user.id).id if session[:user_id]
+    @week_results ||= UsersFixturesSelection.where(user_id: current_user.id).joins(:fixtures_group).where(fixtures_groups: {active: false}).first.id if session[:user_id]
   end
   helper_method :week_results
 
@@ -52,7 +52,7 @@ class ApplicationController < ActionController::Base
 
   def locked?
     active_fixture_group = FixturesGroup.find_by(active: true)
-    if active_fixture.locked == false
+    if active_fixture.locked == true
       flash[:success] = "Games are currently playing so you can't change your selections"
       redirect_to "/"
     end

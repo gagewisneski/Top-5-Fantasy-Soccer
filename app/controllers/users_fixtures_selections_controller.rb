@@ -2,6 +2,7 @@ class UsersFixturesSelectionsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :ceate, :edit, :update, :destroy]
   before_action :new_selections?, only: [:new]
   before_action :top_5?, only: [:update_all_scores, :edit_all_scores]
+  before_action :locked?, only: [:new, :edit]
 
   def index
     @leaders = User.all.order(score: :desc)
