@@ -29,6 +29,10 @@ class UsersFixturesSelectionsController < ApplicationController
     @season = current_season.users_seasons.find_by(user_id: @user.id)
     @seasons = @user.users_seasons.order(id: :desc)
     @leagues = @user.leagues
+    if @fixtures_group.active
+      flash[:success] = "That week isn't finished yet"
+      redirect_to "/"
+    end
   end
   
   def edit
