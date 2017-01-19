@@ -41,7 +41,7 @@ class UsersFixturesSelectionsController < ApplicationController
     @myselection = UsersFixturesSelection.find(params[:id])
     @myselection.assign_attributes(game_1_home_score: params[:game_1_home_score], game_1_away_score: params[:game_1_away_score], game_2_home_score: params[:game_2_home_score], game_2_away_score: params[:game_2_away_score], game_3_home_score: params[:game_3_home_score], game_3_away_score: params[:game_3_away_score], game_4_home_score: params[:game_4_home_score], game_4_away_score: params[:game_4_away_score], game_5_home_score: params[:game_5_home_score], game_5_away_score: params[:game_5_away_score], game_6_home_score: params[:game_6_home_score], game_6_away_score: params[:game_6_away_score], game_7_home_score: params[:game_7_home_score], game_7_away_score: params[:game_7_away_score], game_8_home_score: params[:game_8_home_score], game_8_away_score: params[:game_8_away_score], game_9_home_score: params[:game_9_home_score], game_9_away_score: params[:game_9_away_score], game_10_home_score: params[:game_10_home_score], game_10_away_score: params[:game_10_away_score])
     @myselection.save
-    flash[:success] = "You have saved your selections!"
+    flash[:success] = "You have updated your selections!"
     redirect_to "/users_fixtures_selections/#{@myselection.id}/edit"
   end
 
@@ -153,7 +153,7 @@ class UsersFixturesSelectionsController < ApplicationController
     this_week.assign_attributes(active: false)
     this_week.save
 
-    next_week.assign_attributes(active: true)
+    next_week.assign_attributes(active: true, locked: false)
     next_week.save
 
     redirect_to "/"

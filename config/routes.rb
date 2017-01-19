@@ -17,6 +17,9 @@ Rails.application.routes.draw do
 
   resources :users_leagues
 
+  # Admin pages
   get "/top-5/update-scores", to: "users_fixtures_selections#edit_all_scores"
   post "/top-5/update-scores", to: "users_fixtures_selections#update_all_scores"
+  get "/top-5/update-locked", to: "fixtures_groups#edit_locked"
+  post "/top-5/update-locked", to: "fixtures_groups#update_locked"
 end

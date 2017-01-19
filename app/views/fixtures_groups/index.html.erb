@@ -10,15 +10,93 @@
         <% @fixtures_group.fixtures.each do |fixture| %>
           <h4>Game: <%= count %></h4>
           <% count += 1 %>
-          <h4><%= "#{fixture.home_team} hosts #{fixture.away_team}" %></h4>
+          <h4 class="indent"><%= "#{fixture.home_team} hosts #{fixture.away_team}" %></h4>
         <% end %>
       </div>
     </div>
 
     <div class="col-sm-12 col-lg-4 col-lg-offset-2">
-      <div class="jumbotron">
+      <div class="jumbotron sidebar">
         <h3>Top 5 of the Top 5</h3>
-      <% #Unirest calls to get the top 5 of the top 5 %>
+        <h4>Premier League</h4>
+        <table>
+          <tr>
+            <th class="sidebar-head">Place</th>
+            <th class="sidebar-head">Team</th>
+            <th class="sidebar-head">Points</th>
+          </tr>
+          <% @pl5.each do |team| %>
+            <tr>
+              <td class="table-item team"><%= team.position %></td>
+              <td class="table-item team"><%= team.team_name %></td>
+              <td class="table-item team"><%= team.points %></td>
+            </tr>
+          <% end %>
+        </table>
+        <br>
+        <h4>La Liga</h4>
+        <table>
+          <tr>
+            <th class="sidebar-head">Place</th>
+            <th class="sidebar-head">Team</th>
+            <th class="sidebar-head">Points</th>
+          </tr>
+          <% @ll5.each do |team| %>
+            <tr>
+              <td class="table-item team"><%= team.position %></td>
+              <td class="table-item team"><%= team.team_name %></td>
+              <td class="table-item team"><%= team.points %></td>
+            </tr>
+          <% end %>
+        </table>
+        <br>
+        <h4>Bundesliga</h4>
+        <table>
+          <tr>
+            <th class="sidebar-head">Place</th>
+            <th class="sidebar-head">Team</th>
+            <th class="sidebar-head">Points</th>
+          </tr>
+          <% @bl5.each do |team| %>
+            <tr>
+              <td class="table-item team"><%= team.position %></td>
+              <td class="table-item team"><%= team.team_name %></td>
+              <td class="table-item team"><%= team.points %></td>
+            </tr>
+          <% end %>
+        </table>
+        <br>
+        <h4>Serie A</h4>
+        <table>
+          <tr>
+            <th class="sidebar-head">Place</th>
+            <th class="sidebar-head">Team</th>
+            <th class="sidebar-head">Points</th>
+          </tr>
+          <% @sa5.each do |team| %>
+            <tr>
+              <td class="table-item team"><%= team.position %></td>
+              <td class="table-item team"><%= team.team_name %></td>
+              <td class="table-item team"><%= team.points %></td>
+            </tr>
+          <% end %>
+        </table>
+        <br>
+        <h4>Ligue 1</h4>
+        <table>
+          <tr>
+            <th class="sidebar-head">Place</th>
+            <th class="sidebar-head">Team</th>
+            <th class="sidebar-head">Points</th>
+          </tr>
+          <% @lg5.each do |team| %>
+            <tr>
+              <td class="table-item team"><%= team.position %></td>
+              <td class="table-item team"><%= team.team_name %></td>
+              <td class="table-item team"><%= team.points %></td>
+            </tr>
+          <% end %>
+        </table>
       </div>
     </div>
   </div>

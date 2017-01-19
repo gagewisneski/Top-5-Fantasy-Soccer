@@ -5,11 +5,11 @@
       <h2> <%= @players.count.to_s %> Players</h2>
       <div class="col-sm-4 col-md-offset-4">
         <% count = 1 %>
-        <table class="table-left">
+        <table class="table-center">
           <tr>
-            <th>Place</th>
-            <th>Username</th>
-            <th>Score</th>
+            <th class="table-item">Place</th>
+            <th class="table-item">Username</th>
+            <th class="table-item">Score</th>
           </tr>
           <% @players.each do |player| %>
             <tr>
@@ -49,11 +49,11 @@
         <p><%= league.users.count.to_s %> Players</p>
         <% players = league.sorted_users %>
         <% count = 1 %>
-        <table class="table-left">
+        <table class="table-center">
           <tr>
-            <th>Place</th>
-            <th>Username</th>
-            <th>Score</th>
+            <th class="table-item">Place</th>
+            <th class="table-item">Username</th>
+            <th class="table-item">Score</th>
           </tr>
         <% players.each do |player| %>
           <tr>
@@ -79,11 +79,11 @@
         <p><%= league.users.count.to_s %> Players</p>
         <% players = league.sorted_users %>
         <% count = 1 %>
-        <table class="table-left">
+        <table class="table-center">
           <tr>
-            <th>Place</th>
-            <th>Username</th>
-            <th>Score</th>
+            <th class="table-item">Place</th>
+            <th class="table-item">Username</th>
+            <th class="table-item">Score</th>
           </tr>
         <% players.each do |player| %>
           <tr>
@@ -111,11 +111,11 @@
         <p><%= league.users.count.to_s %> Players</p>
         <% players = league.sorted_users %>
         <% count = 1 %>
-        <table class="table-left">
+        <table class="table-center">
           <tr>
-            <th>Place</th>
-            <th>Username</th>
-            <th>Score</th>
+            <th class="table-item">Place</th>
+            <th class="table-item">Username</th>
+            <th class="table-item">Score</th>
           </tr>
         <% players.each do |player| %>
           <tr>

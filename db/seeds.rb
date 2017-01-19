@@ -70,14 +70,14 @@ end
 
 
 fixtures = [
-            ["2016-01-01 00:00:00", "2016-01-08 00:00:00", false, 2],
-            ["2016-12-16 00:00:00", "2016-12-23 00:00:00", true, 2],
-            ["2017-01-01 00:00:00", "2017-01-01 00:00:00", false, 2],
-            ["2017-01-07 00:00:00", "2017-01-07 00:00:00", false, 2],
+            ["2016-01-01 00:00:00", "2016-01-08 00:00:00", false, 2, true],
+            ["2016-12-16 00:00:00", "2016-12-23 00:00:00", true, 2, false],
+            ["2017-01-01 00:00:00", "2017-01-01 00:00:00", false, 2, true],
+            ["2017-01-07 00:00:00", "2017-01-07 00:00:00", false, 2, true]
           ]
 
-fixtures.each do |start, last, active, season_id|
-  FixturesGroup.create(week_start_date: start, week_end_date: last, active: active, season_id: season_id)
+fixtures.each do |start, last, active, season_id, locked|
+  FixturesGroup.create(week_start_date: start, week_end_date: last, active: active, season_id: season_id, locked: locked)
 end
 
 seasons = [

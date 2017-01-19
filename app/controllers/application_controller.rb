@@ -50,4 +50,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def locked?
+    active_fixture_group = FixturesGroup.find_by(active: true)
+    if active_fixture.locked == false
+      flash[:success] = "Games are currently playing so you can't change your selections"
+      redirect_to "/"
+    end
+  end
+
 end

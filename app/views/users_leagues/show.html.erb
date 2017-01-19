@@ -14,7 +14,7 @@
           <% @players.each do |player| %>
             <tr>
             <td class="table-item"><%= count %></td>
-            <td class="table-item"><%= player.user.name %></td>
+            <td class="table-item"><%= link_to player.user.name, "/users_fixtures_selections/#{player.users_link}", class:"no-under" %></td>
             <td class="table-item"><%= player.score %></td></tr>
             <% count += 1 %>
             <% break if count == 11 %>
@@ -55,7 +55,7 @@
         <% players.each do |player| %>
           <tr>
           <td class="table-item"><%= count %></td>
-          <td class="table-item"><%= player.user.name %></td>
+          <td class="table-item"><%= link_to player.user.name, "/users_fixtures_selections/#{player.users_link}", class:"no-under" %></td>
           <td class="table-item"><%= player.score %></td></tr>
           <% count += 1 %>
           <% break if count == 6 %>

@@ -59,10 +59,13 @@ body {
 
 .leaguers {
   height: 250px;
+  text-align: center;
 }
+
 .no-under {
   color: #ffffff;
 }
+
 .no-under:link {
   text-decoration: none;
 }
@@ -70,6 +73,10 @@ body {
 .no-under:hover {
   text-decoration: underline;
   color: #00bc8c;
+}
+
+.indent {
+  text-indent: 20px;
 }
 
 .table-left {
@@ -85,6 +92,10 @@ body {
 .table-item {
   text-align: center;
   width: 90px;
+}
+
+.team {
+  height: 30px;
 }
 
 .table-fixtures {

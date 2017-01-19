@@ -1,7 +1,14 @@
 class FixturesGroupsController < ApplicationController
+  before_action :top_5?, only: [:update_locked, :edit_locked]
+
   def index
     # Website homepage, displays the active fixtures_group.
     @fixtures_group = FixturesGroup.find_by(active: true)
+    @pl5 = PlTeam.all
+    @bl5 = BlTeam.all
+    @sa5 = SaTeam.all
+    @lg5 = LgTeam.all
+    @ll5 = LlTeam.all
   end
 
   def create
@@ -12,10 +19,6 @@ class FixturesGroupsController < ApplicationController
     # Depends on create
   end
   
-  def show
-    # Probably don't need this since users will view past ones with user input in users_fixtures_selection
-  end
-  
   def edit
     # Don't need this
   end
@@ -23,8 +26,14 @@ class FixturesGroupsController < ApplicationController
   def update
     # Don't need this
   end
+
+  def edit_locked
+  end
   
-  def destroy
-    # Don't need this
+  def update_locked
+    @fixtures_group = FixturesGroup.find_by(active: true)
+    @fixtures_group.assign_attributes(locked: true)
+    flash[:success] = "Selections are now locked"
+    redirect_to "/"
   end
 end
