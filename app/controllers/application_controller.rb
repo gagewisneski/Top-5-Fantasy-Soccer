@@ -12,7 +12,11 @@ class ApplicationController < ActionController::Base
   helper_method :current_season
 
   def week_results
-    @week_results ||= UsersFixturesSelection.where(user_id: current_user.id).joins(:fixtures_group).where(fixtures_groups: {active: false}).first.id if session[:user_id]
+    if session[:user_id]
+      if UsersFixturesSelection.where(user_id: current_user.id).joins(:fixtures_group).find_by(fixtures_groups: {active: false})
+        @week_results = UsersFixturesSelection.where(user_id: current_user.id).joins(:fixtures_group).where(fixtures_groups: {active: false}).first.id
+      end
+    end
   end
   helper_method :week_results
 

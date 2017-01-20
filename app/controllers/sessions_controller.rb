@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       flash[:success] = "You are now logged in"
       redirect_to "/"
     else
-      flash[:warning] = @user.errors.full_messages.join(", ")
+      flash[:warning] = "Wrong login information"
       render :new
     end
   end

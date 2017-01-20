@@ -63,6 +63,11 @@ body {
   text-align: center;
 }
 
+.league-name {
+  border-bottom: solid;
+  padding-bottom: 4px;
+}
+
 .no-under {
   color: #ffffff;
 }
@@ -96,7 +101,8 @@ body {
 }
 
 .team {
-  height: 30px;
+  height: 40px;
+  width: 140px;
 }
 
 .table-fixtures {

@@ -7,9 +7,9 @@
         <% count = 1 %>
         <table class="table-center">
           <tr>
-            <th>Place</th>
-            <th>Username</th>
-            <th>Score</th>
+            <th class="table-item">Place</th>
+            <th class="table-item">Username</th>
+            <th class="table-item">Score</th>
           </tr>
           <% @players.each do |player| %>
             <tr>
@@ -33,6 +33,7 @@
       <%= link_to "Create a league", "/leagues/new", class:"btn btn-success" %>
     </div>
   </div>
+  <br>
 
   <div class="row">
     <% @leagues.each do |league| %>
@@ -48,9 +49,9 @@
         <% count = 1 %>
         <table class="table-center">
           <tr>
-            <th>Place</th>
-            <th>Username</th>
-            <th>Score</th>
+            <th class="table-item">Place</th>
+            <th class="table-item">Username</th>
+            <th class="table-item">Score</th>
           </tr>
         <% players.each do |player| %>
           <tr>
