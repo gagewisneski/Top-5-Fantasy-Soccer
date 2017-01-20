@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
   end
 
   def top_5?
-    if current_user.id != 1
+    unless current_user.id == 1
       flash[:danger] = "Stop trying to hack!"
       redirect_to "/"
     end
@@ -56,7 +56,7 @@ class ApplicationController < ActionController::Base
 
   def locked?
     active_fixture_group = FixturesGroup.find_by(active: true)
-    if active_fixture.locked == true
+    if active_fixture_group.locked == true
       flash[:success] = "Games are currently playing so you can't change your selections"
       redirect_to "/"
     end

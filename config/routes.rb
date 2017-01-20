@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
 
+  get "/leagues/indexes", to: "leagues#indexes"
   resources :leagues
 
   resources :users_fixtures_selections

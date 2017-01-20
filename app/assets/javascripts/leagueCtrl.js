@@ -1,9 +1,13 @@
 (function() {
   "use strict";
 
-  angular.module("app").controller("leagueCtrl", function($scope) {
+  angular.module("app").controller("leagueCtrl", function($scope, $http) {
 
-    $scope.leagues = 
+    $scope.setup = function() {
+      $http.get('/leagues/indexes.json').then(function(response){
+        $scope.leagues = response.data;
+      });
+    }
 
     window.$scope = $scope;
   });

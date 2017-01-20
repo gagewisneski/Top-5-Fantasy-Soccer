@@ -1,135 +1,75 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12 text-center">
-      <h1>Overall Leaders:</h1>
-      <h2> <%= @players.count.to_s %> Players</h2>
-      <div class="col-sm-4 col-md-offset-4">
-        <% count = 1 %>
-        <table class="table-center">
-          <tr>
-            <th class="table-item">Place</th>
-            <th class="table-item">Username</th>
-            <th class="table-item">Score</th>
-          </tr>
-          <% @players.each do |player| %>
+<div ng-app="app">
+  <div ng-controller="leagueCtrl" ng-init="setup()">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 text-center">
+          <h1>Overall Leaders:</h1>
+          <h2> <%= @players.count.to_s %> Players</h2>
+          <div class="col-sm-4 col-md-offset-4">
+            <% count = 1 %>
+            <table class="table-center">
+              <tr>
+                <th class="table-item">Place</th>
+                <th class="table-item">Username</th>
+                <th class="table-item">Score</th>
+              </tr>
+              <% @players.each do |player| %>
+              <tr>
+                <td class="table-item"><%= count %></td>
+                <td class="table-item"><%= link_to player.user.username, "/users_fixtures_selections/#{player.users_link}", class:"no-under" %></td>
+                <td class="table-item"><%= player.score %></td>
+              </tr>
+              <% count += 1 %>
+              <% break if count == 11 %>
+              <% end %>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 text-center">
+          <h1>Leagues</h1>
+          Search for a league: <input ng-model="nameFilter">
+          <%= link_to "Join a private league", "/users_leagues/new", class:"btn btn-success" %>
+          <%= link_to "Create a league", "/leagues/new", class:"btn btn-success" %>
+        </div>
+      </div>
+      <br>
+
+      <div class="row">
+        <% if session[:user_id] %>
+        <div ng-repeat="league in leagues | filter: {name: nameFilter}" class="col-sm-4 leaguers">
+
+          <div ng-if="league.image">
+            <img class="feature-image" ng-src="{{league.image}}">
+          </div>
+          <div ng-if="league.image === null">
+            <img class="feature-image" src="/assets/league_logo.jpg">
+          </div>
+
+          <h4><a ng-href="/leagues/{{league.id}}">{{ league.name }}</a>:</h4>
+          <p>{{ league.player_count }} Players</p>
+          <table class="table-center">
             <tr>
-              <td class="table-item"><%= count %></td>
-              <td class="table-item"><%= link_to player.user.name, "/users_fixtures_selections/#{player.users_link}", class:"no-under" %></td>
-              <td class="table-item"><%= player.score %></td>
+              <th class="table-item">Place</th>
+              <th class="table-item">Username</th>
+              <th class="table-item">Score</th>
             </tr>
-            <% count += 1 %>
-            <% break if count == 11 %>
-          <% end %>
-        </table>
+            <tr ng-repeat="player in league.players">
+              <td class="table-item">{{ $index + 1 }}</td>
+              <td class="table-item"><a ng-href="/users_fixtures_selections/{{player.user_link}}" class="no-under">{{ player.user_name }}</a></td>
+              <td class="table-item">{{ player.user_score }}</td>
+            </tr>
+          </table>
+        </div>
       </div>
+
+
+
+      <% end %>
     </div>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12 text-center">
-      <h1>Leagues</h1>
-      <%= link_to "Join a private league", "/users_leagues/new", class:"btn btn-success" %>
-      <%= link_to "Create a league", "/leagues/new", class:"btn btn-success" %>
-    </div>
-  </div>
-  <br>
-
-  <div class="row">
-  <% if session[:user_id] %>
-    <% @leagues.each do |league| %>
-      <div class="col-sm-4 leaguers">
-        <% if league.image %>
-          <img class="feature-image" src=<%= league.image %>>
-        <% else %>
-          <img class="feature-image" src="/assets/league_logo.jpg">
-        <% end %>
-        <h4><%= link_to league.name, "/leagues/#{league.id}" %>:</h4>
-        <p><%= league.users.count.to_s %> Players</p>
-        <% players = league.sorted_users %>
-        <% count = 1 %>
-        <table class="table-center">
-          <tr>
-            <th class="table-item">Place</th>
-            <th class="table-item">Username</th>
-            <th class="table-item">Score</th>
-          </tr>
-        <% players.each do |player| %>
-          <tr>
-            <td class="table-item"><%= count %></td>
-            <td class="table-item"><%= link_to player.user.name, "/users_fixtures_selections/#{player.users_link}", class:"no-under" %></td>
-            <td class="table-item"><%= player.score %></td>
-          </tr>
-          <% count += 1 %>
-          <% break if count == 6 %>
-        <% end %>
-        </table>
-      </div>
-    <% end %>
-
-    <% @extraleagues.each do |league| %>
-      <div class="col-sm-4 leaguers">
-        <% if league.image %>
-          <img class="feature-image" src=<%= league.image %>>
-        <% else %>
-          <img class="feature-image" src="/assets/league_logo.jpg">
-        <% end %>
-        <h4><%= link_to league.name, "/leagues/#{league.id}" %>:</h4>
-        <p><%= league.users.count.to_s %> Players</p>
-        <% players = league.sorted_users %>
-        <% count = 1 %>
-        <table class="table-center">
-          <tr>
-            <th class="table-item">Place</th>
-            <th class="table-item">Username</th>
-            <th class="table-item">Score</th>
-          </tr>
-        <% players.each do |player| %>
-          <tr>
-            <td class="table-item"><%= count %></td>
-            <td class="table-item"><%= link_to player.user.name, "/users_fixtures_selections/#{player.users_link}", class:"no-under" %></td>
-            <td class="table-item"><%= player.score %></td>
-          </tr>
-          <% count += 1 %>
-          <% break if count == 6 %>
-        <% end %>
-        </table>
-      </div>
-    <% end %>
-
-  <% else %>
-
-    <% @publicleagues.each do |league| %>
-      <div class="col-sm-4 leaguers">
-        <% if league.image %>
-          <img class="feature-image" src=<%= league.image %>>
-        <% else %>
-          <img class="feature-image" src="/assets/league_logo.jpg">
-        <% end %>
-        <h4><%= link_to league.name, "/leagues/#{league.id}" %>:</h4>
-        <p><%= league.users.count.to_s %> Players</p>
-        <% players = league.sorted_users %>
-        <% count = 1 %>
-        <table class="table-center">
-          <tr>
-            <th class="table-item">Place</th>
-            <th class="table-item">Username</th>
-            <th class="table-item">Score</th>
-          </tr>
-        <% players.each do |player| %>
-          <tr>
-            <td class="table-item"><%= count %></td>
-            <td class="table-item"><%= link_to player.user.name, "/users_fixtures_selections/#{player.users_link}", class:"no-under" %></td>
-            <td class="table-item"><%= player.score %></td>
-          </tr>
-          <% count += 1 %>
-          <% break if count == 6 %>
-        <% end %>
-        </table>
-      </div>
-    <% end %>
-
-  <% end %>
   </div>
 </div>
