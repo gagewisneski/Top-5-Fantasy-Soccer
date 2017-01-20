@@ -7,22 +7,24 @@
   <h1><%= @league.name %></h1>
   <h3>Players: <%= @league.users.count.to_s %></h3>
   <% players = @league.sorted_users %>
-  <table class="table-center">
-    <tr>
-      <th class="table-item">Place</th>
-      <th class="table-item">Username</th>
-      <th class="table-item">Score</th>
-    </tr>
-    <% count = 1 %>
-    <% players.each do |player| %>
+  <div class="col-md-6">
+    <table class="table-center">
       <tr>
-        <td class="table-item"><h4><%= count %></h4></td>
-        <td class="table-item"><h4><%= link_to player.user.name, "/users_fixtures_selections/#{player.users_link}", class:"no-under" %></h4></td>
-        <td class="table-item"><h4><%= player.score %></h4></td>
+        <th class="table-item">Place</th>
+        <th class="table-item">Username</th>
+        <th class="table-item">Score</th>
       </tr>
-      <% count += 1 %>
-    <% end %>
-  </table>
+      <% count = 1 %>
+      <% players.each do |player| %>
+        <tr>
+          <td class="table-item"><h4><%= count %></h4></td>
+          <td class="table-item"><h4><%= link_to player.user.name, "/users_fixtures_selections/#{player.users_link}", class:"no-under" %></h4></td>
+          <td class="table-item"><h4><%= player.score %></h4></td>
+        </tr>
+        <% count += 1 %>
+      <% end %>
+    </table>
+  </div>
 
   <br>
   <br>
