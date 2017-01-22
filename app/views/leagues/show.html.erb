@@ -7,24 +7,22 @@
   <h1><%= @league.name %></h1>
   <h3>Players: <%= @league.users.count.to_s %></h3>
   <% players = @league.sorted_users %>
-  <div class="col-md-6">
-    <table class="table-center">
+  <table class="table-center">
+    <tr>
+      <th class="table-item">Place</th>
+      <th class="table-item">Username</th>
+      <th class="table-item">Score</th>
+    </tr>
+    <% count = 1 %>
+    <% players.each do |player| %>
       <tr>
-        <th class="table-item">Place</th>
-        <th class="table-item">Username</th>
-        <th class="table-item">Score</th>
+        <td class="table-item"><h4><%= count %></h4></td>
+        <td class="table-item"><h4><%= link_to player.user.name, "/users_fixtures_selections/#{player.users_link}", class:"no-under" %></h4></td>
+        <td class="table-item"><h4><%= player.score %></h4></td>
       </tr>
-      <% count = 1 %>
-      <% players.each do |player| %>
-        <tr>
-          <td class="table-item"><h4><%= count %></h4></td>
-          <td class="table-item"><h4><%= link_to player.user.name, "/users_fixtures_selections/#{player.users_link}", class:"no-under" %></h4></td>
-          <td class="table-item"><h4><%= player.score %></h4></td>
-        </tr>
-        <% count += 1 %>
-      <% end %>
-    </table>
-  </div>
+      <% count += 1 %>
+    <% end %>
+  </table>
 
   <br>
   <br>
@@ -40,7 +38,7 @@
     <% else %>
       <%= form_tag "/users_leagues", method: :post do %>
         <%= hidden_field_tag :league_name, @league.name %>
-        <%= submit_tag "Join League!", class:"btn btn-success" %>
+        <%= submit_tag "Join this league!", class:"btn btn-success" %>
       <% end %>
     <% end %>
   <% end %>

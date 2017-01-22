@@ -25,6 +25,10 @@ class ApplicationController < ActionController::Base
   end
   helper_method :seasons_fixtures
 
+  def fixture_lookup(fixture_id)
+    return Unirest.get("#{ENV['API_URL']}/fixtures/#{fixture_id}", headers:{"X-Auth-Token" => "#{ENV['API_KEY']}"}).body
+  end
+
   def authenticate_user!
     unless current_user
       flash[:warning] = "Only people that are logged in can do that!"

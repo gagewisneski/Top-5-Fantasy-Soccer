@@ -1,5 +1,5 @@
 class FixturesGroupsController < ApplicationController
-  before_action :top_5?, only: [:update_locked, :edit_locked]
+  before_action :top_5?, only: [:update_locked, :edit_locked, :new, :create]
 
   def index
     # Website homepage, displays the active fixtures_group.
@@ -12,11 +12,45 @@ class FixturesGroupsController < ApplicationController
   end
 
   def create
-    # Automatically make a fixtures_group?
+    fixtures_group = FixturesGroup.create(active: false, season_id: 2, locked: false)
+
+    call1 = fixture_lookup(params[:fixture_id1])
+    fixture1 = Fixture.create(fixtures_group_id: fixtures_group.id, fixture_id: params[:fixture_id1], home_team: call1["fixture"]["homeTeamName"], away_team: call1["fixture"]["awayTeamName"])
+
+    call2 = fixture_lookup(params[:fixture_id2])
+    fixture2 = Fixture.create(fixtures_group_id: fixtures_group.id, fixture_id: params[:fixture_id2], home_team: call2["fixture"]["homeTeamName"], away_team: call2["fixture"]["awayTeamName"])
+
+    call3 = fixture_lookup(params[:fixture_id3])
+    fixture3 = Fixture.create(fixtures_group_id: fixtures_group.id, fixture_id: params[:fixture_id3], home_team: call3["fixture"]["homeTeamName"], away_team: call3["fixture"]["awayTeamName"])
+
+    call4 = fixture_lookup(params[:fixture_id4])
+    fixture4 = Fixture.create(fixtures_group_id: fixtures_group.id, fixture_id: params[:fixture_id4], home_team: call4["fixture"]["homeTeamName"], away_team: call4["fixture"]["awayTeamName"])
+
+    call5 = fixture_lookup(params[:fixture_id5])
+    fixture5 = Fixture.create(fixtures_group_id: fixtures_group.id, fixture_id: params[:fixture_id5], home_team: call5["fixture"]["homeTeamName"], away_team: call5["fixture"]["awayTeamName"])
+
+    call6 = fixture_lookup(params[:fixture_id6])
+    fixture6 = Fixture.create(fixtures_group_id: fixtures_group.id, fixture_id: params[:fixture_id6], home_team: call6["fixture"]["homeTeamName"], away_team: call6["fixture"]["awayTeamName"])
+
+    call7 = fixture_lookup(params[:fixture_id7])
+    fixture7 = Fixture.create(fixtures_group_id: fixtures_group.id, fixture_id: params[:fixture_id7], home_team: call7["fixture"]["homeTeamName"], away_team: call7["fixture"]["awayTeamName"])
+
+    call8 = fixture_lookup(params[:fixture_id8])
+    fixture8 = Fixture.create(fixtures_group_id: fixtures_group.id, fixture_id: params[:fixture_id8], home_team: call8["fixture"]["homeTeamName"], away_team: call8["fixture"]["awayTeamName"])
+
+    call9 = fixture_lookup(params[:fixture_id9])
+    fixture9 = Fixture.create(fixtures_group_id: fixtures_group.id, fixture_id: params[:fixture_id9], home_team: call9["fixture"]["homeTeamName"], away_team: call9["fixture"]["awayTeamName"])
+
+    call10 = fixture_lookup(params[:fixture_id10])
+    fixture10 = Fixture.create(fixtures_group_id: fixtures_group.id, fixture_id: params[:fixture_id10], home_team: call10["fixture"]["homeTeamName"], away_team: call10["fixture"]["awayTeamName"])
+
+    flash[:success] = "You created a fixtures group"
+    redirect_to "/"
+    
   end
   
   def new
-    # Depends on create
+
   end
   
   def edit

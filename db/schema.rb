@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170118034253) do
+ActiveRecord::Schema.define(version: 20170122171011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,10 +27,8 @@ ActiveRecord::Schema.define(version: 20170118034253) do
   end
 
   create_table "fixtures_groups", force: :cascade do |t|
-    t.datetime "week_start_date"
-    t.datetime "week_end_date"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.boolean  "active"
     t.integer  "season_id"
     t.boolean  "locked"
@@ -40,7 +38,6 @@ ActiveRecord::Schema.define(version: 20170118034253) do
     t.string   "name"
     t.boolean  "private"
     t.string   "password_digest"
-    t.string   "description"
     t.string   "image"
     t.integer  "admin_id"
     t.datetime "created_at",      null: false

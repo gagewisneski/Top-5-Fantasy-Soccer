@@ -5,11 +5,6 @@ class LeaguesController < ApplicationController
   def index
     # Display all the public leagues
     @players = current_season.users_seasons.where("score > ?", 0).order(score: :desc)
-    # @publicleagues = League.where(private: false)
-    # if session[:user_id]
-    #   @leagues = User.find(current_user.id).leagues
-    #   @extraleagues = @publicleagues - @leagues
-    # end
   end
 
   def new
@@ -19,8 +14,9 @@ class LeaguesController < ApplicationController
 
   def create
     # Creates a league
-    @league = League.new(name: params[:name], private: params[:private], password: params[:password], description: params[:description], image: params[:image], admin_id: current_user.id)
+    @league = League.new(name: params[:name], private: params[:private], password: params[:password], image: params[:image], admin_id: current_user.id)
     if @league.save
+      UsersLeague.create(league_id: @league.id, user_id: current_user.id)
       flash[:success] = "You have created a league"
       redirect_to "/leagues"
     else
@@ -43,7 +39,7 @@ class LeaguesController < ApplicationController
   def update
     # Updates league
     @league = League.find(params[:id])
-    @league.assign_attributes(name: params[:name], private: params[:private], description: params[:description], image: params[:image])
+    @league.assign_attributes(name: params[:name], private: params[:private], image: params[:image])
     if @league.save
       flash[:success] = "You have edited your league"
       redirect_to "/leagues"
@@ -56,7 +52,7 @@ class LeaguesController < ApplicationController
   def destroy
     # Destroys league
     league = League.find(params[:id])
-    users_leagues = UsersLeague.where(league_id: :league.id)
+    users_leagues = UsersLeague.where(league_id: league.id)
     users_leagues.destroy_all
     league.destroy
     redirect_to "/leagues"

@@ -10,6 +10,6 @@ class User < ApplicationRecord
 
   has_many :users_fixtures_selections
 
-  validates :name, :email, presence: true
-  validates :email, uniqueness: true
+  validates :name, :username, presence: true
+  validates :username, uniqueness: true
 end

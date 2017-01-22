@@ -2,7 +2,7 @@ class UsersFixturesSelectionsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :ceate, :edit, :update, :destroy]
   before_action :new_selections?, only: [:new]
   before_action :top_5?, only: [:update_all_scores, :edit_all_scores]
-  before_action :locked?, only: [:new, :edit]
+  before_action :locked?, only: [:new, :create, :edit, :update]
 
   def index
     @leaders = User.all.order(score: :desc)
@@ -153,12 +153,12 @@ class UsersFixturesSelectionsController < ApplicationController
     end
 
     this_week = FixturesGroup.find_by(active: true)
-    next_week = FixturesGroup.find(this_week.id + 1)
+    next_week = FixturesGroup.where(active: false, locked: false).order(:id).first
 
     this_week.assign_attributes(active: false)
     this_week.save
 
-    next_week.assign_attributes(active: true, locked: false)
+    next_week.assign_attributes(active: true)
     next_week.save
 
     redirect_to "/"

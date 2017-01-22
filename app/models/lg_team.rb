@@ -9,7 +9,7 @@ class LgTeam
   end
 
   def self.all
-    unirest_pl_standings = Unirest.get("#{ENV['API_URL']}/competitions/434/leagueTable", parameters: {"X-Auth-Token" => "#{ENV['API_KEY']}"}).body
+    unirest_pl_standings = Unirest.get("#{ENV['API_URL']}/competitions/434/leagueTable", headers:{"X-Auth-Token" => "#{ENV['API_KEY']}"}).body
     lg5 = []
     unirest_pl_standings["standing"][0..4].each do |team|
       teams = LgTeam.new(team)
