@@ -29,6 +29,10 @@ class ApplicationController < ActionController::Base
     return Unirest.get("#{ENV['API_URL']}/fixtures/#{fixture_id}", headers:{"X-Auth-Token" => "#{ENV['API_KEY']}"}).body
   end
 
+  def fixture_find(league_id, matchday)
+    return Unirest.get("#{ENV['API_URL']}/competitions/#{league_id}/fixtures?matchday=#{matchday}", headers:{"X-Auth-Token" => "#{ENV['API_KEY']}"}).body
+  end
+
   def authenticate_user!
     unless current_user
       flash[:warning] = "Only people that are logged in can do that!"

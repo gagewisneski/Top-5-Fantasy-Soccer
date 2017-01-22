@@ -1,0 +1,19 @@
+Find fixtures<br>
+
+BPL = 426<br>
+Serie A = 438<br>
+Bundesliga = 430<br>
+La Liga = 436<br>
+Ligue 1 = 434<br>
+
+<%= form_tag "/top-5/finder", method: :post do %>
+  <div>
+    <%= label_tag :league_id %>
+    <%= text_field_tag :league_id %>
+  </div>
+  <div>
+    <%= label_tag :matchday %>
+    <%= text_field_tag :matchday %>
+  </div>
+  <%= submit_tag "Find" %>
+<% end %>

@@ -70,4 +70,11 @@ class FixturesGroupsController < ApplicationController
     flash[:success] = "Selections are now locked"
     redirect_to "/"
   end
+
+  def find
+  end
+
+  def finder
+    @fixtures = fixture_find(params[:league_id], params[:matchday])
+  end
 end

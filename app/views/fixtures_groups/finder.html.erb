@@ -1,0 +1,7 @@
+<% @fixtures['fixtures'].each do |fixture| %>
+  <%= fixture['_links']['self']['href'] %><br>
+  <%= fixture['status'] %><br>
+  <%= fixture['homeTeamName'] %><br>
+  <%= fixture['awayTeamName'] %><br>
+  ==============================<br><br>
+<% end %>

@@ -23,4 +23,6 @@ Rails.application.routes.draw do
   post "/top-5/update-scores", to: "users_fixtures_selections#update_all_scores"
   get "/top-5/update-locked", to: "fixtures_groups#edit_locked"
   post "/top-5/update-locked", to: "fixtures_groups#update_locked"
+  get "/top-5/find", to: "fixtures_groups#find"
+  post "/top-5/finder", to: "fixtures_groups#finder"
 end
