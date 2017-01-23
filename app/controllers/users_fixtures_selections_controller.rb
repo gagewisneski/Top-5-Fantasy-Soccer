@@ -55,96 +55,101 @@ class UsersFixturesSelectionsController < ApplicationController
   end
 
   def update_all_scores
-    @fixtures = UsersFixturesSelection.where(fixtures_group_id: (FixturesGroup.find_by(active: true).id))
+    @selections = UsersFixturesSelection.where(fixtures_group_id: (FixturesGroup.find_by(active: true).id))
     group = FixturesGroup.find_by(active: true).fixtures
 
-    @fixtures.each do |fixture|
+    group.each do |fixture|
+      fixture.unirest_scores(fixture.fixture_id)
+      fixture.save
+    end
+
+    @selections.each do |selection|
       player_score = 0
 
-      if (fixture.game_1_home_score == group[0].home_score) && (fixture.game_1_away_score == group[0].home_score)
+      if (selection.game_1_home_score == group[0].home_score) && (selection.game_1_away_score == group[0].home_score)
         player_score = player_score + 10
-      elsif ((fixture.game_1_home_score == group[0].home_score) && (fixture.game_1_home_score > fixture.game_1_away_score) && (group[0].home_score > group[0].away_score)) || ((fixture.game_1_home_score == group[0].home_score) && (fixture.game_1_home_score < fixture.game_1_away_score) && (group[0].home_score < group[0].away_score)) || ((fixture.game_1_home_score == group[0].home_score) && (fixture.game_1_home_score = fixture.game_1_away_score) && (group[0].home_score = group[0].away_score)) || ((fixture.game_1_away_score == group[0].away_score) && (fixture.game_1_home_score > fixture.game_1_away_score) && (group[0].home_score > group[0].away_score)) || ((fixture.game_1_away_score == group[0].away_score) && (fixture.game_1_home_score < fixture.game_1_away_score) && (group[0].home_score < group[0].away_score)) || ((fixture.game_1_away_score == group[0].away_score) && (fixture.game_1_home_score = fixture.game_1_away_score) && (group[0].home_score = group[0].away_score))
+      elsif ((selection.game_1_home_score == group[0].home_score) && (selection.game_1_home_score > selection.game_1_away_score) && (group[0].home_score > group[0].away_score)) || ((selection.game_1_home_score == group[0].home_score) && (selection.game_1_home_score < selection.game_1_away_score) && (group[0].home_score < group[0].away_score)) || ((selection.game_1_home_score == group[0].home_score) && (selection.game_1_home_score = selection.game_1_away_score) && (group[0].home_score = group[0].away_score)) || ((selection.game_1_away_score == group[0].away_score) && (selection.game_1_home_score > selection.game_1_away_score) && (group[0].home_score > group[0].away_score)) || ((selection.game_1_away_score == group[0].away_score) && (selection.game_1_home_score < selection.game_1_away_score) && (group[0].home_score < group[0].away_score)) || ((selection.game_1_away_score == group[0].away_score) && (selection.game_1_home_score = selection.game_1_away_score) && (group[0].home_score = group[0].away_score))
         player_score = player_score + 5
-      elsif (fixture.game_1_home_score == group[0].home_score) || (fixture.game_1_away_score == group[0].away_score)
+      elsif (selection.game_1_home_score == group[0].home_score) || (selection.game_1_away_score == group[0].away_score)
         player_score = player_score + 2
       end
 
-      if (fixture.game_2_home_score == group[1].home_score) && (fixture.game_2_away_score == group[1].home_score)
+      if (selection.game_2_home_score == group[1].home_score) && (selection.game_2_away_score == group[1].home_score)
         player_score = player_score + 10
-      elsif ((fixture.game_2_home_score == group[1].home_score) && (fixture.game_2_home_score > fixture.game_2_away_score) && (group[1].home_score > group[1].away_score)) || ((fixture.game_2_home_score == group[1].home_score) && (fixture.game_2_home_score < fixture.game_2_away_score) && (group[1].home_score < group[1].away_score)) || ((fixture.game_2_home_score == group[1].home_score) && (fixture.game_2_home_score = fixture.game_2_away_score) && (group[1].home_score = group[1].away_score)) || ((fixture.game_2_away_score == group[1].away_score) && (fixture.game_2_home_score > fixture.game_2_away_score) && (group[1].home_score > group[1].away_score)) || ((fixture.game_2_away_score == group[1].away_score) && (fixture.game_2_home_score < fixture.game_2_away_score) && (group[1].home_score < group[1].away_score)) || ((fixture.game_2_away_score == group[1].away_score) && (fixture.game_2_home_score = fixture.game_2_away_score) && (group[1].home_score = group[1].away_score))
+      elsif ((selection.game_2_home_score == group[1].home_score) && (selection.game_2_home_score > selection.game_2_away_score) && (group[1].home_score > group[1].away_score)) || ((selection.game_2_home_score == group[1].home_score) && (selection.game_2_home_score < selection.game_2_away_score) && (group[1].home_score < group[1].away_score)) || ((selection.game_2_home_score == group[1].home_score) && (selection.game_2_home_score = selection.game_2_away_score) && (group[1].home_score = group[1].away_score)) || ((selection.game_2_away_score == group[1].away_score) && (selection.game_2_home_score > selection.game_2_away_score) && (group[1].home_score > group[1].away_score)) || ((selection.game_2_away_score == group[1].away_score) && (selection.game_2_home_score < selection.game_2_away_score) && (group[1].home_score < group[1].away_score)) || ((selection.game_2_away_score == group[1].away_score) && (selection.game_2_home_score = selection.game_2_away_score) && (group[1].home_score = group[1].away_score))
         player_score = player_score + 5
-      elsif (fixture.game_2_home_score == group[1].home_score) || (fixture.game_2_away_score == group[1].away_score)
+      elsif (selection.game_2_home_score == group[1].home_score) || (selection.game_2_away_score == group[1].away_score)
         player_score = player_score + 2
       end
 
-      if (fixture.game_3_home_score == group[2].home_score) && (fixture.game_3_away_score == group[2].home_score)
+      if (selection.game_3_home_score == group[2].home_score) && (selection.game_3_away_score == group[2].home_score)
         player_score = player_score + 10
-      elsif ((fixture.game_3_home_score == group[2].home_score) && (fixture.game_3_home_score > fixture.game_3_away_score) && (group[2].home_score > group[2].away_score)) || ((fixture.game_3_home_score == group[2].home_score) && (fixture.game_3_home_score < fixture.game_3_away_score) && (group[2].home_score < group[2].away_score)) || ((fixture.game_3_home_score == group[2].home_score) && (fixture.game_3_home_score = fixture.game_3_away_score) && (group[2].home_score = group[2].away_score)) || ((fixture.game_3_away_score == group[2].away_score) && (fixture.game_3_home_score > fixture.game_3_away_score) && (group[2].home_score > group[2].away_score)) || ((fixture.game_3_away_score == group[2].away_score) && (fixture.game_3_home_score < fixture.game_3_away_score) && (group[2].home_score < group[2].away_score)) || ((fixture.game_3_away_score == group[2].away_score) && (fixture.game_3_home_score = fixture.game_3_away_score) && (group[2].home_score = group[2].away_score))
+      elsif ((selection.game_3_home_score == group[2].home_score) && (selection.game_3_home_score > selection.game_3_away_score) && (group[2].home_score > group[2].away_score)) || ((selection.game_3_home_score == group[2].home_score) && (selection.game_3_home_score < selection.game_3_away_score) && (group[2].home_score < group[2].away_score)) || ((selection.game_3_home_score == group[2].home_score) && (selection.game_3_home_score = selection.game_3_away_score) && (group[2].home_score = group[2].away_score)) || ((selection.game_3_away_score == group[2].away_score) && (selection.game_3_home_score > selection.game_3_away_score) && (group[2].home_score > group[2].away_score)) || ((selection.game_3_away_score == group[2].away_score) && (selection.game_3_home_score < selection.game_3_away_score) && (group[2].home_score < group[2].away_score)) || ((selection.game_3_away_score == group[2].away_score) && (selection.game_3_home_score = selection.game_3_away_score) && (group[2].home_score = group[2].away_score))
         player_score = player_score + 5
-      elsif (fixture.game_3_home_score == group[2].home_score) || (fixture.game_3_away_score == group[2].away_score)
+      elsif (selection.game_3_home_score == group[2].home_score) || (selection.game_3_away_score == group[2].away_score)
         player_score = player_score + 2
       end
 
-      if (fixture.game_4_home_score == group[3].home_score) && (fixture.game_4_away_score == group[3].home_score)
+      if (selection.game_4_home_score == group[3].home_score) && (selection.game_4_away_score == group[3].home_score)
         player_score = player_score + 10
-      elsif ((fixture.game_4_home_score == group[3].home_score) && (fixture.game_4_home_score > fixture.game_4_away_score) && (group[3].home_score > group[3].away_score)) || ((fixture.game_4_home_score == group[3].home_score) && (fixture.game_4_home_score < fixture.game_4_away_score) && (group[3].home_score < group[3].away_score)) || ((fixture.game_4_home_score == group[3].home_score) && (fixture.game_4_home_score = fixture.game_4_away_score) && (group[3].home_score = group[3].away_score)) || ((fixture.game_4_away_score == group[3].away_score) && (fixture.game_4_home_score > fixture.game_4_away_score) && (group[3].home_score > group[3].away_score)) || ((fixture.game_4_away_score == group[3].away_score) && (fixture.game_4_home_score < fixture.game_4_away_score) && (group[3].home_score < group[3].away_score)) || ((fixture.game_4_away_score == group[3].away_score) && (fixture.game_4_home_score = fixture.game_4_away_score) && (group[3].home_score = group[3].away_score))
+      elsif ((selection.game_4_home_score == group[3].home_score) && (selection.game_4_home_score > selection.game_4_away_score) && (group[3].home_score > group[3].away_score)) || ((selection.game_4_home_score == group[3].home_score) && (selection.game_4_home_score < selection.game_4_away_score) && (group[3].home_score < group[3].away_score)) || ((selection.game_4_home_score == group[3].home_score) && (selection.game_4_home_score = selection.game_4_away_score) && (group[3].home_score = group[3].away_score)) || ((selection.game_4_away_score == group[3].away_score) && (selection.game_4_home_score > selection.game_4_away_score) && (group[3].home_score > group[3].away_score)) || ((selection.game_4_away_score == group[3].away_score) && (selection.game_4_home_score < selection.game_4_away_score) && (group[3].home_score < group[3].away_score)) || ((selection.game_4_away_score == group[3].away_score) && (selection.game_4_home_score = selection.game_4_away_score) && (group[3].home_score = group[3].away_score))
         player_score = player_score + 5
-      elsif (fixture.game_4_home_score == group[3].home_score) || (fixture.game_4_away_score == group[3].away_score)
+      elsif (selection.game_4_home_score == group[3].home_score) || (selection.game_4_away_score == group[3].away_score)
         player_score = player_score + 2
       end
 
-      if (fixture.game_5_home_score == group[4].home_score) && (fixture.game_5_away_score == group[4].home_score)
+      if (selection.game_5_home_score == group[4].home_score) && (selection.game_5_away_score == group[4].home_score)
         player_score = player_score + 10
-      elsif ((fixture.game_5_home_score == group[4].home_score) && (fixture.game_5_home_score > fixture.game_5_away_score) && (group[4].home_score > group[4].away_score)) || ((fixture.game_5_home_score == group[4].home_score) && (fixture.game_5_home_score < fixture.game_5_away_score) && (group[4].home_score < group[4].away_score)) || ((fixture.game_5_home_score == group[4].home_score) && (fixture.game_5_home_score = fixture.game_5_away_score) && (group[4].home_score = group[4].away_score)) || ((fixture.game_5_away_score == group[4].away_score) && (fixture.game_5_home_score > fixture.game_5_away_score) && (group[4].home_score > group[4].away_score)) || ((fixture.game_5_away_score == group[4].away_score) && (fixture.game_5_home_score < fixture.game_5_away_score) && (group[4].home_score < group[4].away_score)) || ((fixture.game_5_away_score == group[4].away_score) && (fixture.game_5_home_score = fixture.game_5_away_score) && (group[4].home_score = group[4].away_score))
+      elsif ((selection.game_5_home_score == group[4].home_score) && (selection.game_5_home_score > selection.game_5_away_score) && (group[4].home_score > group[4].away_score)) || ((selection.game_5_home_score == group[4].home_score) && (selection.game_5_home_score < selection.game_5_away_score) && (group[4].home_score < group[4].away_score)) || ((selection.game_5_home_score == group[4].home_score) && (selection.game_5_home_score = selection.game_5_away_score) && (group[4].home_score = group[4].away_score)) || ((selection.game_5_away_score == group[4].away_score) && (selection.game_5_home_score > selection.game_5_away_score) && (group[4].home_score > group[4].away_score)) || ((selection.game_5_away_score == group[4].away_score) && (selection.game_5_home_score < selection.game_5_away_score) && (group[4].home_score < group[4].away_score)) || ((selection.game_5_away_score == group[4].away_score) && (selection.game_5_home_score = selection.game_5_away_score) && (group[4].home_score = group[4].away_score))
         player_score = player_score + 5
-      elsif (fixture.game_5_home_score == group[4].home_score) || (fixture.game_5_away_score == group[4].away_score)
+      elsif (selection.game_5_home_score == group[4].home_score) || (selection.game_5_away_score == group[4].away_score)
         player_score = player_score + 2
       end
 
-      if (fixture.game_6_home_score == group[5].home_score) && (fixture.game_6_away_score == group[5].home_score)
+      if (selection.game_6_home_score == group[5].home_score) && (selection.game_6_away_score == group[5].home_score)
         player_score = player_score + 10
-      elsif ((fixture.game_6_home_score == group[5].home_score) && (fixture.game_6_home_score > fixture.game_6_away_score) && (group[5].home_score > group[5].away_score)) || ((fixture.game_6_home_score == group[5].home_score) && (fixture.game_6_home_score < fixture.game_6_away_score) && (group[5].home_score < group[5].away_score)) || ((fixture.game_6_home_score == group[5].home_score) && (fixture.game_6_home_score = fixture.game_6_away_score) && (group[5].home_score = group[5].away_score)) || ((fixture.game_6_away_score == group[5].away_score) && (fixture.game_6_home_score > fixture.game_6_away_score) && (group[5].home_score > group[5].away_score)) || ((fixture.game_6_away_score == group[5].away_score) && (fixture.game_6_home_score < fixture.game_6_away_score) && (group[5].home_score < group[5].away_score)) || ((fixture.game_6_away_score == group[5].away_score) && (fixture.game_6_home_score = fixture.game_6_away_score) && (group[5].home_score = group[5].away_score))
+      elsif ((selection.game_6_home_score == group[5].home_score) && (selection.game_6_home_score > selection.game_6_away_score) && (group[5].home_score > group[5].away_score)) || ((selection.game_6_home_score == group[5].home_score) && (selection.game_6_home_score < selection.game_6_away_score) && (group[5].home_score < group[5].away_score)) || ((selection.game_6_home_score == group[5].home_score) && (selection.game_6_home_score = selection.game_6_away_score) && (group[5].home_score = group[5].away_score)) || ((selection.game_6_away_score == group[5].away_score) && (selection.game_6_home_score > selection.game_6_away_score) && (group[5].home_score > group[5].away_score)) || ((selection.game_6_away_score == group[5].away_score) && (selection.game_6_home_score < selection.game_6_away_score) && (group[5].home_score < group[5].away_score)) || ((selection.game_6_away_score == group[5].away_score) && (selection.game_6_home_score = selection.game_6_away_score) && (group[5].home_score = group[5].away_score))
         player_score = player_score + 5
-      elsif (fixture.game_6_home_score == group[5].home_score) || (fixture.game_6_away_score == group[5].away_score)
+      elsif (selection.game_6_home_score == group[5].home_score) || (selection.game_6_away_score == group[5].away_score)
         player_score = player_score + 2
       end
 
-      if (fixture.game_7_home_score == group[6].home_score) && (fixture.game_7_away_score == group[6].home_score)
+      if (selection.game_7_home_score == group[6].home_score) && (selection.game_7_away_score == group[6].home_score)
         player_score = player_score + 10
-      elsif ((fixture.game_7_home_score == group[6].home_score) && (fixture.game_7_home_score > fixture.game_7_away_score) && (group[6].home_score > group[6].away_score)) || ((fixture.game_7_home_score == group[6].home_score) && (fixture.game_7_home_score < fixture.game_7_away_score) && (group[6].home_score < group[6].away_score)) || ((fixture.game_7_home_score == group[6].home_score) && (fixture.game_7_home_score = fixture.game_7_away_score) && (group[6].home_score = group[6].away_score)) || ((fixture.game_7_away_score == group[6].away_score) && (fixture.game_7_home_score > fixture.game_7_away_score) && (group[6].home_score > group[6].away_score)) || ((fixture.game_7_away_score == group[6].away_score) && (fixture.game_7_home_score < fixture.game_7_away_score) && (group[6].home_score < group[6].away_score)) || ((fixture.game_7_away_score == group[6].away_score) && (fixture.game_7_home_score = fixture.game_7_away_score) && (group[6].home_score = group[6].away_score))
+      elsif ((selection.game_7_home_score == group[6].home_score) && (selection.game_7_home_score > selection.game_7_away_score) && (group[6].home_score > group[6].away_score)) || ((selection.game_7_home_score == group[6].home_score) && (selection.game_7_home_score < selection.game_7_away_score) && (group[6].home_score < group[6].away_score)) || ((selection.game_7_home_score == group[6].home_score) && (selection.game_7_home_score = selection.game_7_away_score) && (group[6].home_score = group[6].away_score)) || ((selection.game_7_away_score == group[6].away_score) && (selection.game_7_home_score > selection.game_7_away_score) && (group[6].home_score > group[6].away_score)) || ((selection.game_7_away_score == group[6].away_score) && (selection.game_7_home_score < selection.game_7_away_score) && (group[6].home_score < group[6].away_score)) || ((selection.game_7_away_score == group[6].away_score) && (selection.game_7_home_score = selection.game_7_away_score) && (group[6].home_score = group[6].away_score))
         player_score = player_score + 5
-      elsif (fixture.game_7_home_score == group[6].home_score) || (fixture.game_7_away_score == group[6].away_score)
+      elsif (selection.game_7_home_score == group[6].home_score) || (selection.game_7_away_score == group[6].away_score)
         player_score = player_score + 2
       end
 
-      if (fixture.game_8_home_score == group[7].home_score) && (fixture.game_8_away_score == group[7].home_score)
+      if (selection.game_8_home_score == group[7].home_score) && (selection.game_8_away_score == group[7].home_score)
         player_score = player_score + 10
-      elsif ((fixture.game_8_home_score == group[7].home_score) && (fixture.game_8_home_score > fixture.game_8_away_score) && (group[7].home_score > group[7].away_score)) || ((fixture.game_8_home_score == group[7].home_score) && (fixture.game_8_home_score < fixture.game_8_away_score) && (group[7].home_score < group[7].away_score)) || ((fixture.game_8_home_score == group[7].home_score) && (fixture.game_8_home_score = fixture.game_8_away_score) && (group[7].home_score = group[7].away_score)) || ((fixture.game_8_away_score == group[7].away_score) && (fixture.game_8_home_score > fixture.game_8_away_score) && (group[7].home_score > group[7].away_score)) || ((fixture.game_8_away_score == group[7].away_score) && (fixture.game_8_home_score < fixture.game_8_away_score) && (group[7].home_score < group[7].away_score)) || ((fixture.game_8_away_score == group[7].away_score) && (fixture.game_8_home_score = fixture.game_8_away_score) && (group[7].home_score = group[7].away_score))
+      elsif ((selection.game_8_home_score == group[7].home_score) && (selection.game_8_home_score > selection.game_8_away_score) && (group[7].home_score > group[7].away_score)) || ((selection.game_8_home_score == group[7].home_score) && (selection.game_8_home_score < selection.game_8_away_score) && (group[7].home_score < group[7].away_score)) || ((selection.game_8_home_score == group[7].home_score) && (selection.game_8_home_score = selection.game_8_away_score) && (group[7].home_score = group[7].away_score)) || ((selection.game_8_away_score == group[7].away_score) && (selection.game_8_home_score > selection.game_8_away_score) && (group[7].home_score > group[7].away_score)) || ((selection.game_8_away_score == group[7].away_score) && (selection.game_8_home_score < selection.game_8_away_score) && (group[7].home_score < group[7].away_score)) || ((selection.game_8_away_score == group[7].away_score) && (selection.game_8_home_score = selection.game_8_away_score) && (group[7].home_score = group[7].away_score))
         player_score = player_score + 5
-      elsif (fixture.game_8_home_score == group[7].home_score) || (fixture.game_8_away_score == group[7].away_score)
+      elsif (selection.game_8_home_score == group[7].home_score) || (selection.game_8_away_score == group[7].away_score)
         player_score = player_score + 2
       end
 
-      if (fixture.game_9_home_score == group[8].home_score) && (fixture.game_9_away_score == group[8].home_score)
+      if (selection.game_9_home_score == group[8].home_score) && (selection.game_9_away_score == group[8].home_score)
         player_score = player_score + 10
-      elsif ((fixture.game_9_home_score == group[8].home_score) && (fixture.game_9_home_score > fixture.game_9_away_score) && (group[8].home_score > group[8].away_score)) || ((fixture.game_9_home_score == group[8].home_score) && (fixture.game_9_home_score < fixture.game_9_away_score) && (group[8].home_score < group[8].away_score)) || ((fixture.game_9_home_score == group[8].home_score) && (fixture.game_9_home_score = fixture.game_9_away_score) && (group[8].home_score = group[8].away_score)) || ((fixture.game_9_away_score == group[8].away_score) && (fixture.game_9_home_score > fixture.game_9_away_score) && (group[8].home_score > group[8].away_score)) || ((fixture.game_9_away_score == group[8].away_score) && (fixture.game_9_home_score < fixture.game_9_away_score) && (group[8].home_score < group[8].away_score)) || ((fixture.game_9_away_score == group[8].away_score) && (fixture.game_9_home_score = fixture.game_9_away_score) && (group[8].home_score = group[8].away_score))
+      elsif ((selection.game_9_home_score == group[8].home_score) && (selection.game_9_home_score > selection.game_9_away_score) && (group[8].home_score > group[8].away_score)) || ((selection.game_9_home_score == group[8].home_score) && (selection.game_9_home_score < selection.game_9_away_score) && (group[8].home_score < group[8].away_score)) || ((selection.game_9_home_score == group[8].home_score) && (selection.game_9_home_score = selection.game_9_away_score) && (group[8].home_score = group[8].away_score)) || ((selection.game_9_away_score == group[8].away_score) && (selection.game_9_home_score > selection.game_9_away_score) && (group[8].home_score > group[8].away_score)) || ((selection.game_9_away_score == group[8].away_score) && (selection.game_9_home_score < selection.game_9_away_score) && (group[8].home_score < group[8].away_score)) || ((selection.game_9_away_score == group[8].away_score) && (selection.game_9_home_score = selection.game_9_away_score) && (group[8].home_score = group[8].away_score))
         player_score = player_score + 5
-      elsif (fixture.game_9_home_score == group[8].home_score) || (fixture.game_9_away_score == group[8].away_score)
+      elsif (selection.game_9_home_score == group[8].home_score) || (selection.game_9_away_score == group[8].away_score)
         player_score = player_score + 2
       end
 
-      if (fixture.game_10_home_score == group[9].home_score) && (fixture.game_10_away_score == group[9].home_score)
+      if (selection.game_10_home_score == group[9].home_score) && (selection.game_10_away_score == group[9].home_score)
         player_score = player_score + 10
-      elsif ((fixture.game_10_home_score == group[9].home_score) && (fixture.game_10_home_score > fixture.game_10_away_score) && (group[9].home_score > group[9].away_score)) || ((fixture.game_10_home_score == group[9].home_score) && (fixture.game_10_home_score < fixture.game_10_away_score) && (group[9].home_score < group[9].away_score)) || ((fixture.game_10_home_score == group[9].home_score) && (fixture.game_10_home_score = fixture.game_10_away_score) && (group[9].home_score = group[9].away_score)) || ((fixture.game_10_away_score == group[9].away_score) && (fixture.game_10_home_score > fixture.game_10_away_score) && (group[9].home_score > group[9].away_score)) || ((fixture.game_10_away_score == group[9].away_score) && (fixture.game_10_home_score < fixture.game_10_away_score) && (group[9].home_score < group[9].away_score)) || ((fixture.game_10_away_score == group[9].away_score) && (fixture.game_10_home_score = fixture.game_10_away_score) && (group[9].home_score = group[9].away_score))
+      elsif ((selection.game_10_home_score == group[9].home_score) && (selection.game_10_home_score > selection.game_10_away_score) && (group[9].home_score > group[9].away_score)) || ((selection.game_10_home_score == group[9].home_score) && (selection.game_10_home_score < selection.game_10_away_score) && (group[9].home_score < group[9].away_score)) || ((selection.game_10_home_score == group[9].home_score) && (selection.game_10_home_score = selection.game_10_away_score) && (group[9].home_score = group[9].away_score)) || ((selection.game_10_away_score == group[9].away_score) && (selection.game_10_home_score > selection.game_10_away_score) && (group[9].home_score > group[9].away_score)) || ((selection.game_10_away_score == group[9].away_score) && (selection.game_10_home_score < selection.game_10_away_score) && (group[9].home_score < group[9].away_score)) || ((selection.game_10_away_score == group[9].away_score) && (selection.game_10_home_score = selection.game_10_away_score) && (group[9].home_score = group[9].away_score))
         player_score = player_score + 5
-      elsif (fixture.game_10_home_score == group[9].home_score) || (fixture.game_10_away_score == group[9].away_score)
+      elsif (selection.game_10_home_score == group[9].home_score) || (selection.game_10_away_score == group[9].away_score)
         player_score = player_score + 2
       end
 
-      fixture.assign_attributes(score: player_score)
-      fixture.save
+      selection.assign_attributes(score: player_score)
+      selection.save
 
-      season_score = current_season.users_seasons.find_by(user_id: fixture.user_id)
+      season_score = current_season.users_seasons.find_by(user_id: selection.user_id)
       player_score = player_score + season_score.score
       season_score.assign_attributes(score: player_score)
       season_score.save
