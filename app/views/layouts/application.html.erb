@@ -30,6 +30,8 @@
               <ul class="nav navbar-nav navbar-right">
                 <% unless current_user %>
                     <li><a class="nav-link" href="/leagues">Leagues</a></li>
+                    <li><a class="nav-link" href="/signup">Signup</a></li>
+                    <li><a class="nav-link" href="/login">Login</a></li>
                 <% else %>
                     <li><a class="nav-link" href="/users_fixtures_selections/new">My Selections</a></li>
                     <% if week_results %>
@@ -37,11 +39,6 @@
                     <% end %>
                     <li><a class="nav-link" href="/leagues">Join a League</a></li>
                     <li><%= link_to "My Leagues", "/users_leagues/#{current_user.id}", class:"nav-link" %></li>
-                <% end %>
-                <% unless current_user %>
-                    <li><a class="nav-link" href="/signup">Signup</a></li>
-                    <li><a class="nav-link" href="/login">Login</a></li>
-                <% else %>
                     <li><%= link_to "Log out", "/logout", class:"nav-link", method: :delete %></li>
                 <% end %>
               </ul>

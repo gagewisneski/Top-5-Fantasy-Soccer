@@ -58,7 +58,6 @@ class UsersFixturesSelectionsController < ApplicationController
     @fixtures = UsersFixturesSelection.where(fixtures_group_id: (FixturesGroup.find_by(active: true).id))
     group = FixturesGroup.find_by(active: true).fixtures
 
-
     @fixtures.each do |fixture|
       player_score = 0
 

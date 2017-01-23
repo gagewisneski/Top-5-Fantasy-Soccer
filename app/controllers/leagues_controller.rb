@@ -61,4 +61,5 @@ class LeaguesController < ApplicationController
   def indexes
     @leagues = League.all
   end
+  
 end
