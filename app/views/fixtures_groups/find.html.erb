@@ -6,7 +6,7 @@ Bundesliga = 430<br>
 La Liga = 436<br>
 Ligue 1 = 434<br>
 
-<%= form_tag "/top-5/finder", method: :post do %>
+<%= form_tag "/top-5/finder", method: :patch do %>
   <div>
     <%= label_tag :league_id %>
     <%= text_field_tag :league_id %>

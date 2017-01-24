@@ -10,22 +10,28 @@
 
 users = [
           ["Top-5", "Top-5", "Top-5", "Top-5"],
-          ["first", "first", "first", "first"],
-          ["second", "second", "second", "second"],
-          ["third", "third", "third", "third"],
-          ["fourth", "fourth", "fourth", "fourth"],
-          ["fifth", "fifth", "fifth", "fifth"],
-          ["six", "six", "six", "six"],
-          ["seven", "seven", "seven", "seven"],
-          ["eight", "eight", "eight", "eight"],
-          ["nine", "nine", "nine", "nine"],
-          ["ten", "ten", "ten", "ten"],
-          ["eleven", "eleven", "eleven", "eleven"],
-          ["twelve", "twelve", "twelve", "twelve"],
-          ["thirteen", "thirteen", "thriteen", "thirteen"]
+          ["Joe", "Joe", "Joe", "Joe"],
+          ["Vinny", "Vinny", "Vinny", "Vinny"],
+          ["Andrei", "Andrei", "Andrei", "Andrei"],
+          ["May", "May", "May", "May"],
+          ["Tyler", "Tyler", "Tyler", "Tyler"],
+          ["Dan", "Dan", "Dan", "Dan"],
+          ["Jordan", "Jordan", "Jordan", "Jordan"],
+          ["Rory", "Rory", "Rory", "Rory"],
+          ["Riley", "Riley", "Riley", "Riley"],
+          ["David", "David", "David", "David"],
+          ["Tim", "Tim", "Tim", "Tim"],
+          ["Luke", "Luke", "Luke", "Luke"],
         ]
 users.each do |name, username, password, password_confirmation|
   User.create(name: name, username: username, password: password, password_confirmation: password_confirmation)
+end
+
+100.times do
+  name = Faker::Name.first_name
+  username = Faker::Superhero.unique.name
+  password = Faker::LordOfTheRings.character
+  User.create(name: name, username: username, password: password, password_confirmation: password)
 end
 
 leagues = [

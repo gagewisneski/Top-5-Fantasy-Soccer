@@ -1,5 +1,5 @@
 class FixturesGroupsController < ApplicationController
-  before_action :top_5?, only: [:update_locked, :edit_locked, :new, :create]
+  before_action :top_5?, only: [:update_locked, :edit_locked, :new, :create, :find, :finder]
 
   def index
     # Website homepage, displays the active fixtures_group.

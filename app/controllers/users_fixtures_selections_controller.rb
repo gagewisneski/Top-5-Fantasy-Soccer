@@ -55,8 +55,8 @@ class UsersFixturesSelectionsController < ApplicationController
   end
 
   def update_all_scores
-    @selections = UsersFixturesSelection.where(fixtures_group_id: (FixturesGroup.find_by(active: true).id))
     group = FixturesGroup.find_by(active: true).fixtures
+    @selections = UsersFixturesSelection.where(fixtures_group_id: (FixturesGroup.find_by(active: true).id))
 
     group.each do |fixture|
       fixture.unirest_scores(fixture.fixture_id)
