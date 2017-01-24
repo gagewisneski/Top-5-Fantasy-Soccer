@@ -29,6 +29,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'unirest'
 gem 'awesome_print'
 gem 'bootstrap-sass', '~> 3.3.6'
+gem 'faker'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -37,7 +38,6 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'dotenv-rails'
-  gem 'faker'
 end
 
 group :development do

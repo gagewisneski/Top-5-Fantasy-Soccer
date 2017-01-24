@@ -29,20 +29,19 @@ end
 
 100.times do
   name = Faker::Name.first_name
-  username = Faker::Superhero.unique.name
-  password = Faker::LordOfTheRings.character
+  username = Faker::Superhero.name
+  password = Faker::Pokemon.name
   User.create(name: name, username: username, password: password, password_confirmation: password)
 end
 
 
 
 30.times do
-  name = Faker::Team.unique.creature
+  name = Faker::Team.creature
   status = Faker::Boolean.boolean(0.1)
   season_id = 2
   admin_id = Faker::Number.between(2,13)
-  password_digest = name
-  League.create(name: name, private: status, season_id: season_id, admin_id: admin_id, password_digest: password_digest)
+  League.create(name: name, private: status, season_id: season_id, admin_id: admin_id, password_digest: name)
 end
 
 
@@ -57,7 +56,7 @@ end
 
 6.times do
   League.all.each do |league|
-    user_id = Faker::Number.unique.between(14, 113)
+    user_id = Faker::Number.between(14, 113)
     UsersLeague.create(user_id: user_id, league_id: league.id)
   end
 end
@@ -76,7 +75,6 @@ fixtures = [
             [false, 2, false],
             [false, 2, false]
           ]
-
 fixtures.each do |active, season_id, locked|
   FixturesGroup.create(active: active, season_id: season_id, locked: locked)
 end
@@ -87,7 +85,6 @@ seasons = [
             [false, "2015"],
             [true, "2016"]
           ]
-
 seasons.each do |active, year|
   Season.create(active: active, year: year)
 end
@@ -98,12 +95,13 @@ count = 1
 Season.all.each do |season|
   113.times do
     score = Faker::Number.between(1, 1000)
-    user_id = Faker::Number.unique.between(1, 113)
+    user_id = count
     if season.id == 1
       UsersSeason.create(user_id: user_id, season_id: season.id, score: score)
     else
       UsersSeason.create(user_id: user_id, season_id: season.id, score: 0)
     end
+    count += 1
   end
 end
 
@@ -160,6 +158,7 @@ fixtures = [
             [5, 153928],
             [5, 152827],
             [5, 152159]
+
             # [6, 150769],
             # [6, 150772],
             # [6, 150771],
@@ -211,7 +210,6 @@ fixtures = [
             # [10, 152694],
             # [10, 152025]
           ]
-
 fixtures.each do |fixtures_group_id, fixture_id|
   a = Unirest.get("#{ENV['API_URL']}/fixtures/#{fixture_id}", headers:{"X-Auth-Token" => "#{ENV['API_KEY']}"}).body
   Fixture.create(fixtures_group_id: fixtures_group_id, fixture_id: fixture_id, home_team: a["fixture"]["homeTeamName"], away_team: a["fixture"]["awayTeamName"], home_score: a["fixture"]["result"]["goalsHomeTeam"], away_score: a["fixture"]["result"]["goalsAwayTeam"])
@@ -219,35 +217,37 @@ end
 
 
 
-# FixturesGroup.each do |group|
-#   113.times do
-#     user_id = Faker::Number.unique.between(1, 113)
-#     fixtures_group_id = group.id
-#     season_id = 2
-#     game_1_home_score = Faker::Number.between(0, 4)
-#     game_1_away_score = Faker::Number.between(0, 4)
-#     game_2_home_score = Faker::Number.between(0, 4)
-#     game_2_away_score = Faker::Number.between(0, 4)
-#     game_3_home_score = Faker::Number.between(0, 4)
-#     game_3_away_score = Faker::Number.between(0, 4)
-#     game_4_home_score = Faker::Number.between(0, 4)
-#     game_4_away_score = Faker::Number.between(0, 4)
-#     game_5_home_score = Faker::Number.between(0, 4)
-#     game_5_away_score = Faker::Number.between(0, 4)
-#     game_6_home_score = Faker::Number.between(0, 4)
-#     game_6_away_score = Faker::Number.between(0, 4)
-#     game_7_home_score = Faker::Number.between(0, 4)
-#     game_7_away_score = Faker::Number.between(0, 4)
-#     game_8_home_score = Faker::Number.between(0, 4)
-#     game_8_away_score = Faker::Number.between(0, 4)
-#     game_9_home_score = Faker::Number.between(0, 4)
-#     game_9_away_score = Faker::Number.between(0, 4)
-#     game_10_home_score = Faker::Number.between(0, 4)
-#     game_10_away_score = Faker::Number.between(0, 4)
-#     score = 0
-#     UsersFixturesSelection.create(user_id: user_id, fixtures_group_id: fixtures_group_id, season_id: season_id, game_1_home_score: game_1_home_score, game_1_away_score: game_1_away_score, game_2_home_score: game_2_home_score, game_2_away_score: game_2_away_score, game_3_home_score: game_3_home_score, game_3_away_score: game_3_away_score, game_4_home_score: game_4_home_score, game_4_away_score: game_4_away_score, game_5_home_score: game_5_home_score, game_5_away_score: game_5_away_score, game_6_home_score: game_6_home_score, game_6_away_score: game_6_away_score, game_7_home_score: game_7_home_score, game_7_away_score: game_7_away_score, game_8_home_score: game_8_home_score, game_8_away_score: game_8_away_score, game_9_home_score: game_9_home_score, game_9_away_score: game_9_away_score, game_10_home_score: game_10_home_score, game_10_away_score: game_10_away_score, score: score)
-#   end
-# end
+FixturesGroup.all.each do |group|
+  count = 1
+  113.times do
+    user_id = count
+    count += 1
+    fixtures_group_id = group.id
+    season_id = 2
+    game_1_home_score = Faker::Number.between(0, 4)
+    game_1_away_score = Faker::Number.between(0, 4)
+    game_2_home_score = Faker::Number.between(0, 4)
+    game_2_away_score = Faker::Number.between(0, 4)
+    game_3_home_score = Faker::Number.between(0, 4)
+    game_3_away_score = Faker::Number.between(0, 4)
+    game_4_home_score = Faker::Number.between(0, 4)
+    game_4_away_score = Faker::Number.between(0, 4)
+    game_5_home_score = Faker::Number.between(0, 4)
+    game_5_away_score = Faker::Number.between(0, 4)
+    game_6_home_score = Faker::Number.between(0, 4)
+    game_6_away_score = Faker::Number.between(0, 4)
+    game_7_home_score = Faker::Number.between(0, 4)
+    game_7_away_score = Faker::Number.between(0, 4)
+    game_8_home_score = Faker::Number.between(0, 4)
+    game_8_away_score = Faker::Number.between(0, 4)
+    game_9_home_score = Faker::Number.between(0, 4)
+    game_9_away_score = Faker::Number.between(0, 4)
+    game_10_home_score = Faker::Number.between(0, 4)
+    game_10_away_score = Faker::Number.between(0, 4)
+    score = 0
+    UsersFixturesSelection.create(user_id: user_id, fixtures_group_id: fixtures_group_id, season_id: season_id, game_1_home_score: game_1_home_score, game_1_away_score: game_1_away_score, game_2_home_score: game_2_home_score, game_2_away_score: game_2_away_score, game_3_home_score: game_3_home_score, game_3_away_score: game_3_away_score, game_4_home_score: game_4_home_score, game_4_away_score: game_4_away_score, game_5_home_score: game_5_home_score, game_5_away_score: game_5_away_score, game_6_home_score: game_6_home_score, game_6_away_score: game_6_away_score, game_7_home_score: game_7_home_score, game_7_away_score: game_7_away_score, game_8_home_score: game_8_home_score, game_8_away_score: game_8_away_score, game_9_home_score: game_9_home_score, game_9_away_score: game_9_away_score, game_10_home_score: game_10_home_score, game_10_away_score: game_10_away_score, score: score)
+  end
+end
 
 
 
