@@ -59,7 +59,7 @@ class LeaguesController < ApplicationController
   end
 
   def indexes
-    @leagues = League.all
+    @leagues = League.all.order(:id)
   end
   
 end

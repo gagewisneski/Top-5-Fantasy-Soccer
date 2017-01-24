@@ -64,7 +64,7 @@ end
 
 
 fixtures = [
-            [false, 2, true],
+            [true, 2, true],
             [false, 2, false],
             [false, 2, false],
             [false, 2, false],

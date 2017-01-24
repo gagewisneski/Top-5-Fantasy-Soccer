@@ -33,14 +33,17 @@
         <div class="col-sm-12 text-center">
           <h1>Leagues</h1>
           Search for a league: <input ng-model="nameFilter">
-          <%= link_to "Join a private league", "/users_leagues/new", class:"btn btn-success" %>
-          <%= link_to "Create a league", "/leagues/new", class:"btn btn-success" %>
+          <% if session[:user_id] %>
+            <%= link_to "Join a private league", "/users_leagues/new", class:"btn btn-success" %>
+            <%= link_to "Create a league", "/leagues/new", class:"btn btn-success" %>
+          <% else %>
+            <br>
+          <% end %>
         </div>
       </div>
       <br>
 
       <div class="row">
-        <% if session[:user_id] %>
         <div ng-repeat="league in leagues | filter: {name: nameFilter}" class="col-sm-4 leaguers">
 
           <div ng-if="league.image">
@@ -66,10 +69,6 @@
           </table>
         </div>
       </div>
-
-
-
-      <% end %>
     </div>
   </div>
 </div>

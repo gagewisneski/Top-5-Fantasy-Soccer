@@ -13,8 +13,8 @@ class ApplicationController < ActionController::Base
 
   def week_results
     if session[:user_id]
-      if UsersFixturesSelection.where(user_id: current_user.id).joins(:fixtures_group).find_by(fixtures_groups: {active: false})
-        @week_results = UsersFixturesSelection.where(user_id: current_user.id).joins(:fixtures_group).where(fixtures_groups: {active: false}).first.id
+      if UsersFixturesSelection.where(user_id: current_user.id).joins(:fixtures_group).find_by(fixtures_groups: {active: false, locked: true})
+        @week_results = UsersFixturesSelection.where(user_id: current_user.id).joins(:fixtures_group).where(fixtures_groups: {active: false, locked: true}).first.id
       end
     end
   end
