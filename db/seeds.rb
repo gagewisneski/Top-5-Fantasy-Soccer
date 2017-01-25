@@ -36,6 +36,16 @@ end
 
 
 
+seasons = [
+            [false, "2015"],
+            [true, "2016"]
+          ]
+seasons.each do |active, year|
+  Season.create(active: active, year: year)
+end
+
+
+
 30.times do
   name = Faker::Team.creature
   status = Faker::Boolean.boolean(0.1)
@@ -77,16 +87,6 @@ fixtures = [
           ]
 fixtures.each do |active, season_id, locked|
   FixturesGroup.create(active: active, season_id: season_id, locked: locked)
-end
-
-
-
-seasons = [
-            [false, "2015"],
-            [true, "2016"]
-          ]
-seasons.each do |active, year|
-  Season.create(active: active, year: year)
 end
 
 
