@@ -2,7 +2,7 @@
   <% if @league.image %>
     <img class="league-image" src=<%= @league.image %>>
   <% else %>
-    <img class="league-image" src="/assets/league_logo.jpg">
+    <img class="league-image" src="https://img.clipartfest.com/5a8769ae34b2d679d80658456face068_foot20kicking20soccer20ball-foot-kicking-soccer-ball-clipart_864-551.jpeg">
   <% end %>
   <h1><%= @league.name %></h1>
   <h3>Players: <%= @league.users.count.to_s %></h3>

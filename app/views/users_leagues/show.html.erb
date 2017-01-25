@@ -41,7 +41,7 @@
         <% if league.image %>
           <img class="feature-image" src=<%= league.image %>>
         <% else %>
-          <img class="feature-image" src="/assets/league_logo.jpg">
+          <img class="feature-image" src="https://img.clipartfest.com/5a8769ae34b2d679d80658456face068_foot20kicking20soccer20ball-foot-kicking-soccer-ball-clipart_864-551.jpeg">
         <% end %>
         <h4><%= link_to league.name, "/leagues/#{league.id}" %>:</h4>
         <p><%= league.users.count.to_s %> Players</p>
