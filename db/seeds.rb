@@ -217,37 +217,37 @@ end
 
 
 
-FixturesGroup.all.each do |group|
-  count = 1
-  113.times do
-    user_id = count
-    count += 1
-    fixtures_group_id = group.id
-    season_id = 2
-    game_1_home_score = Faker::Number.between(0, 4)
-    game_1_away_score = Faker::Number.between(0, 4)
-    game_2_home_score = Faker::Number.between(0, 4)
-    game_2_away_score = Faker::Number.between(0, 4)
-    game_3_home_score = Faker::Number.between(0, 4)
-    game_3_away_score = Faker::Number.between(0, 4)
-    game_4_home_score = Faker::Number.between(0, 4)
-    game_4_away_score = Faker::Number.between(0, 4)
-    game_5_home_score = Faker::Number.between(0, 4)
-    game_5_away_score = Faker::Number.between(0, 4)
-    game_6_home_score = Faker::Number.between(0, 4)
-    game_6_away_score = Faker::Number.between(0, 4)
-    game_7_home_score = Faker::Number.between(0, 4)
-    game_7_away_score = Faker::Number.between(0, 4)
-    game_8_home_score = Faker::Number.between(0, 4)
-    game_8_away_score = Faker::Number.between(0, 4)
-    game_9_home_score = Faker::Number.between(0, 4)
-    game_9_away_score = Faker::Number.between(0, 4)
-    game_10_home_score = Faker::Number.between(0, 4)
-    game_10_away_score = Faker::Number.between(0, 4)
-    score = 0
-    UsersFixturesSelection.create(user_id: user_id, fixtures_group_id: fixtures_group_id, season_id: season_id, game_1_home_score: game_1_home_score, game_1_away_score: game_1_away_score, game_2_home_score: game_2_home_score, game_2_away_score: game_2_away_score, game_3_home_score: game_3_home_score, game_3_away_score: game_3_away_score, game_4_home_score: game_4_home_score, game_4_away_score: game_4_away_score, game_5_home_score: game_5_home_score, game_5_away_score: game_5_away_score, game_6_home_score: game_6_home_score, game_6_away_score: game_6_away_score, game_7_home_score: game_7_home_score, game_7_away_score: game_7_away_score, game_8_home_score: game_8_home_score, game_8_away_score: game_8_away_score, game_9_home_score: game_9_home_score, game_9_away_score: game_9_away_score, game_10_home_score: game_10_home_score, game_10_away_score: game_10_away_score, score: score)
-  end
-end
+# FixturesGroup.all.each do |group|
+#   count = 1
+#   113.times do
+#     user_id = count
+#     count += 1
+#     fixtures_group_id = group.id
+#     season_id = 2
+#     game_1_home_score = Faker::Number.between(0, 4)
+#     game_1_away_score = Faker::Number.between(0, 4)
+#     game_2_home_score = Faker::Number.between(0, 4)
+#     game_2_away_score = Faker::Number.between(0, 4)
+#     game_3_home_score = Faker::Number.between(0, 4)
+#     game_3_away_score = Faker::Number.between(0, 4)
+#     game_4_home_score = Faker::Number.between(0, 4)
+#     game_4_away_score = Faker::Number.between(0, 4)
+#     game_5_home_score = Faker::Number.between(0, 4)
+#     game_5_away_score = Faker::Number.between(0, 4)
+#     game_6_home_score = Faker::Number.between(0, 4)
+#     game_6_away_score = Faker::Number.between(0, 4)
+#     game_7_home_score = Faker::Number.between(0, 4)
+#     game_7_away_score = Faker::Number.between(0, 4)
+#     game_8_home_score = Faker::Number.between(0, 4)
+#     game_8_away_score = Faker::Number.between(0, 4)
+#     game_9_home_score = Faker::Number.between(0, 4)
+#     game_9_away_score = Faker::Number.between(0, 4)
+#     game_10_home_score = Faker::Number.between(0, 4)
+#     game_10_away_score = Faker::Number.between(0, 4)
+#     score = 0
+#     UsersFixturesSelection.create(user_id: user_id, fixtures_group_id: fixtures_group_id, season_id: season_id, game_1_home_score: game_1_home_score, game_1_away_score: game_1_away_score, game_2_home_score: game_2_home_score, game_2_away_score: game_2_away_score, game_3_home_score: game_3_home_score, game_3_away_score: game_3_away_score, game_4_home_score: game_4_home_score, game_4_away_score: game_4_away_score, game_5_home_score: game_5_home_score, game_5_away_score: game_5_away_score, game_6_home_score: game_6_home_score, game_6_away_score: game_6_away_score, game_7_home_score: game_7_home_score, game_7_away_score: game_7_away_score, game_8_home_score: game_8_home_score, game_8_away_score: game_8_away_score, game_9_home_score: game_9_home_score, game_9_away_score: game_9_away_score, game_10_home_score: game_10_home_score, game_10_away_score: game_10_away_score, score: score)
+#   end
+# end
 
 
 
