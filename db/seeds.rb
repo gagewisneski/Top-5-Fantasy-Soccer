@@ -91,8 +91,10 @@
 
 
 
+count = 1
 113.times do
   user_id = count
+  count += 1
   UsersSeason.create(user_id: user_id, season_id: 2, score: 0)
 end
 
