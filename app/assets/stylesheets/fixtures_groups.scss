@@ -7,8 +7,6 @@ html {
   min-height: 100%;
 }
 
-
-
 body {
   padding-top: 80px;
   height: 100%;
@@ -108,13 +106,31 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .leaguers {
-  height: 270px;
+  height: 340px;
   text-align: center;
 }
 
 .league-name {
   border-bottom: solid;
   padding-bottom: 4px;
+}
+
+.well-odd {
+  width: 750px;
+}
+
+.well-even {
+  width: 750px;
+  background-color: #222222
+}
+
+.well-odd-small {
+  width: 550px;
+}
+
+.well-even-small {
+  width: 550px;
+  background-color: #222222
 }
 
 .no-under {

@@ -23,8 +23,7 @@ class UsersFixturesSelectionsController < ApplicationController
     @selection = UsersFixturesSelection.find(params[:id])
     @user = User.find(@selection.user_id)
     @players = current_season.users_seasons.order(score: :desc)
-    @users_selections = current_season.users_fixtures_selections.where(user_id: @user.id).order(id: :desc)
-    @user.users_fixtures_selections.order(id: :desc)
+    @users_selections = UsersSeason.find_by(user_id: @user.id, season_id: current_season.id).user.users_fixtures_selections.joins(:fixtures_group).where(fixtures_groups: {active: false, locked: true}).order(id: :desc)
     @fixtures_group = @selection.fixtures_group
     @season = current_season.users_seasons.find_by(user_id: @user.id)
     @seasons = @user.users_seasons.order(id: :desc)
@@ -70,6 +69,8 @@ class UsersFixturesSelectionsController < ApplicationController
         player_score = player_score + 10
       elsif ((selection.game_1_home_score == group[0].home_score) && (selection.game_1_home_score > selection.game_1_away_score) && (group[0].home_score > group[0].away_score)) || ((selection.game_1_home_score == group[0].home_score) && (selection.game_1_home_score < selection.game_1_away_score) && (group[0].home_score < group[0].away_score)) || ((selection.game_1_home_score == group[0].home_score) && (selection.game_1_home_score = selection.game_1_away_score) && (group[0].home_score = group[0].away_score)) || ((selection.game_1_away_score == group[0].away_score) && (selection.game_1_home_score > selection.game_1_away_score) && (group[0].home_score > group[0].away_score)) || ((selection.game_1_away_score == group[0].away_score) && (selection.game_1_home_score < selection.game_1_away_score) && (group[0].home_score < group[0].away_score)) || ((selection.game_1_away_score == group[0].away_score) && (selection.game_1_home_score = selection.game_1_away_score) && (group[0].home_score = group[0].away_score))
         player_score = player_score + 5
+      elsif ((selection.game_1_home_score - selection.game_1_away_score) == (group[0].home_score - group[0].away_score)) || ((selection.game_1_home_score > selection.game_1_away_score) && (group[0].home_score > group[0].away_score)) || ((selection.game_1_home_score < selection.game_1_away_score) && (group[0].home_score < group[0].away_score))
+        player_score = player_score + 3
       elsif (selection.game_1_home_score == group[0].home_score) || (selection.game_1_away_score == group[0].away_score)
         player_score = player_score + 2
       end
@@ -78,6 +79,8 @@ class UsersFixturesSelectionsController < ApplicationController
         player_score = player_score + 10
       elsif ((selection.game_2_home_score == group[1].home_score) && (selection.game_2_home_score > selection.game_2_away_score) && (group[1].home_score > group[1].away_score)) || ((selection.game_2_home_score == group[1].home_score) && (selection.game_2_home_score < selection.game_2_away_score) && (group[1].home_score < group[1].away_score)) || ((selection.game_2_home_score == group[1].home_score) && (selection.game_2_home_score = selection.game_2_away_score) && (group[1].home_score = group[1].away_score)) || ((selection.game_2_away_score == group[1].away_score) && (selection.game_2_home_score > selection.game_2_away_score) && (group[1].home_score > group[1].away_score)) || ((selection.game_2_away_score == group[1].away_score) && (selection.game_2_home_score < selection.game_2_away_score) && (group[1].home_score < group[1].away_score)) || ((selection.game_2_away_score == group[1].away_score) && (selection.game_2_home_score = selection.game_2_away_score) && (group[1].home_score = group[1].away_score))
         player_score = player_score + 5
+      elsif ((selection.game_2_home_score - selection.game_2_away_score) == (group[1].home_score - group[1].away_score)) || ((selection.game_2_home_score > selection.game_2_away_score) && (group[1].home_score > group[1].away_score)) || ((selection.game_2_home_score < selection.game_2_away_score) && (group[1].home_score < group[1].away_score))
+        player_score = player_score + 3
       elsif (selection.game_2_home_score == group[1].home_score) || (selection.game_2_away_score == group[1].away_score)
         player_score = player_score + 2
       end
@@ -86,6 +89,8 @@ class UsersFixturesSelectionsController < ApplicationController
         player_score = player_score + 10
       elsif ((selection.game_3_home_score == group[2].home_score) && (selection.game_3_home_score > selection.game_3_away_score) && (group[2].home_score > group[2].away_score)) || ((selection.game_3_home_score == group[2].home_score) && (selection.game_3_home_score < selection.game_3_away_score) && (group[2].home_score < group[2].away_score)) || ((selection.game_3_home_score == group[2].home_score) && (selection.game_3_home_score = selection.game_3_away_score) && (group[2].home_score = group[2].away_score)) || ((selection.game_3_away_score == group[2].away_score) && (selection.game_3_home_score > selection.game_3_away_score) && (group[2].home_score > group[2].away_score)) || ((selection.game_3_away_score == group[2].away_score) && (selection.game_3_home_score < selection.game_3_away_score) && (group[2].home_score < group[2].away_score)) || ((selection.game_3_away_score == group[2].away_score) && (selection.game_3_home_score = selection.game_3_away_score) && (group[2].home_score = group[2].away_score))
         player_score = player_score + 5
+      elsif ((selection.game_3_home_score - selection.game_3_away_score) == (group[2].home_score - group[2].away_score)) || ((selection.game_3_home_score > selection.game_3_away_score) && (group[2].home_score > group[2].away_score)) || ((selection.game_3_home_score < selection.game_3_away_score) && (group[2].home_score < group[2].away_score))
+        player_score = player_score + 3
       elsif (selection.game_3_home_score == group[2].home_score) || (selection.game_3_away_score == group[2].away_score)
         player_score = player_score + 2
       end
@@ -94,6 +99,8 @@ class UsersFixturesSelectionsController < ApplicationController
         player_score = player_score + 10
       elsif ((selection.game_4_home_score == group[3].home_score) && (selection.game_4_home_score > selection.game_4_away_score) && (group[3].home_score > group[3].away_score)) || ((selection.game_4_home_score == group[3].home_score) && (selection.game_4_home_score < selection.game_4_away_score) && (group[3].home_score < group[3].away_score)) || ((selection.game_4_home_score == group[3].home_score) && (selection.game_4_home_score = selection.game_4_away_score) && (group[3].home_score = group[3].away_score)) || ((selection.game_4_away_score == group[3].away_score) && (selection.game_4_home_score > selection.game_4_away_score) && (group[3].home_score > group[3].away_score)) || ((selection.game_4_away_score == group[3].away_score) && (selection.game_4_home_score < selection.game_4_away_score) && (group[3].home_score < group[3].away_score)) || ((selection.game_4_away_score == group[3].away_score) && (selection.game_4_home_score = selection.game_4_away_score) && (group[3].home_score = group[3].away_score))
         player_score = player_score + 5
+      elsif ((selection.game_4_home_score - selection.game_4_away_score) == (group[3].home_score - group[3].away_score)) || ((selection.game_4_home_score > selection.game_4_away_score) && (group[3].home_score > group[3].away_score)) || ((selection.game_4_home_score < selection.game_4_away_score) && (group[3].home_score < group[3].away_score))
+        player_score = player_score + 3
       elsif (selection.game_4_home_score == group[3].home_score) || (selection.game_4_away_score == group[3].away_score)
         player_score = player_score + 2
       end
@@ -102,6 +109,8 @@ class UsersFixturesSelectionsController < ApplicationController
         player_score = player_score + 10
       elsif ((selection.game_5_home_score == group[4].home_score) && (selection.game_5_home_score > selection.game_5_away_score) && (group[4].home_score > group[4].away_score)) || ((selection.game_5_home_score == group[4].home_score) && (selection.game_5_home_score < selection.game_5_away_score) && (group[4].home_score < group[4].away_score)) || ((selection.game_5_home_score == group[4].home_score) && (selection.game_5_home_score = selection.game_5_away_score) && (group[4].home_score = group[4].away_score)) || ((selection.game_5_away_score == group[4].away_score) && (selection.game_5_home_score > selection.game_5_away_score) && (group[4].home_score > group[4].away_score)) || ((selection.game_5_away_score == group[4].away_score) && (selection.game_5_home_score < selection.game_5_away_score) && (group[4].home_score < group[4].away_score)) || ((selection.game_5_away_score == group[4].away_score) && (selection.game_5_home_score = selection.game_5_away_score) && (group[4].home_score = group[4].away_score))
         player_score = player_score + 5
+      elsif ((selection.game_5_home_score - selection.game_5_away_score) == (group[4].home_score - group[4].away_score)) || ((selection.game_5_home_score > selection.game_5_away_score) && (group[4].home_score > group[4].away_score)) || ((selection.game_5_home_score < selection.game_5_away_score) && (group[4].home_score < group[4].away_score))
+        player_score = player_score + 3
       elsif (selection.game_5_home_score == group[4].home_score) || (selection.game_5_away_score == group[4].away_score)
         player_score = player_score + 2
       end
@@ -110,6 +119,8 @@ class UsersFixturesSelectionsController < ApplicationController
         player_score = player_score + 10
       elsif ((selection.game_6_home_score == group[5].home_score) && (selection.game_6_home_score > selection.game_6_away_score) && (group[5].home_score > group[5].away_score)) || ((selection.game_6_home_score == group[5].home_score) && (selection.game_6_home_score < selection.game_6_away_score) && (group[5].home_score < group[5].away_score)) || ((selection.game_6_home_score == group[5].home_score) && (selection.game_6_home_score = selection.game_6_away_score) && (group[5].home_score = group[5].away_score)) || ((selection.game_6_away_score == group[5].away_score) && (selection.game_6_home_score > selection.game_6_away_score) && (group[5].home_score > group[5].away_score)) || ((selection.game_6_away_score == group[5].away_score) && (selection.game_6_home_score < selection.game_6_away_score) && (group[5].home_score < group[5].away_score)) || ((selection.game_6_away_score == group[5].away_score) && (selection.game_6_home_score = selection.game_6_away_score) && (group[5].home_score = group[5].away_score))
         player_score = player_score + 5
+      elsif ((selection.game_6_home_score - selection.game_6_away_score) == (group[5].home_score - group[5].away_score)) || ((selection.game_6_home_score > selection.game_6_away_score) && (group[5].home_score > group[5].away_score)) || ((selection.game_6_home_score < selection.game_6_away_score) && (group[5].home_score < group[5].away_score))
+        player_score = player_score + 3
       elsif (selection.game_6_home_score == group[5].home_score) || (selection.game_6_away_score == group[5].away_score)
         player_score = player_score + 2
       end
@@ -118,6 +129,8 @@ class UsersFixturesSelectionsController < ApplicationController
         player_score = player_score + 10
       elsif ((selection.game_7_home_score == group[6].home_score) && (selection.game_7_home_score > selection.game_7_away_score) && (group[6].home_score > group[6].away_score)) || ((selection.game_7_home_score == group[6].home_score) && (selection.game_7_home_score < selection.game_7_away_score) && (group[6].home_score < group[6].away_score)) || ((selection.game_7_home_score == group[6].home_score) && (selection.game_7_home_score = selection.game_7_away_score) && (group[6].home_score = group[6].away_score)) || ((selection.game_7_away_score == group[6].away_score) && (selection.game_7_home_score > selection.game_7_away_score) && (group[6].home_score > group[6].away_score)) || ((selection.game_7_away_score == group[6].away_score) && (selection.game_7_home_score < selection.game_7_away_score) && (group[6].home_score < group[6].away_score)) || ((selection.game_7_away_score == group[6].away_score) && (selection.game_7_home_score = selection.game_7_away_score) && (group[6].home_score = group[6].away_score))
         player_score = player_score + 5
+      elsif ((selection.game_7_home_score - selection.game_7_away_score) == (group[6].home_score - group[6].away_score)) || ((selection.game_7_home_score > selection.game_7_away_score) && (group[6].home_score > group[6].away_score)) || ((selection.game_7_home_score < selection.game_7_away_score) && (group[6].home_score < group[6].away_score))
+        player_score = player_score + 3
       elsif (selection.game_7_home_score == group[6].home_score) || (selection.game_7_away_score == group[6].away_score)
         player_score = player_score + 2
       end
@@ -126,6 +139,8 @@ class UsersFixturesSelectionsController < ApplicationController
         player_score = player_score + 10
       elsif ((selection.game_8_home_score == group[7].home_score) && (selection.game_8_home_score > selection.game_8_away_score) && (group[7].home_score > group[7].away_score)) || ((selection.game_8_home_score == group[7].home_score) && (selection.game_8_home_score < selection.game_8_away_score) && (group[7].home_score < group[7].away_score)) || ((selection.game_8_home_score == group[7].home_score) && (selection.game_8_home_score = selection.game_8_away_score) && (group[7].home_score = group[7].away_score)) || ((selection.game_8_away_score == group[7].away_score) && (selection.game_8_home_score > selection.game_8_away_score) && (group[7].home_score > group[7].away_score)) || ((selection.game_8_away_score == group[7].away_score) && (selection.game_8_home_score < selection.game_8_away_score) && (group[7].home_score < group[7].away_score)) || ((selection.game_8_away_score == group[7].away_score) && (selection.game_8_home_score = selection.game_8_away_score) && (group[7].home_score = group[7].away_score))
         player_score = player_score + 5
+      elsif ((selection.game_8_home_score - selection.game_8_away_score) == (group[7].home_score - group[7].away_score)) || ((selection.game_8_home_score > selection.game_8_away_score) && (group[7].home_score > group[7].away_score)) || ((selection.game_8_home_score < selection.game_8_away_score) && (group[7].home_score < group[7].away_score))
+        player_score = player_score + 3
       elsif (selection.game_8_home_score == group[7].home_score) || (selection.game_8_away_score == group[7].away_score)
         player_score = player_score + 2
       end
@@ -134,6 +149,8 @@ class UsersFixturesSelectionsController < ApplicationController
         player_score = player_score + 10
       elsif ((selection.game_9_home_score == group[8].home_score) && (selection.game_9_home_score > selection.game_9_away_score) && (group[8].home_score > group[8].away_score)) || ((selection.game_9_home_score == group[8].home_score) && (selection.game_9_home_score < selection.game_9_away_score) && (group[8].home_score < group[8].away_score)) || ((selection.game_9_home_score == group[8].home_score) && (selection.game_9_home_score = selection.game_9_away_score) && (group[8].home_score = group[8].away_score)) || ((selection.game_9_away_score == group[8].away_score) && (selection.game_9_home_score > selection.game_9_away_score) && (group[8].home_score > group[8].away_score)) || ((selection.game_9_away_score == group[8].away_score) && (selection.game_9_home_score < selection.game_9_away_score) && (group[8].home_score < group[8].away_score)) || ((selection.game_9_away_score == group[8].away_score) && (selection.game_9_home_score = selection.game_9_away_score) && (group[8].home_score = group[8].away_score))
         player_score = player_score + 5
+      elsif ((selection.game_9_home_score - selection.game_9_away_score) == (group[8].home_score - group[8].away_score)) || ((selection.game_9_home_score > selection.game_9_away_score) && (group[8].home_score > group[8].away_score)) || ((selection.game_9_home_score < selection.game_9_away_score) && (group[8].home_score < group[8].away_score))
+        player_score = player_score + 3
       elsif (selection.game_9_home_score == group[8].home_score) || (selection.game_9_away_score == group[8].away_score)
         player_score = player_score + 2
       end
@@ -142,6 +159,8 @@ class UsersFixturesSelectionsController < ApplicationController
         player_score = player_score + 10
       elsif ((selection.game_10_home_score == group[9].home_score) && (selection.game_10_home_score > selection.game_10_away_score) && (group[9].home_score > group[9].away_score)) || ((selection.game_10_home_score == group[9].home_score) && (selection.game_10_home_score < selection.game_10_away_score) && (group[9].home_score < group[9].away_score)) || ((selection.game_10_home_score == group[9].home_score) && (selection.game_10_home_score = selection.game_10_away_score) && (group[9].home_score = group[9].away_score)) || ((selection.game_10_away_score == group[9].away_score) && (selection.game_10_home_score > selection.game_10_away_score) && (group[9].home_score > group[9].away_score)) || ((selection.game_10_away_score == group[9].away_score) && (selection.game_10_home_score < selection.game_10_away_score) && (group[9].home_score < group[9].away_score)) || ((selection.game_10_away_score == group[9].away_score) && (selection.game_10_home_score = selection.game_10_away_score) && (group[9].home_score = group[9].away_score))
         player_score = player_score + 5
+      elsif ((selection.game_10_home_score - selection.game_10_away_score) == (group[9].home_score - group[9].away_score)) || ((selection.game_10_home_score > selection.game_10_away_score) && (group[9].home_score > group[9].away_score)) || ((selection.game_10_home_score < selection.game_10_away_score) && (group[9].home_score < group[9].away_score))
+        player_score = player_score + 3
       elsif (selection.game_10_home_score == group[9].home_score) || (selection.game_10_away_score == group[9].away_score)
         player_score = player_score + 2
       end
