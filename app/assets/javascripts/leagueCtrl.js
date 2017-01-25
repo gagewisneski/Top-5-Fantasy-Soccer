@@ -1,7 +1,7 @@
 (function() {
   "use strict";
 
-  angular.module("app").controller("leagueCtrl", function($scope, $http) {
+  angular.module("app").controller("leagueCtrl", [ '$scope', '$http',function($scope, $http) {
 
     $scope.setup = function() {
       $http.get('/leagues/indexes.json').then(function(response){
@@ -10,6 +10,6 @@
     }
 
     window.$scope = $scope;
-  });
+  }]);
 
 }());
