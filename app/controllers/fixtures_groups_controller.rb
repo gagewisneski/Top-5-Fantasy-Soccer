@@ -67,6 +67,7 @@ class FixturesGroupsController < ApplicationController
   def update_locked
     @fixtures_group = FixturesGroup.find_by(active: true)
     @fixtures_group.assign_attributes(locked: true)
+    @fixtures_group.save
     flash[:success] = "Selections are now locked"
     redirect_to "/"
   end
