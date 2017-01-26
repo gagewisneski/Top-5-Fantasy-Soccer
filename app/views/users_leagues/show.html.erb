@@ -3,24 +3,22 @@
     <div class="col-sm-12 text-center">
       <h1>Overall Leaders:</h1>
       <h2> <%= @players.count.to_s %> Players</h2>
-      <div class="col-sm-4 col-md-offset-4">
-        <% count = 1 %>
-        <table class="table-center">
+      <% count = 1 %>
+      <table class="table-center">
+        <tr>
+          <th class="table-item">Place</th>
+          <th class="table-item">Username</th>
+          <th class="table-item">Score</th>
+        </tr>
+        <% @players.each do |player| %>
           <tr>
-            <th class="table-item">Place</th>
-            <th class="table-item">Username</th>
-            <th class="table-item">Score</th>
-          </tr>
-          <% @players.each do |player| %>
-            <tr>
-            <td class="table-item"><%= count %></td>
-            <td class="table-item team"><%= link_to player.user.name, "/users_fixtures_selections/#{player.users_link}", class:"no-under" %></td>
-            <td class="table-item"><%= player.score %></td></tr>
-            <% count += 1 %>
-            <% break if count == 11 %>
-          <% end %>
-        </table>
-      </div>
+          <td class="table-item"><%= count %></td>
+          <td class="table-item team"><%= link_to player.user.name, "/users_fixtures_selections/#{player.users_link}", class:"no-under" %></td>
+          <td class="table-item"><%= player.score %></td></tr>
+          <% count += 1 %>
+          <% break if count == 11 %>
+        <% end %>
+      </table>
     </div>
   </div>
 </div>
@@ -37,7 +35,7 @@
 
   <div class="row">
     <% @leagues.each do |league| %>
-      <div class="col-sm-4 leaguers">
+      <div class="col-md-4 col-sm-6 leaguers">
         <% if league.image %>
           <img class="feature-image" src=<%= league.image %>>
         <% else %>

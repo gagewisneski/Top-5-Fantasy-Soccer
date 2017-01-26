@@ -5,7 +5,7 @@
         <div class="col-sm-12 text-center">
           <h1>Overall Leaders:</h1>
           <h2> <%= @players.count.to_s %> Players</h2>
-          <div class="col-sm-4 col-md-offset-4">
+
             <% count = 1 %>
             <table class="table-center">
               <tr>
@@ -23,7 +23,7 @@
               <% break if count == 11 %>
               <% end %>
             </table>
-          </div>
+
         </div>
       </div>
     </div>
@@ -44,7 +44,7 @@
       <br>
 
       <div class="row">
-        <div ng-repeat="league in leagues | filter: {name: nameFilter}" class="col-sm-4 leaguers">
+        <div ng-repeat="league in leagues | filter: {name: nameFilter}" class="col-md-4 col-sm-6 leaguers">
 
           <div ng-if="league.image">
             <img class="feature-image" ng-src="{{league.image}}">
