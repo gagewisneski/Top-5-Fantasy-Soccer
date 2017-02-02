@@ -4,11 +4,11 @@ class FixturesGroupsController < ApplicationController
   def index
     # Website homepage, displays the active fixtures_group.
     @fixtures_group = FixturesGroup.find_by(active: true)
-    @pl5 = PlTeam.all
-    @bl5 = BlTeam.all
-    @sa5 = SaTeam.all
-    @lg5 = LgTeam.all
-    @ll5 = LlTeam.all
+    @pl5 = PlStanding.all.order(:id)
+    @bl5 = BlStanding.all.order(:id)
+    @sa5 = SaStanding.all.order(:id)
+    @lg5 = LgStanding.all.order(:id)
+    @ll5 = LlStanding.all.order(:id)
   end
 
   def create

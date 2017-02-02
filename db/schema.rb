@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170122171011) do
+ActiveRecord::Schema.define(version: 20170202205242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bl_standings", force: :cascade do |t|
+    t.string   "team_name"
+    t.string   "place"
+    t.string   "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "fixtures", force: :cascade do |t|
     t.integer  "fixtures_group_id"
@@ -43,6 +51,38 @@ ActiveRecord::Schema.define(version: 20170122171011) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "season_id"
+  end
+
+  create_table "lg_standings", force: :cascade do |t|
+    t.string   "team_name"
+    t.string   "place"
+    t.string   "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ll_standings", force: :cascade do |t|
+    t.string   "team_name"
+    t.string   "place"
+    t.string   "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pl_standings", force: :cascade do |t|
+    t.string   "team_name"
+    t.string   "place"
+    t.string   "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sa_standings", force: :cascade do |t|
+    t.string   "team_name"
+    t.string   "place"
+    t.string   "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "seasons", force: :cascade do |t|

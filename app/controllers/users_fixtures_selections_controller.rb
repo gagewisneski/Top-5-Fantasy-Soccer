@@ -184,6 +184,72 @@ class UsersFixturesSelectionsController < ApplicationController
     next_week.assign_attributes(active: true)
     next_week.save
 
+
+    standings = Unirest.get("#{ENV['API_URL']}/competitions/426/leagueTable", headers:{"X-Auth-Token" => "#{ENV['API_KEY']}"}).body
+    count = 0
+    5.times do
+      team = standings["standing"][count]
+      pl = PlStanding.find(count + 1)
+      team_name = team["teamName"]
+      place = team["position"]
+      score = team["points"]
+      pl.assign_attributes(team_name: team_name, place: place, score: score)
+      pl.save
+      count += 1
+    end
+
+    standings = Unirest.get("#{ENV['API_URL']}/competitions/430/leagueTable", headers:{"X-Auth-Token" => "#{ENV['API_KEY']}"}).body
+    count = 0
+    5.times do
+      team = standings["standing"][count]
+      bl = BlStanding.find(count + 1)
+      team_name = team["teamName"]
+      place = team["position"]
+      score = team["points"]
+      bl.assign_attributes(team_name: team_name, place: place, score: score)
+      bl.save
+      count += 1
+    end
+
+    standings = Unirest.get("#{ENV['API_URL']}/competitions/434/leagueTable", headers:{"X-Auth-Token" => "#{ENV['API_KEY']}"}).body
+    count = 0
+    5.times do
+      team = standings["standing"][count]
+      lg = LgStanding.find(count + 1)
+      team_name = team["teamName"]
+      place = team["position"]
+      score = team["points"]
+      lg.assign_attributes(team_name: team_name, place: place, score: score)
+      lg.save
+      count += 1
+    end
+
+    standings = Unirest.get("#{ENV['API_URL']}/competitions/436/leagueTable", headers:{"X-Auth-Token" => "#{ENV['API_KEY']}"}).body
+    count = 0
+    5.times do
+      team = standings["standing"][count]
+      ll = LlStanding.find(count + 1)
+      team_name = team["teamName"]
+      place = team["position"]
+      score = team["points"]
+      ll.assign_attributes(team_name: team_name, place: place, score: score)
+      ll.save
+      count += 1
+    end
+
+    standings = Unirest.get("#{ENV['API_URL']}/competitions/438/leagueTable", headers:{"X-Auth-Token" => "#{ENV['API_KEY']}"}).body
+    count = 0
+    5.times do
+      team = standings["standing"][count]
+      sa = SaStanding.find(count + 1)
+      team_name = team["teamName"]
+      place = team["position"]
+      score = team["points"]
+      sa.assign_attributes(team_name: team_name, place: place, score: score)
+      sa.save
+      count += 1
+    end
+
     redirect_to "/"
   end
   

@@ -1,0 +1,2 @@
+class PlStanding < ApplicationRecord
+end

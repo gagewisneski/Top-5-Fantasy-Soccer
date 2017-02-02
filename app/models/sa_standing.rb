@@ -1,0 +1,2 @@
+class SaStanding < ApplicationRecord
+end

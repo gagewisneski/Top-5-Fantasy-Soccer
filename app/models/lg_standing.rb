@@ -1,0 +1,2 @@
+class LgStanding < ApplicationRecord
+end
